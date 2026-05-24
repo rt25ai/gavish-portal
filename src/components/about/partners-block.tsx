@@ -13,8 +13,8 @@ export function PartnersBlock() {
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10">
           <article className="bg-paper rounded-3xl p-10 lg:p-12 border border-navy-900/8">
-            <div className="h-20 mb-8 flex items-center">
-              <RashiLogo className="h-20 w-auto" />
+            <div className="h-24 mb-8 flex items-center">
+              <RashiLogo className="h-24 w-auto" />
             </div>
             <h3 className="font-display font-black text-3xl text-navy-900 mb-4">קרן רש״י</h3>
             <p className="font-body text-lg text-ink/80 leading-relaxed">
@@ -22,8 +22,8 @@ export function PartnersBlock() {
             </p>
           </article>
           <article className="bg-paper rounded-3xl p-10 lg:p-12 border border-navy-900/8">
-            <div className="h-20 mb-8 flex items-center">
-              <CouncilLogo className="h-24 w-auto" showText={false} />
+            <div className="h-24 mb-8 flex items-center">
+              <CouncilLogo className="h-28 w-auto" />
             </div>
             <h3 className="font-display font-black text-3xl text-navy-900 mb-4">מועצת ארגוני הילדים והנוער</h3>
             <p className="font-body text-lg text-ink/80 leading-relaxed">

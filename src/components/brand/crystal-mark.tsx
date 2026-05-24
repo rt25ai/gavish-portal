@@ -1,5 +1,5 @@
 /**
- * Crystal/Gavish geometric mark — used as portal logotype.
+ * Crystal/Gavish geometric mark - used as portal logotype.
  * Faceted shape that represents the program name "גביש" (crystal).
  */
 export function CrystalMark({ className = "", animated = false }: { className?: string; animated?: boolean }) {

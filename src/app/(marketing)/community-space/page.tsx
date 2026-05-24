@@ -4,7 +4,7 @@ import { Lock, Calendar, MessageCircle, FolderOpen, Users, ArrowLeft } from "luc
 
 export const metadata: Metadata = {
   title: "האזור הקהילתי",
-  description: "המרחב הסגור של חברי הקהילה — feed, לוח אירועים, ספריית קבצים והודעות פנים-קהילתיות.",
+  description: "המרחב הסגור של חברי הקהילה - feed, לוח אירועים, ספריית קבצים והודעות פנים-קהילתיות.",
 };
 
 const featureCards = [
@@ -45,7 +45,7 @@ export default function CommunitySpacePage() {
         </div>
       </section>
 
-      {/* Preview features — blurred */}
+      {/* Preview features - blurred */}
       <section className="bg-cream py-20 lg:py-28 relative">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4 text-center">
@@ -83,7 +83,7 @@ export default function CommunitySpacePage() {
           </div>
 
           <p className="mt-12 text-center font-body text-base text-ink/55 max-w-xl mx-auto">
-            הגישה לאזור הקהילתי תיפתח לחברי המחזור הראשון בסיום התוכנית. אם אתם מאושרים — תקבלו מייל עם קישור להצטרפות.
+            הגישה לאזור הקהילתי תיפתח לחברי המחזור הראשון בסיום התוכנית. אם אתם מאושרים - תקבלו מייל עם קישור להצטרפות.
           </p>
         </div>
       </section>

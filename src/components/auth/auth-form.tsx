@@ -25,7 +25,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
       <p className="font-body text-lg text-ink/70 mb-10">
         {isSignUp
           ? "האזור הקהילתי פתוח רק לחברי מחזור גביש. נשלח אליכם קישור בדואר."
-          : "נשלח אליכם קישור כניסה למייל. ללא סיסמה, ללא הרשמה — רק שלום ומכאן הביתה."}
+          : "נשלח אליכם קישור כניסה למייל. ללא סיסמה, ללא הרשמה - רק שלום ומכאן הביתה."}
       </p>
 
       {sent ? (
@@ -37,7 +37,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
             <p className="font-display font-bold text-lg text-navy-900 mb-1">בדקו את המייל</p>
             <p className="font-body text-sm text-ink/70 leading-relaxed">
               שלחנו לכם קישור כניסה. הוא תקף ל-15 דקות.<br />
-              <span className="text-ink/50 italic">(זוהי הדגמה — האזור האישי עוד לא פעיל.)</span>
+              <span className="text-ink/50 italic">(זוהי הדגמה - האזור האישי עוד לא פעיל.)</span>
             </p>
           </div>
         </div>

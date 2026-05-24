@@ -24,7 +24,7 @@ export default function CommunityPage() {
           </h1>
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
             <p className="lg:col-span-7 font-body text-xl text-ink/80 leading-relaxed">
-              מנהלות ומנהלי מחלקות הנוער של 18 רשויות, מהצפון לדרום, מהמרכז לפריפריה. כל אחד הוא קול. ביחד — קהילה מקצועית.
+              מנהלות ומנהלי מחלקות הנוער של 18 רשויות, מהצפון לדרום, מהמרכז לפריפריה. כל אחד הוא קול. ביחד - קהילה מקצועית.
             </p>
             <div className="lg:col-span-5">
               <p className="font-body text-sm uppercase tracking-[0.18em] text-navy-700/60 font-semibold mb-3">צוותי המחקר</p>

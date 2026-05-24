@@ -33,12 +33,12 @@ export function SiteFooter() {
 
           <div className="lg:col-span-4">
             <h3 className="font-display font-bold text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">בשיתוף</h3>
-            <div className="space-y-6">
-              <div className="bg-paper/8 backdrop-blur rounded-2xl p-5 hover:bg-paper/12 transition">
-                <RashiLogo className="h-12 w-auto" monochrome />
+            <div className="space-y-4">
+              <div className="bg-paper rounded-2xl p-6 flex items-center justify-center hover:bg-cream transition">
+                <RashiLogo className="h-14 w-auto" />
               </div>
-              <div className="bg-paper/8 backdrop-blur rounded-2xl p-5 hover:bg-paper/12 transition">
-                <CouncilLogo className="h-16 w-auto" />
+              <div className="bg-paper rounded-2xl p-6 flex items-center justify-center hover:bg-cream transition">
+                <CouncilLogo className="h-20 w-auto" />
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@ export function SiteFooter() {
 
         <div className="mt-16 pt-8 border-t border-paper/15 flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center text-paper/55 text-sm">
           <p>© {new Date().getFullYear()} קרן רש״י · כל הזכויות שמורות</p>
-          <p className="italic text-paper/40">תוכן הדגמה — ייעודכן בהמשך</p>
+          <p className="italic text-paper/40">תוכן הדגמה - ייעודכן בהמשך</p>
           <div className="flex gap-5">
             <a href="mailto:gavish@rashi.org.il" className="hover:text-leaf-300 transition">צרו קשר</a>
             <Link href="/.well-known/security.txt" className="hover:text-leaf-300 transition">אבטחה</Link>

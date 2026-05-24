@@ -30,7 +30,7 @@ export default function DataPage() {
             <span className="outline-text">במספרים.</span>
           </h1>
           <p className="mt-10 font-body text-xl text-ink/80 max-w-3xl leading-relaxed">
-            הנתונים הם נקודת ההתחלה של כל שיחה מקצועית. כל המספרים כאן מקורם בלמ״ס, OECD, ומנהל חברה ונוער. תוכן הדגמה — ייעודכן בקרוב לנתונים החיים ביותר.
+            הנתונים הם נקודת ההתחלה של כל שיחה מקצועית. כל המספרים כאן מקורם בלמ״ס, OECD, ומנהל חברה ונוער. תוכן הדגמה - ייעודכן בקרוב לנתונים החיים ביותר.
           </p>
         </div>
       </section>

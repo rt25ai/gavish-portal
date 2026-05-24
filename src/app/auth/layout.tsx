@@ -20,7 +20,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <span className="outline-text">במקום אחד.</span>
           </h2>
           <p className="font-body text-lg text-paper/80 max-w-md leading-relaxed">
-            פיד מקצועי, ספריית מחקרים, מפגשי המשך, ופלטפורמה לשיתופי פעולה אזוריים — כל מה שצריך כדי שהקבוצה תיהפך לקהילה.
+            פיד מקצועי, ספריית מחקרים, מפגשי המשך, ופלטפורמה לשיתופי פעולה אזוריים - כל מה שצריך כדי שהקבוצה תיהפך לקהילה.
           </p>
         </div>
 

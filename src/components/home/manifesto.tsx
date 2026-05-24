@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, registerGsap, prefersReducedMotion } from "@/lib/motion";
 
 const lines = [
-  { weight: "font-light", text: "אנחנו מאמינים ש—" },
+  { weight: "font-light", text: "אנחנו מאמינים ש-" },
   { weight: "font-black", text: "מנהלי מחלקות נוער", color: true },
   { weight: "font-light", text: "הם נושאי הדגל השקטים" },
   { weight: "font-black", text: "של החברה הישראלית.", color: true },
@@ -13,7 +13,7 @@ const lines = [
   { weight: "font-light", text: "לחבר בין המובילות והמובילים" },
   { weight: "font-light", text: "וליצור" },
   { weight: "font-black", text: "תשתית של ידע חי", color: true },
-  { weight: "font-light", text: "שמשתפת, מעצימה וצומחת —" },
+  { weight: "font-light", text: "שמשתפת, מעצימה וצומחת -" },
   { weight: "font-black", text: "ביחד.", color: true },
 ];
 

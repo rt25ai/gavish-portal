@@ -18,7 +18,7 @@ export function ParticipantCard({ p, size = "md" }: { p: Participant; size?: "sm
         size === "lg" && "aspect-[3/4]",
       )}
     >
-      {/* Duotone "photo" placeholder — large initials over gradient */}
+      {/* Duotone "photo" placeholder - large initials over gradient */}
       <div className="absolute inset-0 bg-crystal" />
       <div
         aria-hidden

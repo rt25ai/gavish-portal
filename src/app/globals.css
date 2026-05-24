@@ -1,26 +1,131 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ----- Brand & Foundation ----- */
+  --color-navy-50: #e7eaf3;
+  --color-navy-100: #c4ccdf;
+  --color-navy-200: #97a3c4;
+  --color-navy-300: #6a7aa8;
+  --color-navy-400: #3e527c;
+  --color-navy-500: #1b2c5c;
+  --color-navy-700: #142048;
+  --color-navy-900: #0f1e47;
+  --color-navy-950: #07112d;
+
+  --color-leaf-50: #eaf6e1;
+  --color-leaf-100: #cce8b8;
+  --color-leaf-300: #93cf6f;
+  --color-leaf-500: #6fb94a;
+  --color-leaf-700: #4d8e30;
+  --color-leaf-900: #2e5a1c;
+
+  /* ----- 4 Research Topic Colors (from Council lotus logo) ----- */
+  --color-topic-amber: #f4b628;
+  --color-topic-amber-soft: #fde9b3;
+  --color-topic-coral: #e94b2a;
+  --color-topic-coral-soft: #fbcabe;
+  --color-topic-teal: #1b95b5;
+  --color-topic-teal-soft: #b9e0ea;
+  --color-topic-moss: #5b9a3d;
+  --color-topic-moss-soft: #cce4bc;
+
+  /* ----- Surfaces & Ink ----- */
+  --color-ink: #0a0e1f;
+  --color-ink-soft: #2a2f45;
+  --color-paper: #faf8f3;
+  --color-cream: #f3eee3;
+  --color-rule: #2a3358;
+  --color-bone: #ece7d8;
+
+  /* ----- Type System ----- */
+  --font-display: var(--font-heebo), system-ui, sans-serif;
+  --font-body: var(--font-assistant), system-ui, sans-serif;
+
+  /* ----- Editorial Scale ----- */
+  --text-mega: clamp(4rem, 18vw, 16rem);
+  --text-jumbo: clamp(3rem, 12vw, 9rem);
+  --text-display: clamp(2.25rem, 6vw, 5rem);
+
+  /* ----- Easing ----- */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-crystal: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============== Base reset ============== */
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "ss01", "cv01", "cv11";
+  letter-spacing: -0.01em;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ============== Utilities ============== */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+.text-mega { font-size: var(--text-mega); line-height: 0.82; letter-spacing: -0.06em; font-weight: 900; }
+.text-jumbo { font-size: var(--text-jumbo); line-height: 0.85; letter-spacing: -0.05em; font-weight: 900; }
+.text-display { font-size: var(--text-display); line-height: 0.95; letter-spacing: -0.035em; font-weight: 800; }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+.outline-text {
+  -webkit-text-stroke: 1.5px currentColor;
+  color: transparent;
+}
+
+/* ============== Duotone treatment for portraits ============== */
+.duotone {
+  filter: grayscale(1) contrast(1.05) brightness(0.95);
+  mix-blend-mode: multiply;
+}
+
+/* ============== Crystal facet gradient ============== */
+.bg-crystal {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgba(255, 255, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(111, 185, 74, 0.12), transparent 50%),
+    linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-700) 50%, var(--color-navy-900) 100%);
+}
+
+/* ============== Scrollbar ============== */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: var(--color-navy-200); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-navy-500); }
+
+/* ============== Focus visible ============== */
+:focus-visible {
+  outline: 2px solid var(--color-leaf-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============== Reduced motion ============== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============== Lenis smooth scroll ============== */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

@@ -45,7 +45,7 @@ export function HeroSplit() {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] flex items-end overflow-hidden bg-paper">
+    <section className="relative min-h-[100svh] flex items-end overflow-hidden bg-paper-mesh">
       {/* Crystal facet decor */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 -left-32 w-[60vmin] h-[60vmin] bg-leaf-500/8 blur-3xl rounded-full" />

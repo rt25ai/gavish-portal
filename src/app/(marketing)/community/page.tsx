@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function CommunityPage() {
   return (
     <>
-      <section className="bg-paper pt-32 pb-12 lg:pt-44 lg:pb-20 relative overflow-hidden">
+      <section className="bg-paper-mesh pt-32 pb-12 lg:pt-44 lg:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-32 left-1/3 w-[40vmin] h-[40vmin] bg-topic-teal/15 blur-3xl rounded-full" />
         </div>
@@ -44,7 +44,7 @@ export default function CommunityPage() {
         </div>
       </section>
 
-      <section className="bg-paper pb-24 lg:pb-36">
+      <section className="bg-paper-mesh-soft pb-24 lg:pb-36 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 lg:gap-6">
             {participants.map((p, i) => {

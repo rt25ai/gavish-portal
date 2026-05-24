@@ -49,7 +49,7 @@ export function Manifesto() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-paper py-32 lg:py-44">
+    <section ref={sectionRef} className="bg-paper-mesh-soft py-32 lg:py-44 relative overflow-hidden">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
         <p className="font-display text-display lg:text-[6rem] leading-[1.05] tracking-tight">
           {lines.map((l, i) => (

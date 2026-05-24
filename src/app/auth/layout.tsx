@@ -28,7 +28,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           © {new Date().getFullYear()} קרן רש״י · מועצת ארגוני הילדים והנוער
         </div>
       </aside>
-      <main className="bg-paper p-10 lg:p-16 flex items-center justify-center">
+      <main className="bg-paper-mesh p-10 lg:p-16 flex items-center justify-center relative overflow-hidden">
         <div className="w-full max-w-md">{children}</div>
       </main>
     </div>

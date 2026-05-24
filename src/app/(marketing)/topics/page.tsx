@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function TopicsHubPage() {
   return (
     <>
-      <section className="bg-paper pt-32 pb-12 lg:pt-44 lg:pb-16">
+      <section className="bg-paper-mesh pt-32 pb-12 lg:pt-44 lg:pb-16 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-6">
             ארבעה צוותים · תשעה חודשי מחקר
@@ -27,7 +27,7 @@ export default function TopicsHubPage() {
         </div>
       </section>
 
-      <section className="bg-paper pb-24 lg:pb-36">
+      <section className="bg-paper-mesh-soft pb-24 lg:pb-36 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
             {topics.map((t) => {

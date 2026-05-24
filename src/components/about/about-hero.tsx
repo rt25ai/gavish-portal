@@ -17,7 +17,7 @@ export function AboutHero() {
   }, []);
 
   return (
-    <section className="relative bg-paper pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
+    <section className="relative bg-paper-mesh pt-32 pb-20 lg:pt-44 lg:pb-32 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 right-1/4 w-[40vmin] h-[40vmin] bg-topic-amber/15 blur-3xl rounded-full" />
         <div className="absolute -bottom-32 left-1/4 w-[50vmin] h-[50vmin] bg-leaf-500/15 blur-3xl rounded-full" />

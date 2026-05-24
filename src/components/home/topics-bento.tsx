@@ -21,7 +21,7 @@ const layouts = [
 
 export function TopicsBento() {
   return (
-    <section className="bg-cream py-24 lg:py-32">
+    <section className="bg-cream-mesh py-24 lg:py-32 relative overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="flex items-end justify-between mb-16 gap-8 flex-wrap">
           <div className="max-w-2xl">

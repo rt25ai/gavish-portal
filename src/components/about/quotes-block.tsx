@@ -2,7 +2,7 @@ import { quotes } from "@/lib/content";
 
 export function QuotesBlock() {
   return (
-    <section className="bg-paper py-24 lg:py-36">
+    <section className="bg-paper-mesh-soft py-24 lg:py-36 relative overflow-hidden">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
         <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
           קולות מהשטח

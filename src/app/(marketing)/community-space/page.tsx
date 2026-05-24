@@ -17,7 +17,7 @@ const featureCards = [
 export default function CommunitySpacePage() {
   return (
     <>
-      <section className="relative bg-paper pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden">
+      <section className="relative bg-paper-mesh pt-32 pb-16 lg:pt-44 lg:pb-24 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-32 left-1/3 w-[40vmin] h-[40vmin] bg-topic-amber/15 blur-3xl rounded-full" />
         </div>
@@ -46,7 +46,7 @@ export default function CommunitySpacePage() {
       </section>
 
       {/* Preview features - blurred */}
-      <section className="bg-cream py-20 lg:py-28 relative">
+      <section className="bg-cream-mesh py-20 lg:py-28 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4 text-center">
             הצצה למה שמחכה לכם

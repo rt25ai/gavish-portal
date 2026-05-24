@@ -47,8 +47,8 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* Insights */}
-      <section className="bg-paper py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
+      <section className="bg-paper-mesh py-24 lg:py-32 relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
             התובנות שלנו
           </p>
@@ -96,8 +96,8 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* Documents */}
-      <section className="bg-cream py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
+      <section className="bg-cream-mesh py-24 lg:py-32 relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
             הפלט שלנו
           </p>
@@ -124,8 +124,8 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* External resources */}
-      <section className="bg-paper py-24 lg:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
+      <section className="bg-paper-mesh-soft py-24 lg:py-32 relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
             ספרייה מקצועית
           </p>
@@ -159,8 +159,8 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* Team */}
-      <section className="bg-cream py-24 lg:py-32">
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
+      <section className="bg-cream-mesh py-24 lg:py-32 relative overflow-hidden">
+        <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
             הצוות שחקר
           </p>

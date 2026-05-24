@@ -35,7 +35,7 @@ export function TimelineHorizontal() {
   }, []);
 
   return (
-    <section ref={wrapRef} className="bg-cream overflow-hidden">
+    <section ref={wrapRef} className="bg-cream-mesh overflow-hidden">
       <div className="pt-24 lg:pt-32 px-6 lg:px-10 mx-auto max-w-[1400px]">
         <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
           המסע

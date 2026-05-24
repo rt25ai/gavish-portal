@@ -16,7 +16,7 @@ function fmt(v: number) {
 export default function DataPage() {
   return (
     <>
-      <section className="bg-paper pt-32 pb-16 lg:pt-44 lg:pb-20 relative overflow-hidden">
+      <section className="bg-paper-mesh pt-32 pb-16 lg:pt-44 lg:pb-20 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-32 right-1/4 w-[40vmin] h-[40vmin] bg-topic-teal/15 blur-3xl rounded-full" />
           <div className="absolute -bottom-32 left-1/4 w-[40vmin] h-[40vmin] bg-leaf-500/15 blur-3xl rounded-full" />
@@ -36,7 +36,7 @@ export default function DataPage() {
       </section>
 
       {/* Big number row */}
-      <section className="bg-paper pb-16 lg:pb-24">
+      <section className="bg-paper-mesh-soft pb-16 lg:pb-24 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-px bg-navy-900/10 rounded-3xl overflow-hidden">
             {stats.slice(0, 6).map((s, i) => (
@@ -53,7 +53,7 @@ export default function DataPage() {
       </section>
 
       {/* Charts grid */}
-      <section className="bg-cream py-24 lg:py-32">
+      <section className="bg-cream-mesh py-24 lg:py-32 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 space-y-8 lg:space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             <article className="lg:col-span-7 bg-paper rounded-3xl p-8 lg:p-10 border border-navy-900/8">

@@ -32,13 +32,31 @@ export function SiteFooter() {
           </div>
 
           <div className="lg:col-span-4">
-            <h3 className="font-display font-bold text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">בשיתוף</h3>
-            <div className="space-y-4">
-              <div className="bg-paper rounded-2xl p-6 flex items-center justify-center hover:bg-cream transition">
-                <RashiLogo className="h-14 w-auto" />
+            <h3 className="font-display font-bold text-paper/50 text-xs uppercase tracking-[0.2em] mb-5">בשיתוף</h3>
+
+            {/* Rashi card */}
+            <div className="group relative mb-4 overflow-hidden rounded-2xl border border-paper/15 bg-gradient-to-br from-paper/95 via-paper/90 to-leaf-50/90 backdrop-blur-sm transition hover:border-leaf-500/60">
+              <div aria-hidden className="absolute -top-12 -left-12 w-32 h-32 bg-leaf-500/25 blur-2xl rounded-full transition-opacity group-hover:opacity-80" />
+              <div aria-hidden className="absolute top-0 right-0 w-20 h-20 bg-leaf-500/10 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+              <div aria-hidden className="absolute bottom-2 right-2 size-2 rounded-full bg-leaf-500/50 [animation:pulse_3s_ease-in-out_infinite]" />
+              <div className="relative p-6 flex items-center justify-center min-h-[120px]">
+                <RashiLogo className="h-16 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
               </div>
-              <div className="bg-paper rounded-2xl p-6 flex items-center justify-center hover:bg-cream transition">
-                <CouncilLogo className="h-20 w-auto" />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-paper/0 to-paper/0 group-hover:from-leaf-500/5 transition-all duration-500 pointer-events-none" />
+            </div>
+
+            {/* Council card */}
+            <div className="group relative overflow-hidden rounded-2xl border border-paper/15 bg-gradient-to-br from-paper/95 via-cream/90 to-paper/95 backdrop-blur-sm transition hover:border-topic-amber/60">
+              <div aria-hidden className="absolute -top-16 left-1/4 w-40 h-40 bg-topic-amber/20 blur-3xl rounded-full" />
+              <div aria-hidden className="absolute -bottom-16 right-1/4 w-40 h-40 bg-topic-teal/15 blur-3xl rounded-full" />
+              <div aria-hidden className="absolute top-3 left-3 flex gap-1">
+                <span className="size-1.5 rounded-full bg-topic-amber" />
+                <span className="size-1.5 rounded-full bg-topic-coral" />
+                <span className="size-1.5 rounded-full bg-topic-teal" />
+                <span className="size-1.5 rounded-full bg-topic-moss" />
+              </div>
+              <div className="relative p-6 flex items-center justify-center min-h-[140px]">
+                <CouncilLogo className="h-24 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
               </div>
             </div>
           </div>

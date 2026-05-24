@@ -3,8 +3,8 @@ import { YouthTrendChart, DistrictBarChart, ParticipationRadial, InternationalCo
 import { stats } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "נתוני נוער בישראל",
-  description: "אטלס נתונים: בני נוער בישראל, השתתפות במסגרות, פערים גיאוגרפיים והשוואה בינלאומית.",
+  title: "נתוני נוער בישראל 2026",
+  description: "אטלס נתונים מעודכן: בני נוער בישראל, השתתפות במסגרות, פערים גיאוגרפיים והשוואה בינלאומית. מקורות: למ״ס, OECD, מינהל חברה ונוער.",
 };
 
 function fmt(v: number) {
@@ -23,14 +23,14 @@ export default function DataPage() {
         </div>
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-6">
-            אטלס נתוני נוער
+            אטלס נתוני נוער · עדכון 2026
           </p>
           <h1 className="font-display font-black text-jumbo text-navy-900 leading-[0.88]">
             המגרש,<br />
             <span className="outline-text">במספרים.</span>
           </h1>
           <p className="mt-10 font-body text-xl text-ink/80 max-w-3xl leading-relaxed">
-            הנתונים הם נקודת ההתחלה של כל שיחה מקצועית. כל המספרים כאן מקורם בלמ״ס, OECD, ומנהל חברה ונוער. תוכן הדגמה - ייעודכן בקרוב לנתונים החיים ביותר.
+            הנתונים הם נקודת ההתחלה של כל שיחה מקצועית. כל המספרים כאן מקורם בלמ״ס (2026 - אומדן), OECD, מינהל חברה ונוער (2025), ורשות השירות הלאומי. הנתונים יתעדכנו ברבעון בכל שנה.
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function DataPage() {
                 מגמת הגידול
               </p>
               <h3 className="font-display font-black text-3xl text-navy-900 mb-1">בני נוער בישראל</h3>
-              <p className="font-body text-sm text-ink/55 mb-8">גילאי 12-18 · באלפים · תחזית 2030</p>
+              <p className="font-body text-sm text-ink/55 mb-8">גילאי 12-17 · באלפים · למ״ס + תחזית 2030</p>
               <YouthTrendChart />
             </article>
             <article className="lg:col-span-5 bg-paper rounded-3xl p-8 lg:p-10 border border-navy-900/8">
@@ -69,7 +69,7 @@ export default function DataPage() {
                 שיעור השתתפות
               </p>
               <h3 className="font-display font-black text-3xl text-navy-900 mb-1">במסגרות נוער</h3>
-              <p className="font-body text-sm text-ink/55 mb-8">סקר שימוש בזמן 2023</p>
+              <p className="font-body text-sm text-ink/55 mb-8">מינהל חברה ונוער · 2025</p>
               <ParticipationRadial />
             </article>
           </div>
@@ -80,7 +80,7 @@ export default function DataPage() {
                 התפלגות גיאוגרפית
               </p>
               <h3 className="font-display font-black text-3xl text-navy-900 mb-1">בני נוער במחוזות</h3>
-              <p className="font-body text-sm text-ink/55 mb-8">למ״ס 2024 · באלפים</p>
+              <p className="font-body text-sm text-ink/55 mb-8">למ״ס 2026 · באלפים · גילאי 12-17</p>
               <DistrictBarChart />
             </article>
             <article className="lg:col-span-6 bg-paper rounded-3xl p-8 lg:p-10 border border-navy-900/8">
@@ -88,7 +88,7 @@ export default function DataPage() {
                 השוואה בינלאומית
               </p>
               <h3 className="font-display font-black text-3xl text-navy-900 mb-1">השתתפות במסגרות</h3>
-              <p className="font-body text-sm text-ink/55 mb-8">OECD 2023</p>
+              <p className="font-body text-sm text-ink/55 mb-8">OECD · Education at a Glance 2025</p>
               <InternationalCompare />
             </article>
           </div>
@@ -98,7 +98,7 @@ export default function DataPage() {
               פער דיגיטלי
             </p>
             <h3 className="font-display font-black text-3xl text-navy-900 mb-1">גישה למחשב אישי בבית</h3>
-            <p className="font-body text-sm text-ink/55 mb-8">מרכז מול פריפריה · באחוזים · 2020-2024</p>
+            <p className="font-body text-sm text-ink/55 mb-8">מרכז מול פריפריה · באחוזים · למ״ס 2020-2025</p>
             <DigitalGapChart />
           </article>
         </div>

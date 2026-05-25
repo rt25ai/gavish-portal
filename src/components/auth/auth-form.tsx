@@ -36,7 +36,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
           </p>
         </div>
         <p className="mt-8 font-body text-sm text-ink/60">
-          לאחר אישור המייל — <Link href="/auth/sign-in" className="font-bold text-navy-900 underline underline-offset-4">היכנסו לחשבון</Link>.
+          לאחר אישור המייל - <Link href="/auth/sign-in" className="font-bold text-navy-900 underline underline-offset-4">היכנסו לחשבון</Link>.
         </p>
       </div>
     );

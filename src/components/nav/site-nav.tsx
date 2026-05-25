@@ -2,24 +2,30 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, LogOut, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CrystalMark } from "@/components/brand/crystal-mark";
 
-const links = [
+const baseLinks = [
   { href: "/", label: "בית" },
   { href: "/about", label: "אודות" },
   { href: "/topics", label: "תחומי המחקר" },
   { href: "/community", label: "חברי הקהילה" },
   { href: "/data", label: "נתוני נוער" },
-  { href: "/community-space", label: "האזור הקהילתי" },
 ];
 
-export function SiteNav() {
+export type SiteNavUser = {
+  fullName: string;
+  isAdmin: boolean;
+} | null;
+
+export function SiteNav({ user }: { user: SiteNavUser }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,7 +34,25 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [menuOpen]);
+
+  const links = user
+    ? [...baseLinks, { href: "/community-space", label: "האזור הקהילתי" }]
+    : baseLinks;
 
   return (
     <header
@@ -63,18 +87,67 @@ export function SiteNav() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-2">
-          <Link
-            href="/auth/sign-in"
-            className="px-4 py-2 text-sm font-medium rounded-full hover:bg-navy-900/5 transition"
-          >
-            כניסה
-          </Link>
-          <Link
-            href="/auth/sign-up"
-            className="px-4 py-2 text-sm font-semibold bg-navy-900 text-paper rounded-full hover:bg-navy-700 transition"
-          >
-            הצטרפו לקהילה
-          </Link>
+          {user ? (
+            <div ref={menuRef} className="relative">
+              <button
+                onClick={() => setMenuOpen((v) => !v)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-navy-900/5 transition"
+                aria-haspopup="menu"
+                aria-expanded={menuOpen}
+              >
+                <span className="size-8 rounded-full bg-navy-900 text-paper grid place-items-center font-display font-black text-sm">
+                  {user.fullName.charAt(0) || "?"}
+                </span>
+                <span className="font-body text-sm font-semibold text-navy-900 max-w-[120px] truncate">
+                  {user.fullName || "חשבון"}
+                </span>
+                <ChevronDown className={cn("size-4 text-ink/50 transition-transform", menuOpen && "rotate-180")} />
+              </button>
+
+              {menuOpen && (
+                <div className="absolute end-0 mt-2 w-56 bg-paper border border-navy-900/10 rounded-2xl shadow-[0_20px_60px_-20px_rgba(15,30,71,0.35)] overflow-hidden">
+                  <Link
+                    href="/community-space"
+                    className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5"
+                  >
+                    הפיד הקהילתי
+                  </Link>
+                  {user.isAdmin && (
+                    <Link
+                      href="/community-space/admin"
+                      className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 border-t border-navy-900/8"
+                    >
+                      פוסט חדש (אדמין)
+                    </Link>
+                  )}
+                  <form action="/auth/sign-out" method="post" className="border-t border-navy-900/8">
+                    <button
+                      type="submit"
+                      className="w-full flex items-center gap-2 px-4 py-3 font-body text-sm text-topic-coral hover:bg-topic-coral/5 text-right"
+                    >
+                      <LogOut className="size-4" />
+                      יציאה
+                    </button>
+                  </form>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link
+                href="/auth/sign-in"
+                className="px-4 py-2 text-sm font-medium rounded-full hover:bg-navy-900/5 transition"
+              >
+                כניסה
+              </Link>
+              <Link
+                href="/auth/sign-up"
+                className="px-4 py-2 text-sm font-semibold bg-navy-900 text-paper rounded-full hover:bg-navy-700 transition"
+              >
+                הצטרפו לקהילה
+              </Link>
+            </>
+          )}
         </div>
 
         <button
@@ -105,12 +178,35 @@ export function SiteNav() {
             ))}
           </ul>
           <div className="flex flex-col gap-2">
-            <Link href="/auth/sign-in" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
-              כניסה
-            </Link>
-            <Link href="/auth/sign-up" className="text-center px-4 py-3 rounded-full bg-navy-900 text-paper font-semibold">
-              הצטרפו לקהילה
-            </Link>
+            {user ? (
+              <>
+                <div className="px-4 py-3 rounded-2xl bg-navy-900/5 font-body text-sm">
+                  מחובר/ת כ-<span className="font-bold">{user.fullName}</span>
+                </div>
+                {user.isAdmin && (
+                  <Link href="/community-space/admin" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
+                    פוסט חדש (אדמין)
+                  </Link>
+                )}
+                <form action="/auth/sign-out" method="post">
+                  <button
+                    type="submit"
+                    className="w-full text-center px-4 py-3 rounded-full bg-topic-coral/10 text-topic-coral font-semibold"
+                  >
+                    יציאה
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/sign-in" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
+                  כניסה
+                </Link>
+                <Link href="/auth/sign-up" className="text-center px-4 py-3 rounded-full bg-navy-900 text-paper font-semibold">
+                  הצטרפו לקהילה
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

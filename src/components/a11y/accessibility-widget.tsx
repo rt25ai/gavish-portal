@@ -214,13 +214,13 @@ export function AccessibilityWidget() {
         aria-label="פתיחת תפריט נגישות"
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="a11y-trigger fixed bottom-5 left-5 z-[100] grid size-10 place-items-center rounded-full bg-navy-900 text-paper shadow-md shadow-navy-900/25 ring-1 ring-paper/80 transition hover:scale-105 hover:bg-navy-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-500"
+        className="a11y-trigger fixed bottom-5 left-5 z-[100] grid size-6 place-items-center rounded-full bg-leaf-100 text-leaf-700 shadow-sm ring-1 ring-leaf-300/60 transition hover:scale-110 hover:bg-leaf-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-500"
       >
-        <Accessibility className="size-5" />
+        <Accessibility className="size-3.5" strokeWidth={2.25} />
         {anyActive ? (
           <span
             aria-hidden
-            className="absolute -top-0.5 -right-0.5 size-3 rounded-full border-2 border-paper bg-topic-amber"
+            className="absolute -top-0.5 -right-0.5 size-2 rounded-full border border-paper bg-topic-amber"
           />
         ) : null}
       </button>

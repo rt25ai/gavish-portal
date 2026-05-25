@@ -2,6 +2,7 @@ import Link from "next/link";
 import { RashiLogo } from "@/components/brand/rashi-logo";
 import { CouncilLogo } from "@/components/brand/council-logo";
 import { CrystalMark } from "@/components/brand/crystal-mark";
+import { LEGAL_UPDATED_AT_SHORT } from "@/lib/legal-meta";
 
 export function SiteFooter() {
   return (
@@ -62,12 +63,23 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-paper/15 flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center text-paper/55 text-sm">
-          <p>© {new Date().getFullYear()} קרן רש״י · כל הזכויות שמורות</p>
-          <p className="italic text-paper/40">תוכן הדגמה - ייעודכן בהמשך</p>
-          <div className="flex gap-5">
-            <a href="mailto:gavish@rashi.org.il" className="hover:text-leaf-300 transition">צרו קשר</a>
-            <Link href="/.well-known/security.txt" className="hover:text-leaf-300 transition">אבטחה</Link>
+        <div className="mt-16 pt-8 border-t border-paper/15 space-y-5 text-paper/55 text-sm">
+          <nav aria-label="קישורים משפטיים" className="flex flex-wrap gap-x-6 gap-y-2 items-center">
+            <Link href="/terms" className="hover:text-leaf-300 transition">תקנון</Link>
+            <span aria-hidden className="text-paper/25">·</span>
+            <Link href="/accessibility" className="hover:text-leaf-300 transition">הצהרת נגישות</Link>
+            <span aria-hidden className="text-paper/25">·</span>
+            <Link href="/privacy" className="hover:text-leaf-300 transition">מדיניות פרטיות</Link>
+            <span aria-hidden className="text-paper/25">·</span>
+            <span className="text-paper/40">עודכן: {LEGAL_UPDATED_AT_SHORT}</span>
+          </nav>
+          <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+            <p>© {new Date().getFullYear()} קרן רש״י · כל הזכויות שמורות</p>
+            <p className="italic text-paper/40">תוכן הדגמה - ייעודכן בהמשך</p>
+            <div className="flex gap-5">
+              <a href="mailto:gavish@rashi.org.il" className="hover:text-leaf-300 transition">צרו קשר</a>
+              <Link href="/.well-known/security.txt" className="hover:text-leaf-300 transition">אבטחה</Link>
+            </div>
           </div>
         </div>
       </div>

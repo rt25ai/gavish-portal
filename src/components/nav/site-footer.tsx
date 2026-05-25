@@ -76,10 +76,6 @@ export function SiteFooter() {
           <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
             <p>© {new Date().getFullYear()} קרן רש״י · כל הזכויות שמורות</p>
             <p className="italic text-paper/40">תוכן הדגמה - ייעודכן בהמשך</p>
-            <div className="flex gap-5">
-              <a href="mailto:gavish@rashi.org.il" className="hover:text-leaf-300 transition">צרו קשר</a>
-              <Link href="/.well-known/security.txt" className="hover:text-leaf-300 transition">אבטחה</Link>
-            </div>
           </div>
         </div>
       </div>

@@ -214,20 +214,20 @@ export function AccessibilityWidget() {
         aria-label="פתיחת תפריט נגישות"
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="a11y-trigger fixed bottom-5 right-5 z-[100] flex size-14 items-center justify-center rounded-full bg-leaf-700 text-paper shadow-lg shadow-navy-900/30 ring-2 ring-paper transition hover:scale-105 hover:bg-leaf-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-500"
+        className="a11y-trigger fixed bottom-5 left-5 z-[100] grid size-10 place-items-center rounded-full bg-navy-900 text-paper shadow-md shadow-navy-900/25 ring-1 ring-paper/80 transition hover:scale-105 hover:bg-navy-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leaf-500"
       >
-        <Accessibility className="size-7" />
+        <Accessibility className="size-5" />
         {anyActive ? (
           <span
             aria-hidden
-            className="absolute -top-1 -left-1 size-4 rounded-full border-2 border-paper bg-topic-amber"
+            className="absolute -top-0.5 -right-0.5 size-3 rounded-full border-2 border-paper bg-topic-amber"
           />
         ) : null}
       </button>
 
       {open ? (
         <div
-          className="a11y-overlay fixed inset-0 z-[200] flex items-stretch justify-end"
+          className="a11y-overlay fixed inset-0 z-[200] flex items-stretch justify-start"
           dir="rtl"
         >
           <button
@@ -241,7 +241,7 @@ export function AccessibilityWidget() {
             role="dialog"
             aria-modal="true"
             aria-label="תפריט הנגשת אתר"
-            className="relative ml-auto h-full w-full max-w-md overflow-y-auto bg-paper text-ink shadow-2xl"
+            className="relative mr-auto h-full w-full max-w-md overflow-y-auto bg-paper text-ink shadow-2xl"
           >
             <header className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-ink/10 bg-paper px-5 py-4">
               <div className="flex items-center gap-3">

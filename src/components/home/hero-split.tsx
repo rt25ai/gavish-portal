@@ -5,12 +5,15 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { gsap, prefersReducedMotion, registerGsap, splitText } from "@/lib/motion";
 import { CrystalMark } from "@/components/brand/crystal-mark";
+import { RashiLogo } from "@/components/brand/rashi-logo";
 
 export function HeroSplit() {
   const wordRef = useRef<HTMLSpanElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const tagRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const patronageRef = useRef<HTMLDivElement>(null);
+  const watermarkRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     registerGsap();
@@ -21,11 +24,15 @@ export function HeroSplit() {
 
     const ctx = gsap.context(() => {
       gsap.set([tagRef.current, subRef.current, ctaRef.current], { autoAlpha: 0, y: 24 });
+      gsap.set(patronageRef.current, { autoAlpha: 0, y: -20, scale: 0.92 });
+      gsap.set(watermarkRef.current, { scale: 0.85 });
       gsap.set(chars, { autoAlpha: 0, yPercent: 110, rotateX: -45 });
 
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      tl.to(tagRef.current, { autoAlpha: 1, y: 0, duration: 0.7 })
+      tl.to(watermarkRef.current, { scale: 1, duration: reduced ? 0.3 : 1.6 }, 0)
+        .to(patronageRef.current, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 0.1)
+        .to(tagRef.current, { autoAlpha: 1, y: 0, duration: 0.7 }, "-=0.4")
         .to(
           chars,
           {
@@ -54,7 +61,54 @@ export function HeroSplit() {
         <CrystalMark className="absolute bottom-24 right-12 size-44 opacity-20 hidden lg:block" />
       </div>
 
-      <div className="relative w-full mx-auto max-w-[1400px] px-6 lg:px-10 pb-16 lg:pb-24 pt-32">
+      {/* Giant Rashi watermark - bottom-left of hero, subtle but unmissable */}
+      <div
+        ref={watermarkRef}
+        aria-hidden
+        className="pointer-events-none absolute -bottom-8 -left-12 lg:bottom-4 lg:left-8 w-[min(70vw,640px)] opacity-[0.07] lg:opacity-[0.09] select-none"
+      >
+        <RashiLogo className="w-full h-auto" />
+      </div>
+
+      <div className="relative w-full mx-auto max-w-[1400px] px-6 lg:px-10 pb-16 lg:pb-24 pt-10 lg:pt-16">
+        {/* Foundation patronage card - prominent, anchored top-right (RTL natural first-read) */}
+        <div
+          ref={patronageRef}
+          className="mb-12 lg:mb-16 flex justify-end"
+        >
+          <Link
+            href="https://www.rashi.org.il"
+            target="_blank"
+            rel="noopener"
+            aria-label="קרן רש״י - אתר הקרן"
+            className="group relative inline-flex items-stretch overflow-hidden rounded-3xl border border-navy-900/10 bg-paper/90 backdrop-blur-md shadow-[0_30px_80px_-30px_rgba(15,30,71,0.4)] hover:shadow-[0_36px_100px_-30px_rgba(111,185,74,0.55)] hover:border-leaf-500/60 transition-all duration-500"
+          >
+            {/* Glow accents */}
+            <div aria-hidden className="absolute -top-16 -left-12 w-44 h-44 bg-leaf-500/30 blur-3xl rounded-full transition-opacity duration-700 group-hover:opacity-90" />
+            <div aria-hidden className="absolute -bottom-16 -right-12 w-44 h-44 bg-navy-900/15 blur-3xl rounded-full" />
+            <div aria-hidden className="absolute top-0 left-0 w-28 h-28 bg-leaf-500/15 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+            <div aria-hidden className="absolute bottom-3 left-3 size-2 rounded-full bg-leaf-500/70 [animation:pulse_3s_ease-in-out_infinite]" />
+
+            {/* Side accent stripe */}
+            <span aria-hidden className="relative hidden sm:block w-1.5 bg-gradient-to-b from-leaf-500 via-leaf-700 to-navy-900" />
+
+            {/* Content */}
+            <div className="relative flex items-center gap-4 lg:gap-6 px-5 sm:px-7 py-4 lg:py-5">
+              <div className="flex flex-col items-end gap-0.5 leading-none">
+                <span className="font-body text-[10px] lg:text-[11px] tracking-[0.32em] uppercase text-navy-700/60 font-semibold">
+                  תוכנית של
+                </span>
+                <span className="font-display font-black text-base lg:text-lg text-navy-900 tracking-tight">
+                  קרן רש״י
+                </span>
+              </div>
+              <span aria-hidden className="h-12 lg:h-14 w-px bg-navy-900/10" />
+              <RashiLogo className="h-12 lg:h-14 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
+              <ArrowLeft className="size-4 text-navy-900/40 group-hover:text-leaf-700 transition-all group-hover:-translate-x-1 hidden sm:block" />
+            </div>
+          </Link>
+        </div>
+
         <div ref={tagRef} className="flex items-center gap-3 mb-10">
           <span className="size-2 rounded-full bg-leaf-500 [animation:pulse_2s_ease-in-out_infinite]" />
           <span className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/80 font-semibold">

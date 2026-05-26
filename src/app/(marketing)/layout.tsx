@@ -12,7 +12,7 @@ export default async function MarketingLayout({
   return (
     <>
       <SiteNav user={navUser} />
-      <main className="pt-16 lg:pt-20">{children}</main>
+      <main className="pt-[100px] lg:pt-[120px]">{children}</main>
       <SiteFooter />
     </>
   );

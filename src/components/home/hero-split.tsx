@@ -13,7 +13,6 @@ export function HeroSplit() {
   const tagRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const patronageRef = useRef<HTMLDivElement>(null);
-  const watermarkRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     registerGsap();
@@ -25,13 +24,11 @@ export function HeroSplit() {
     const ctx = gsap.context(() => {
       gsap.set([tagRef.current, subRef.current, ctaRef.current], { autoAlpha: 0, y: 24 });
       gsap.set(patronageRef.current, { autoAlpha: 0, y: -20, scale: 0.92 });
-      gsap.set(watermarkRef.current, { scale: 0.85 });
       gsap.set(chars, { autoAlpha: 0, yPercent: 110, rotateX: -45 });
 
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      tl.to(watermarkRef.current, { scale: 1, duration: reduced ? 0.3 : 1.6 }, 0)
-        .to(patronageRef.current, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 0.1)
+      tl.to(patronageRef.current, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: "back.out(1.4)" }, 0.1)
         .to(tagRef.current, { autoAlpha: 1, y: 0, duration: 0.7 }, "-=0.4")
         .to(
           chars,
@@ -61,20 +58,11 @@ export function HeroSplit() {
         <CrystalMark className="absolute bottom-24 right-12 size-44 opacity-20 hidden lg:block" />
       </div>
 
-      {/* Giant Rashi watermark - bottom-left of hero, subtle but unmissable */}
-      <div
-        ref={watermarkRef}
-        aria-hidden
-        className="pointer-events-none absolute -bottom-8 -left-12 lg:bottom-4 lg:left-8 w-[min(70vw,640px)] opacity-[0.07] lg:opacity-[0.09] select-none"
-      >
-        <RashiLogo className="w-full h-auto" />
-      </div>
-
       <div className="relative w-full mx-auto max-w-[1400px] px-6 lg:px-10 pb-16 lg:pb-24 pt-10 lg:pt-16">
-        {/* Foundation patronage card - prominent, anchored top-right (RTL natural first-read) */}
+        {/* Foundation patronage card - prominent, anchored to the right (RTL natural first-read) */}
         <div
           ref={patronageRef}
-          className="mb-12 lg:mb-16 flex justify-end"
+          className="mb-12 lg:mb-16 flex justify-start"
         >
           <Link
             href="https://www.rashi.org.il"
@@ -112,7 +100,7 @@ export function HeroSplit() {
         <div ref={tagRef} className="flex items-center gap-3 mb-10">
           <span className="size-2 rounded-full bg-leaf-500 [animation:pulse_2s_ease-in-out_infinite]" />
           <span className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/80 font-semibold">
-            תוכנית קרן רש״י · מחזור א׳ · 2026
+            מחזור א׳ · 2026
           </span>
         </div>
 

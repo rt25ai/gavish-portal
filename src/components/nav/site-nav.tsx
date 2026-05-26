@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, LogOut, ChevronDown, User as UserIcon, ArrowLeft } from "lucide-react";
+import { Menu, X, LogOut, ChevronDown, User as UserIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CrystalMark } from "@/components/brand/crystal-mark";
-import { RashiLogo } from "@/components/brand/rashi-logo";
 import { UserAvatar } from "@/components/community/user-avatar";
 
 const baseLinks = [
@@ -64,32 +63,6 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
         scrolled ? "bg-paper/85 backdrop-blur-md border-b border-navy-900/8" : "bg-transparent",
       )}
     >
-      {/* Foundation patronage strip - always visible site-wide */}
-      <div className="relative h-9 lg:h-10 bg-navy-950 text-paper overflow-hidden">
-        <div aria-hidden className="absolute inset-0 bg-crystal opacity-60 pointer-events-none" />
-        <div aria-hidden className="absolute -top-6 right-1/4 w-32 h-32 bg-leaf-500/20 blur-3xl rounded-full pointer-events-none" />
-        <div className="relative mx-auto max-w-[1400px] h-full px-6 lg:px-10 flex items-center justify-between gap-4">
-          <Link
-            href="https://www.rashi.org.il"
-            target="_blank"
-            rel="noopener"
-            className="group flex items-center gap-2.5 lg:gap-3 font-body text-[11px] lg:text-xs"
-            aria-label="קרן רש״י - אתר הקרן"
-          >
-            <span className="text-paper/60 tracking-[0.2em] uppercase hidden sm:inline">תוכנית של</span>
-            <span className="text-paper/60 sm:hidden">פרויקט של</span>
-            <span className="bg-paper rounded-md px-2 py-0.5 shadow-[0_4px_14px_-4px_rgba(111,185,74,0.45)] transition-transform group-hover:scale-[1.04]">
-              <RashiLogo className="h-4 lg:h-5 w-auto" />
-            </span>
-            <ArrowLeft className="size-3 text-leaf-300/80 transition-transform group-hover:-translate-x-0.5" />
-          </Link>
-          <div className="hidden md:flex items-center gap-2 text-paper/55 font-body text-[11px] lg:text-xs">
-            <span className="size-1.5 rounded-full bg-leaf-500 [animation:pulse_3s_ease-in-out_infinite]" />
-            <span>מקדמת ילדים, נוער וקהילה בישראל</span>
-          </div>
-        </div>
-      </div>
-
       <nav className="mx-auto max-w-[1400px] px-6 lg:px-10 h-16 lg:h-20 flex items-center justify-between gap-6">
         <Link href="/" className="flex items-center gap-2.5 group">
           <CrystalMark className="size-9 transition-transform duration-500 group-hover:rotate-180" />

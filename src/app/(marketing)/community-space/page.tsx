@@ -4,6 +4,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { Plus, MessageCircle, Calendar, FolderOpen, Users, Lock } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
+import { UserAvatar } from "@/components/community/user-avatar";
 
 export const metadata: Metadata = {
   title: "האזור הקהילתי",
@@ -21,7 +22,11 @@ type PostRow = {
   body: string;
   image_url: string | null;
   created_at: string;
-  profiles: { full_name: string | null; organization: string | null } | null;
+  profiles: {
+    full_name: string | null;
+    organization: string | null;
+    avatar_url: string | null;
+  } | null;
 };
 
 export default async function CommunitySpacePage() {
@@ -42,7 +47,7 @@ export default async function CommunitySpacePage() {
 
   const { data: posts } = await supabase
     .from("posts")
-    .select("id, body, image_url, created_at, profiles(full_name, organization)")
+    .select("id, body, image_url, created_at, profiles(full_name, organization, avatar_url)")
     .order("created_at", { ascending: false })
     .limit(50)
     .returns<PostRow[]>();
@@ -147,9 +152,11 @@ function PostCard({ post }: { post: PostRow }) {
     <li className="bg-paper rounded-3xl border border-navy-900/8 overflow-hidden">
       <div className="p-6 lg:p-7">
         <div className="flex items-center gap-3 mb-4">
-          <div className="size-11 rounded-full bg-navy-900 text-paper grid place-items-center font-display font-black text-base">
-            {author.charAt(0)}
-          </div>
+          <UserAvatar
+            name={author}
+            avatarUrl={post.profiles?.avatar_url ?? null}
+            size="lg"
+          />
           <div>
             <p className="font-display font-bold text-navy-900 text-base leading-tight">
               {author}

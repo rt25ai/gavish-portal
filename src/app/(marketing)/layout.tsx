@@ -27,12 +27,13 @@ async function getNavUser(): Promise<SiteNavUser> {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, role")
+    .select("full_name, role, avatar_url")
     .eq("id", user.id)
     .single();
 
   return {
     fullName: profile?.full_name ?? user.email ?? "",
     isAdmin: profile?.role === "admin",
+    avatarUrl: profile?.avatar_url ?? null,
   };
 }

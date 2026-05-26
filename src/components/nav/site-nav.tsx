@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, LogOut, ChevronDown } from "lucide-react";
+import { Menu, X, LogOut, ChevronDown, User as UserIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CrystalMark } from "@/components/brand/crystal-mark";
+import { UserAvatar } from "@/components/community/user-avatar";
 
 const baseLinks = [
   { href: "/", label: "בית" },
@@ -18,6 +19,7 @@ const baseLinks = [
 export type SiteNavUser = {
   fullName: string;
   isAdmin: boolean;
+  avatarUrl: string | null;
 } | null;
 
 export function SiteNav({ user }: { user: SiteNavUser }) {
@@ -95,9 +97,11 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                 aria-haspopup="menu"
                 aria-expanded={menuOpen}
               >
-                <span className="size-8 rounded-full bg-navy-900 text-paper grid place-items-center font-display font-black text-sm">
-                  {user.fullName.charAt(0) || "?"}
-                </span>
+                <UserAvatar
+                  name={user.fullName}
+                  avatarUrl={user.avatarUrl}
+                  size="sm"
+                />
                 <span className="font-body text-sm font-semibold text-navy-900 max-w-[120px] truncate">
                   {user.fullName || "חשבון"}
                 </span>
@@ -111,6 +115,13 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                     className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5"
                   >
                     הפיד הקהילתי
+                  </Link>
+                  <Link
+                    href="/community-space/account"
+                    className="flex items-center gap-2 px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 border-t border-navy-900/8"
+                  >
+                    <UserIcon className="size-4" />
+                    החשבון שלי
                   </Link>
                   {user.isAdmin && (
                     <>
@@ -191,6 +202,12 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                 <div className="px-4 py-3 rounded-2xl bg-navy-900/5 font-body text-sm">
                   מחובר/ת כ-<span className="font-bold">{user.fullName}</span>
                 </div>
+                <Link
+                  href="/community-space/account"
+                  className="text-center px-4 py-3 rounded-full border border-navy-900/15"
+                >
+                  החשבון שלי
+                </Link>
                 {user.isAdmin && (
                   <>
                     <Link href="/community-space/admin" className="text-center px-4 py-3 rounded-full border border-navy-900/15">

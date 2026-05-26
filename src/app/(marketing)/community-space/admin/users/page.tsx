@@ -30,7 +30,7 @@ export default async function UsersAdminPage() {
   const admin = createAdminClient();
   const { data: profiles } = await admin
     .from("profiles")
-    .select("id, full_name, organization, role, created_at")
+    .select("id, full_name, organization, role, created_at, avatar_url")
     .order("created_at", { ascending: false });
 
   const { data: authData } = await admin.auth.admin.listUsers({
@@ -49,6 +49,7 @@ export default async function UsersAdminPage() {
     id: p.id,
     fullName: p.full_name,
     organization: p.organization,
+    avatarUrl: p.avatar_url ?? null,
     role: p.role as "user" | "admin",
     createdAt: p.created_at,
     email: emailById.get(p.id)?.email ?? "",

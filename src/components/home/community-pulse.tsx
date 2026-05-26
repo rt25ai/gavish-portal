@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { gsap, prefersReducedMotion, registerGsap, ScrollTrigger } from "@/lib/motion";
+import { UserAvatar } from "@/components/community/user-avatar";
 
 export type PulseItem = {
   id: string;
@@ -11,6 +12,7 @@ export type PulseItem = {
   created_at: string;
   authorName: string;
   organization: string | null;
+  avatarUrl: string | null;
 };
 
 export function CommunityPulse({
@@ -88,7 +90,6 @@ export function CommunityPulse({
   if (items.length === 0) return null;
 
   const current = items[index];
-  const initial = current.authorName.charAt(0) || "·";
   const meta = current.organization
     ? `${current.organization} · ${formatRelative(current.created_at)}`
     : formatRelative(current.created_at);
@@ -126,9 +127,11 @@ export function CommunityPulse({
         {/* Slide */}
         <div ref={slideRef}>
           <div className="flex items-center gap-3 mb-3">
-            <span className="size-10 rounded-full bg-navy-900 text-paper grid place-items-center font-display font-black text-[15px] shrink-0">
-              {initial}
-            </span>
+            <UserAvatar
+              name={current.authorName}
+              avatarUrl={current.avatarUrl}
+              size="md"
+            />
             <div className="min-w-0">
               <p className="font-display font-bold text-navy-900 text-[15px] leading-tight truncate">
                 {current.authorName}

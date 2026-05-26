@@ -7,7 +7,11 @@ type Row = {
   id: string;
   body: string;
   created_at: string;
-  profiles: { full_name: string | null; organization: string | null } | null;
+  profiles: {
+    full_name: string | null;
+    organization: string | null;
+    avatar_url: string | null;
+  } | null;
 };
 
 export async function CommunityUpdates() {
@@ -18,7 +22,7 @@ export async function CommunityUpdates() {
 
   const { data: posts } = await supabase
     .from("posts")
-    .select("id, body, created_at, profiles(full_name, organization)")
+    .select("id, body, created_at, profiles(full_name, organization, avatar_url)")
     .order("created_at", { ascending: false })
     .limit(4)
     .returns<Row[]>();
@@ -29,6 +33,7 @@ export async function CommunityUpdates() {
     created_at: p.created_at,
     authorName: p.profiles?.full_name ?? "חבר/ת קהילה",
     organization: p.profiles?.organization ?? null,
+    avatarUrl: p.profiles?.avatar_url ?? null,
   }));
 
   const href = user ? "/community-space" : "/auth/sign-up";

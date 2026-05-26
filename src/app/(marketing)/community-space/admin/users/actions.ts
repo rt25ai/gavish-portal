@@ -75,6 +75,14 @@ export async function deleteUser(
   }
 
   const admin = createAdminClient();
+
+  // ניקוי קבצי avatar של המשתמש לפני המחיקה (lifecycle לא מנוהל ב-cascade).
+  const { data: avatarFiles } = await admin.storage.from("avatars").list(targetId);
+  if (avatarFiles && avatarFiles.length > 0) {
+    const paths = avatarFiles.map((f) => `${targetId}/${f.name}`);
+    await admin.storage.from("avatars").remove(paths);
+  }
+
   const { error } = await admin.auth.admin.deleteUser(targetId);
   if (error) return { error: `מחיקת המשתמש נכשלה: ${error.message}` };
 

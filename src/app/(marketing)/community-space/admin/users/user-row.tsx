@@ -3,12 +3,14 @@
 import { useActionState, useEffect, useRef, useState } from "react";
 import { ShieldCheck, ShieldOff, Trash2, MoreHorizontal, AlertCircle, X } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { UserAvatar } from "@/components/community/user-avatar";
 import { deleteUser, setUserRole, type AdminActionState } from "./actions";
 
 export type UserRowData = {
   id: string;
   fullName: string;
   organization: string | null;
+  avatarUrl: string | null;
   role: "user" | "admin";
   createdAt: string;
   email: string;
@@ -57,20 +59,26 @@ export function UserRow({ row }: { row: UserRowData }) {
     return () => document.removeEventListener("mousedown", onClick);
   }, [menuOpen]);
 
-  const initial = row.fullName.charAt(0) || row.email.charAt(0) || "?";
   const isAdmin = row.role === "admin";
+  const displayName = row.fullName || row.email;
 
   return (
     <li className="px-4 lg:px-6 py-4">
       <div className="grid grid-cols-[1fr_auto] lg:grid-cols-[1.5fr_1.5fr_1fr_1fr_auto] gap-4 items-center">
         {/* identity */}
         <div className="flex items-center gap-3 min-w-0">
-          <span className={cn(
-            "size-10 rounded-full grid place-items-center font-display font-black text-[15px] shrink-0",
-            isAdmin ? "bg-leaf-500 text-paper" : "bg-navy-900 text-paper",
-          )}>
-            {initial}
-          </span>
+          <div className="relative shrink-0">
+            <UserAvatar
+              name={displayName}
+              avatarUrl={row.avatarUrl}
+              size="md"
+            />
+            {isAdmin && (
+              <span className="absolute -bottom-1 -end-1 size-5 rounded-full bg-leaf-500 text-paper grid place-items-center ring-2 ring-paper">
+                <ShieldCheck className="size-3" />
+              </span>
+            )}
+          </div>
           <div className="min-w-0">
             <p className="font-display font-bold text-navy-900 text-[15px] leading-tight truncate">
               {row.fullName || "(ללא שם)"}

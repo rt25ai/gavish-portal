@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Heebo, Assistant } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { AccessibilityWidget } from "@/components/a11y/accessibility-widget";
+import { ServiceWorkerRegistrar } from "@/components/pwa/service-worker-registrar";
 
 const A11Y_INIT_SCRIPT = `
 try {
@@ -71,6 +72,19 @@ export const metadata: Metadata = {
       "פורטל מקצועי לבוגרי תוכנית גביש. תכנים, מחקרים ונתונים על עולם הנוער בישראל.",
   },
   robots: { index: true, follow: true },
+  appleWebApp: {
+    capable: true,
+    title: "גביש",
+    statusBarStyle: "default",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f7ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1e47" },
+  ],
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -88,6 +102,7 @@ export default function RootLayout({
           <div className="a11y-page-content">{children}</div>
         </SmoothScrollProvider>
         <AccessibilityWidget />
+        <ServiceWorkerRegistrar />
       </body>
     </html>
   );

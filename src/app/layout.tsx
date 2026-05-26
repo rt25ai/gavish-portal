@@ -55,12 +55,20 @@ export const metadata: Metadata = {
   },
   description:
     "פורטל מקצועי לבוגרי תוכנית גביש - מנהלי מחלקות נוער ברשויות בישראל. תכנים, מחקרים, נתונים וקהילה.",
+  applicationName: "גביש",
   openGraph: {
     title: "גביש - קהילת מנהלי הנוער של קרן רש״י",
     description:
       "פורטל מקצועי לבוגרי תוכנית גביש. תכנים, מחקרים ונתונים על עולם הנוער בישראל.",
+    siteName: "גביש",
     locale: "he_IL",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "גביש - קהילת מנהלי הנוער של קרן רש״י",
+    description:
+      "פורטל מקצועי לבוגרי תוכנית גביש. תכנים, מחקרים ונתונים על עולם הנוער בישראל.",
   },
   robots: { index: true, follow: true },
 };

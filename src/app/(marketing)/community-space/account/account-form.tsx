@@ -19,24 +19,26 @@ export type AccountFormProfile = {
   email: string;
 };
 
+const AVATAR_MAX_PX = 512;
+const AVATAR_JPEG_QUALITY = 0.85;
+
 export function AccountForm({ profile }: { profile: AccountFormProfile }) {
   const [detailsState, detailsAction] = useActionState<AccountFormState, FormData>(
     updateProfile,
     null,
   );
-  const [avatarState, avatarAction] = useActionState<AccountFormState, FormData>(
+  const [avatarState, avatarAction, avatarPending] = useActionState<AccountFormState, FormData>(
     uploadAvatar,
     null,
   );
 
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [localError, setLocalError] = useState<string | null>(null);
+  const [resizing, setResizing] = useState(false);
   const [pendingRemove, startRemove] = useTransition();
-  const [removeError, setRemoveError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
-  const avatarFormRef = useRef<HTMLFormElement>(null);
 
-  // אחרי שהשרת חזר (success או error) — מנקים את ה-preview וה-blob URL.
-  // ב-success ה-profile.avatarUrl כבר מתעדכן דרך revalidatePath.
+  // אחרי שהשרת חזר — לנקות preview/blob URL. profile.avatarUrl מתעדכן מ-revalidatePath.
   useEffect(() => {
     if (avatarState && previewUrl) {
       URL.revokeObjectURL(previewUrl);
@@ -47,22 +49,41 @@ export function AccountForm({ profile }: { profile: AccountFormProfile }) {
   }, [avatarState]);
 
   const displayedAvatar = previewUrl ?? profile.avatarUrl;
+  const isWorking = resizing || avatarPending;
 
-  function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+  async function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) {
       setPreviewUrl(null);
       return;
     }
-    setPreviewUrl(URL.createObjectURL(file));
-    avatarFormRef.current?.requestSubmit();
+
+    setLocalError(null);
+    setResizing(true);
+
+    try {
+      const resized = await resizeImageToAvatar(file, AVATAR_MAX_PX, AVATAR_JPEG_QUALITY);
+
+      // preview קטן מה-blob שכבר עבר downscale — בטוח לזיכרון.
+      setPreviewUrl(URL.createObjectURL(resized));
+
+      const fd = new FormData();
+      fd.append("avatar", resized, "avatar.jpg");
+      avatarAction(fd);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "קריאת התמונה נכשלה.";
+      setLocalError(`לא הצלחנו לעבד את התמונה: ${msg}`);
+      if (fileRef.current) fileRef.current.value = "";
+    } finally {
+      setResizing(false);
+    }
   }
 
   function handleRemove() {
-    setRemoveError(null);
+    setLocalError(null);
     startRemove(async () => {
       const result = await removeAvatar();
-      if (result?.error) setRemoveError(result.error);
+      if (result?.error) setLocalError(result.error);
       setPreviewUrl(null);
       if (fileRef.current) fileRef.current.value = "";
     });
@@ -74,7 +95,7 @@ export function AccountForm({ profile }: { profile: AccountFormProfile }) {
       <section>
         <h2 className="font-display font-black text-xl text-navy-900 mb-2">תמונת פרופיל</h2>
         <p className="font-body text-sm text-ink/65 mb-6">
-          תוצג ליד השם שלך בפיד הקהילתי. JPEG / PNG / WebP, עד 3MB.
+          תוצג ליד השם שלך בפיד הקהילתי. תמונות גדולות יכווצו אוטומטית.
         </p>
 
         <div className="flex items-center gap-6 flex-wrap">
@@ -84,36 +105,39 @@ export function AccountForm({ profile }: { profile: AccountFormProfile }) {
             size="2xl"
           />
 
-          <form
-            ref={avatarFormRef}
-            action={avatarAction}
-            encType="multipart/form-data"
-            className="flex items-center gap-3"
-          >
+          <div className="flex items-center gap-3">
             <input
               ref={fileRef}
               type="file"
               name="avatar"
-              accept="image/jpeg,image/png,image/webp"
+              accept="image/*"
               onChange={onFileChange}
               className="hidden"
             />
-            <UploadButton onClick={() => fileRef.current?.click()} />
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={isWorking}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-900 text-paper rounded-full font-display font-bold text-sm hover:bg-navy-700 transition disabled:opacity-60"
+            >
+              <Upload className="size-4" />
+              {resizing ? "מעבד..." : avatarPending ? "מעלה..." : "העלאת תמונה"}
+            </button>
             {profile.avatarUrl && (
               <button
                 type="button"
                 onClick={handleRemove}
-                disabled={pendingRemove}
+                disabled={pendingRemove || isWorking}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-navy-900/15 font-body font-semibold text-sm text-navy-900 hover:bg-navy-900/5 transition disabled:opacity-60"
               >
                 <Trash2 className="size-4" />
                 {pendingRemove ? "מסיר..." : "הסירו תמונה"}
               </button>
             )}
-          </form>
+          </div>
         </div>
 
-        <StatusBanner state={avatarState} fallbackError={removeError} />
+        <StatusBanner state={avatarState} fallbackError={localError} />
       </section>
 
       <div className="border-t border-navy-900/8" />
@@ -170,6 +194,53 @@ export function AccountForm({ profile }: { profile: AccountFormProfile }) {
   );
 }
 
+// מקבל File / Blob, מחזיר JPEG מכווץ לריבוע <= maxSize x maxSize.
+// משתמש ב-createImageBitmap + canvas → מבטיח שאת התמונה הגדולה השרת רק
+// רואה ב-downscaled, ושה-preview ב-DOM הוא ה-blob הקטן (לא ה-File המקורי).
+async function resizeImageToAvatar(file: File, maxSize: number, quality: number): Promise<Blob> {
+  if (typeof createImageBitmap !== "function") {
+    throw new Error("דפדפן ישן מדי לעיבוד תמונות.");
+  }
+
+  let bitmap: ImageBitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch {
+    throw new Error("פורמט הקובץ לא נתמך.");
+  }
+
+  try {
+    const ratio = Math.min(maxSize / bitmap.width, maxSize / bitmap.height, 1);
+    const w = Math.max(1, Math.round(bitmap.width * ratio));
+    const h = Math.max(1, Math.round(bitmap.height * ratio));
+
+    // העדפה ל-OffscreenCanvas (לא נוגע ב-DOM). Fallback ל-canvas רגיל.
+    if (typeof OffscreenCanvas !== "undefined") {
+      const off = new OffscreenCanvas(w, h);
+      const ctx = off.getContext("2d");
+      if (!ctx) throw new Error("canvas context לא זמין.");
+      ctx.drawImage(bitmap, 0, 0, w, h);
+      return await off.convertToBlob({ type: "image/jpeg", quality });
+    }
+
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("canvas context לא זמין.");
+    ctx.drawImage(bitmap, 0, 0, w, h);
+    return await new Promise<Blob>((resolve, reject) => {
+      canvas.toBlob(
+        (blob) => (blob ? resolve(blob) : reject(new Error("הקובץ ריק."))),
+        "image/jpeg",
+        quality,
+      );
+    });
+  } finally {
+    bitmap.close();
+  }
+}
+
 function Field({
   label,
   name,
@@ -204,21 +275,6 @@ function Field({
         />
       </div>
     </div>
-  );
-}
-
-function UploadButton({ onClick }: { onClick: () => void }) {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={pending}
-      className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-900 text-paper rounded-full font-display font-bold text-sm hover:bg-navy-700 transition disabled:opacity-60"
-    >
-      <Upload className="size-4" />
-      {pending ? "מעלה..." : "העלאת תמונה"}
-    </button>
   );
 }
 

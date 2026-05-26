@@ -67,6 +67,14 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
 
         <Field label="סיסמה" name="password" type="password" required icon={<Lock className="size-5 text-ink/40" />} placeholder={isSignUp ? "לפחות 8 תווים" : "הסיסמה שלכם"} minLength={isSignUp ? 8 : undefined} autoComplete={isSignUp ? "new-password" : "current-password"} />
 
+        {!isSignUp && (
+          <div className="-mt-2 text-end">
+            <Link href="/auth/forgot-password" className="font-body text-sm text-navy-700 hover:text-navy-900 underline underline-offset-4">
+              שכחתי סיסמה
+            </Link>
+          </div>
+        )}
+
         {isSignUp && (
           <Field label="רשות / עיר" name="organization" icon={<Building2 className="size-5 text-ink/40" />} placeholder="לדוגמה: עיריית חיפה" />
         )}

@@ -4,7 +4,10 @@ import { createClient } from "@/lib/supabase/server";
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("redirect") ?? "/community-space";
+  // `next` is the standard (used by reset-password flow); `redirect`
+  // kept as fallback for older email links already in inboxes.
+  const next =
+    searchParams.get("next") ?? searchParams.get("redirect") ?? "/community-space";
 
   if (code) {
     const supabase = await createClient();

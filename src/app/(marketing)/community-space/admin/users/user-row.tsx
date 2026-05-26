@@ -33,10 +33,17 @@ export function UserRow({ row }: { row: UserRowData }) {
   >(deleteUser, null);
 
   useEffect(() => {
-    if (roleState) setFeedback(roleState);
+    if (roleState) {
+      setFeedback(roleState);
+      setMenuOpen(false);
+    }
   }, [roleState]);
   useEffect(() => {
-    if (delState) setFeedback(delState);
+    if (delState) {
+      setFeedback(delState);
+      setMenuOpen(false);
+      setConfirmDelete(false);
+    }
   }, [delState]);
 
   useEffect(() => {
@@ -130,7 +137,6 @@ export function UserRow({ row }: { row: UserRowData }) {
                 <input type="hidden" name="role" value={isAdmin ? "user" : "admin"} />
                 <button
                   type="submit"
-                  onClick={() => setMenuOpen(false)}
                   disabled={rolePending}
                   className="w-full flex items-center gap-2 px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 text-right disabled:opacity-50"
                 >
@@ -219,7 +225,6 @@ function ConfirmDelete({
           <button
             type="submit"
             disabled={pending}
-            onClick={() => setTimeout(onCancel, 0)}
             className="inline-flex items-center gap-2 px-4 py-2 bg-topic-coral text-paper rounded-full font-body text-sm font-semibold hover:bg-topic-coral/85 transition disabled:opacity-60"
           >
             <Trash2 className="size-4" />

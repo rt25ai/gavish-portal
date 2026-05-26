@@ -4,6 +4,7 @@ import { BarChart, Bar, LineChart, Line, ResponsiveContainer, Tooltip, XAxis, YA
 
 const navy = "#0F1E47";
 const navy500 = "#1B2C5C";
+const navySoft = "#97A3C4";
 const leaf = "#6FB94A";
 const amber = "#F4B628";
 const coral = "#E94B2A";
@@ -156,14 +157,14 @@ export function InternationalCompare() {
   ];
   return (
     <ResponsiveContainer width="100%" height={320}>
-      <BarChart data={data} layout="vertical" margin={{ top: 0, right: 24, left: 70, bottom: 0 }}>
+      <BarChart data={data} layout="vertical" margin={{ top: 0, right: 24, left: 8, bottom: 0 }}>
         <CartesianGrid strokeDasharray="2 6" stroke={navy} strokeOpacity={0.08} horizontal={false} />
         <XAxis type="number" tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} unit="%" />
-        <YAxis dataKey="country" type="category" tick={{ fontFamily: "var(--font-display)", fontSize: 13, fill: navy, fontWeight: 600 }} axisLine={false} tickLine={false} width={70} />
+        <YAxis dataKey="country" type="category" tick={{ fontFamily: "var(--font-display)", fontSize: 13, fill: navy, fontWeight: 700 }} axisLine={false} tickLine={false} width={80} />
         <Tooltip content={<ChartTooltip suffix="%" nameMap={{ value: "השתתפות" }} />} cursor={tooltipCursorFill} />
         <Bar dataKey="value" radius={[0, 10, 10, 0]}>
           {data.map((d, i) => (
-            <Cell key={i} fill={d.country === "ישראל" ? leaf : navy500} />
+            <Cell key={i} fill={d.country === "ישראל" ? leaf : navySoft} />
           ))}
         </Bar>
       </BarChart>

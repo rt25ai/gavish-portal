@@ -9,17 +9,69 @@ const amber = "#F4B628";
 const coral = "#E94B2A";
 const teal = "#1B95B5";
 const moss = "#5B9A3D";
-const paper = "#FAF8F3";
 
-const tooltipStyle = {
-  background: navy,
-  border: "none",
-  borderRadius: 12,
-  color: paper,
-  fontFamily: "var(--font-body)",
-  fontSize: 13,
-  padding: "10px 14px",
+type TooltipPayloadItem = {
+  value: number | string;
+  name?: string;
+  color?: string;
+  dataKey?: string;
+  payload?: { fill?: string } & Record<string, unknown>;
 };
+
+type ChartTooltipProps = {
+  active?: boolean;
+  payload?: TooltipPayloadItem[];
+  label?: string | number;
+  suffix?: string;
+  nameMap?: Record<string, string>;
+};
+
+function ChartTooltip({ active, payload, label, suffix = "", nameMap }: ChartTooltipProps) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div
+      dir="rtl"
+      className="relative overflow-hidden rounded-2xl border border-navy-900/10 bg-paper/95 backdrop-blur-md shadow-[0_22px_60px_-20px_rgba(15,30,71,0.45)] min-w-[160px]"
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-10 -left-8 w-24 h-24 bg-leaf-500/20 blur-2xl rounded-full"
+      />
+      {label !== undefined && label !== "" && (
+        <div className="relative px-4 pt-3 pb-2 border-b border-navy-900/10">
+          <span className="font-display font-bold text-sm text-navy-900 tracking-tight">
+            {label}
+          </span>
+        </div>
+      )}
+      <div className="relative px-4 py-3 flex flex-col gap-2">
+        {payload.map((p, i) => {
+          const key = (p.dataKey as string | undefined) ?? "";
+          const displayName = nameMap?.[key] ?? p.name ?? "";
+          const swatch = p.color ?? p.payload?.fill ?? navy;
+          return (
+            <div key={i} className="flex items-center justify-between gap-5">
+              {displayName ? (
+                <span className="flex items-center gap-2 font-body text-xs text-navy-700/75">
+                  <span aria-hidden className="size-2 rounded-full" style={{ background: swatch }} />
+                  {displayName}
+                </span>
+              ) : (
+                <span aria-hidden className="size-2 rounded-full" style={{ background: swatch }} />
+              )}
+              <span className="font-display font-black text-lg text-navy-900 tabular leading-none">
+                {p.value}
+                {suffix}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+const tooltipCursorFill = { fill: navy, fillOpacity: 0.05 };
 
 export function YouthTrendChart() {
   const data = [
@@ -42,7 +94,7 @@ export function YouthTrendChart() {
         <CartesianGrid strokeDasharray="2 6" stroke={navy} strokeOpacity={0.1} vertical={false} />
         <XAxis dataKey="year" tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} reversed />
         <YAxis tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} unit="K" />
-        <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v}K`, "בני נוער"]} />
+        <Tooltip content={<ChartTooltip suffix="K" nameMap={{ count: "בני נוער" }} />} cursor={{ stroke: navy, strokeOpacity: 0.15, strokeWidth: 1, strokeDasharray: "3 4" }} />
         <Area type="monotone" dataKey="count" stroke={leaf} strokeWidth={3} fill="url(#gradYouth)" />
       </AreaChart>
     </ResponsiveContainer>
@@ -66,7 +118,7 @@ export function DistrictBarChart() {
         <CartesianGrid strokeDasharray="2 6" stroke={navy} strokeOpacity={0.1} vertical={false} />
         <XAxis dataKey="district" tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} />
         <YAxis tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} unit="K" />
-        <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v}K`, "בני נוער"]} cursor={{ fill: navy, fillOpacity: 0.04 }} />
+        <Tooltip content={<ChartTooltip suffix="K" nameMap={{ value: "בני נוער" }} />} cursor={tooltipCursorFill} />
         <Bar dataKey="value" radius={[10, 10, 0, 0]}>
           {data.map((_, i) => <Cell key={i} fill={colors[i % colors.length]} />)}
         </Bar>
@@ -108,7 +160,7 @@ export function InternationalCompare() {
         <CartesianGrid strokeDasharray="2 6" stroke={navy} strokeOpacity={0.08} horizontal={false} />
         <XAxis type="number" tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} unit="%" />
         <YAxis dataKey="country" type="category" tick={{ fontFamily: "var(--font-display)", fontSize: 13, fill: navy, fontWeight: 600 }} axisLine={false} tickLine={false} width={70} />
-        <Tooltip contentStyle={tooltipStyle} formatter={(v) => [`${v}%`, "השתתפות"]} cursor={{ fill: navy, fillOpacity: 0.04 }} />
+        <Tooltip content={<ChartTooltip suffix="%" nameMap={{ value: "השתתפות" }} />} cursor={tooltipCursorFill} />
         <Bar dataKey="value" radius={[0, 10, 10, 0]}>
           {data.map((d, i) => (
             <Cell key={i} fill={d.country === "ישראל" ? leaf : navy500} />
@@ -134,7 +186,7 @@ export function DigitalGapChart() {
         <CartesianGrid strokeDasharray="2 6" stroke={navy} strokeOpacity={0.1} vertical={false} />
         <XAxis dataKey="year" tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} />
         <YAxis tick={{ fontFamily: "var(--font-body)", fontSize: 12, fill: navy }} axisLine={false} tickLine={false} unit="%" domain={[60, 100]} />
-        <Tooltip contentStyle={tooltipStyle} formatter={(v, name) => [`${v}%`, name === "center" ? "מרכז" : "פריפריה"]} />
+        <Tooltip content={<ChartTooltip suffix="%" nameMap={{ center: "מרכז", periphery: "פריפריה" }} />} cursor={{ stroke: navy, strokeOpacity: 0.15, strokeWidth: 1, strokeDasharray: "3 4" }} />
         <Line type="monotone" dataKey="center" stroke={teal} strokeWidth={3} dot={{ r: 5, fill: teal, strokeWidth: 0 }} />
         <Line type="monotone" dataKey="periphery" stroke={coral} strokeWidth={3} strokeDasharray="6 6" dot={{ r: 5, fill: coral, strokeWidth: 0 }} />
       </LineChart>

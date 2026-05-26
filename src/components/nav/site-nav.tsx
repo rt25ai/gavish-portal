@@ -113,12 +113,20 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                     הפיד הקהילתי
                   </Link>
                   {user.isAdmin && (
-                    <Link
-                      href="/community-space/admin"
-                      className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 border-t border-navy-900/8"
-                    >
-                      פוסט חדש (אדמין)
-                    </Link>
+                    <>
+                      <Link
+                        href="/community-space/admin"
+                        className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 border-t border-navy-900/8"
+                      >
+                        פוסט חדש (אדמין)
+                      </Link>
+                      <Link
+                        href="/community-space/admin/users"
+                        className="block px-4 py-3 font-body text-sm text-navy-900 hover:bg-navy-900/5 border-t border-navy-900/8"
+                      >
+                        ניהול משתמשים
+                      </Link>
+                    </>
                   )}
                   <form action="/auth/sign-out" method="post" className="border-t border-navy-900/8">
                     <button
@@ -184,9 +192,14 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                   מחובר/ת כ-<span className="font-bold">{user.fullName}</span>
                 </div>
                 {user.isAdmin && (
-                  <Link href="/community-space/admin" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
-                    פוסט חדש (אדמין)
-                  </Link>
+                  <>
+                    <Link href="/community-space/admin" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
+                      פוסט חדש (אדמין)
+                    </Link>
+                    <Link href="/community-space/admin/users" className="text-center px-4 py-3 rounded-full border border-navy-900/15">
+                      ניהול משתמשים
+                    </Link>
+                  </>
                 )}
                 <form action="/auth/sign-out" method="post">
                   <button

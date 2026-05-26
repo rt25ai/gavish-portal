@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { PostComposer } from "./post-composer";
+import { AdminTabs } from "./admin-tabs";
 
 export const metadata: Metadata = {
   title: "פוסט חדש",
@@ -35,12 +36,17 @@ export default async function AdminPage() {
           <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           חזרה לפיד
         </Link>
-        <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-          פרסום
-        </p>
-        <h1 className="font-display font-black text-display text-navy-900 leading-[0.95] mb-10">
-          פוסט חדש.
-        </h1>
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+          <div>
+            <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
+              פרסום
+            </p>
+            <h1 className="font-display font-black text-display text-navy-900 leading-[0.95]">
+              פוסט חדש.
+            </h1>
+          </div>
+          <AdminTabs />
+        </div>
 
         <PostComposer />
       </div>

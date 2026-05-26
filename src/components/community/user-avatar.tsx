@@ -1,14 +1,13 @@
-import Image from "next/image";
 import { cn } from "@/lib/cn";
 
 type Size = "sm" | "md" | "lg" | "xl" | "2xl";
 
-const SIZE_MAP: Record<Size, { box: string; text: string; px: number }> = {
-  sm: { box: "size-8", text: "text-sm", px: 32 },
-  md: { box: "size-10", text: "text-[15px]", px: 40 },
-  lg: { box: "size-11", text: "text-base", px: 44 },
-  xl: { box: "size-16", text: "text-2xl", px: 64 },
-  "2xl": { box: "size-28", text: "text-4xl", px: 112 },
+const SIZE_MAP: Record<Size, { box: string; text: string }> = {
+  sm: { box: "size-8", text: "text-sm" },
+  md: { box: "size-10", text: "text-[15px]" },
+  lg: { box: "size-11", text: "text-base" },
+  xl: { box: "size-16", text: "text-2xl" },
+  "2xl": { box: "size-28", text: "text-4xl" },
 };
 
 export function UserAvatar({
@@ -30,16 +29,15 @@ export function UserAvatar({
       <span
         className={cn(
           conf.box,
-          "relative rounded-full overflow-hidden bg-cream shrink-0",
+          "relative rounded-full overflow-hidden bg-cream shrink-0 block",
           className,
         )}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={avatarUrl}
           alt={name ?? ""}
-          fill
-          sizes={`${conf.px}px`}
-          className="object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       </span>
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useRef, useState, useTransition } from "react";
+import { useActionState, useEffect, useRef, useState, useTransition } from "react";
 import { useFormStatus } from "react-dom";
 import { Check, AlertCircle, Upload, Trash2, User as UserIcon, Building2, Briefcase } from "lucide-react";
 import { UserAvatar } from "@/components/community/user-avatar";
@@ -34,6 +34,17 @@ export function AccountForm({ profile }: { profile: AccountFormProfile }) {
   const [removeError, setRemoveError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const avatarFormRef = useRef<HTMLFormElement>(null);
+
+  // אחרי שהשרת חזר (success או error) — מנקים את ה-preview וה-blob URL.
+  // ב-success ה-profile.avatarUrl כבר מתעדכן דרך revalidatePath.
+  useEffect(() => {
+    if (avatarState && previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+      if (fileRef.current) fileRef.current.value = "";
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [avatarState]);
 
   const displayedAvatar = previewUrl ?? profile.avatarUrl;
 

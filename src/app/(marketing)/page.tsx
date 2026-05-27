@@ -4,6 +4,7 @@ import { Manifesto } from "@/components/home/manifesto";
 import { TopicsBento } from "@/components/home/topics-bento";
 import { ParticipantsMarquee } from "@/components/home/participants-marquee";
 import { StatsStrip } from "@/components/home/stats-strip";
+import { MeetingsGallery } from "@/components/home/meetings-gallery";
 
 export default function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default function HomePage() {
       <TopicsBento />
       <ParticipantsMarquee />
       <StatsStrip />
+      <MeetingsGallery />
     </>
   );
 }

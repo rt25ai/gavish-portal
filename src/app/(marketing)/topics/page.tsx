@@ -33,15 +33,17 @@ export default function TopicsHubPage() {
 
       <section className="bg-paper-mesh-soft pb-24 lg:pb-36 relative overflow-hidden">
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-fr gap-4 lg:gap-6">
             {topics.map((t) => {
               const c = topicColorClasses[t.color];
+              // longer titles get a smaller display size so the card stays balanced
+              const titleLong = t.title.length > 14;
               return (
                 <Link
                   key={t.slug}
                   href={`/topics/${t.slug}`}
                   className={cn(
-                    "group relative overflow-hidden rounded-3xl p-10 lg:p-14 aspect-[4/3] lg:aspect-[5/4] flex flex-col justify-between transition-all duration-500 hover:scale-[1.01]",
+                    "group relative overflow-hidden rounded-3xl p-10 lg:p-14 min-h-[24rem] lg:min-h-[28rem] flex flex-col justify-between transition-all duration-500 hover:scale-[1.01]",
                     c.bg,
                     t.color === "amber" ? "text-navy-900" : "text-paper",
                   )}
@@ -52,8 +54,15 @@ export default function TopicsHubPage() {
                   </div>
 
                   <div className="relative z-10">
-                    <h2 className="font-display font-black text-5xl lg:text-7xl leading-[0.9] mb-4">{t.title}</h2>
-                    <p className="font-body text-lg lg:text-xl max-w-md opacity-90 mb-8">{t.tagline}</p>
+                    <h2
+                      className={cn(
+                        "font-display font-black leading-[0.9] mb-4 text-balance",
+                        titleLong ? "text-4xl lg:text-5xl" : "text-5xl lg:text-7xl",
+                      )}
+                    >
+                      {t.title}
+                    </h2>
+                    <p className="font-body text-lg lg:text-xl max-w-md opacity-90 mb-8 text-balance">{t.tagline}</p>
                     <div className="inline-flex items-center gap-3 font-display font-bold text-base group-hover:gap-5 transition-all">
                       <span>לאתגר המלא</span>
                       <ArrowLeft className="size-5" />

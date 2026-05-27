@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "גביש - קהילת מנהלי הנוער של קרן רש״י",
+    name: "גביש - קהילה מקצועית למנהלי מחלקות הנוער",
     short_name: "גביש",
     description:
-      "פורטל מקצועי לבוגרי תוכנית גביש - מנהלי מחלקות נוער ברשויות בישראל. תכנים, מחקרים, נתונים וקהילה.",
+      "קהילה מקצועית לומדת למנהלי מחלקות הנוער ברשויות בישראל. ביוזמת קרן רש״י ואיגוד מנהלי מחלקות הנוער.",
     start_url: "/",
     scope: "/",
     display: "standalone",
@@ -13,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "he",
     dir: "rtl",
     background_color: "#f4f7ec",
-    theme_color: "#0f1e47",
+    theme_color: "#254590",
     categories: ["education", "social", "productivity"],
     icons: [
       {

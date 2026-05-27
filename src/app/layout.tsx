@@ -51,25 +51,30 @@ const assistant = Assistant({
 export const metadata: Metadata = {
   metadataBase: new URL("https://gavish-portal.vercel.app"),
   title: {
-    default: "גביש - קהילת מנהלי הנוער של קרן רש״י",
+    default: "גביש - קהילה מקצועית למנהלי מחלקות הנוער",
     template: "%s · גביש",
   },
   description:
-    "פורטל מקצועי לבוגרי תוכנית גביש - מנהלי מחלקות נוער ברשויות בישראל. תכנים, מחקרים, נתונים וקהילה.",
+    "קהילה מקצועית לומדת למנהלות ומנהלי מחלקות הנוער ברשויות בישראל. ביוזמת קרן רש״י ואיגוד מנהלי מחלקות הנוער.",
   applicationName: "גביש",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/icon.svg"],
+  },
   openGraph: {
-    title: "גביש - קהילת מנהלי הנוער של קרן רש״י",
+    title: "גביש - קהילה מקצועית למנהלי מחלקות הנוער",
     description:
-      "פורטל מקצועי לבוגרי תוכנית גביש. תכנים, מחקרים ונתונים על עולם הנוער בישראל.",
+      "קהילה מקצועית לומדת למנהלי מחלקות הנוער ברשויות בישראל. ביוזמת קרן רש״י ואיגוד מנהלי מחלקות הנוער.",
     siteName: "גביש",
     locale: "he_IL",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "גביש - קהילת מנהלי הנוער של קרן רש״י",
+    title: "גביש - קהילה מקצועית למנהלי מחלקות הנוער",
     description:
-      "פורטל מקצועי לבוגרי תוכנית גביש. תכנים, מחקרים ונתונים על עולם הנוער בישראל.",
+      "קהילה מקצועית לומדת למנהלי מחלקות הנוער ברשויות בישראל. ביוזמת קרן רש״י ואיגוד מנהלי מחלקות הנוער.",
   },
   robots: { index: true, follow: true },
   appleWebApp: {
@@ -82,7 +87,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f4f7ec" },
-    { media: "(prefers-color-scheme: dark)", color: "#0f1e47" },
+    { media: "(prefers-color-scheme: dark)", color: "#254590" },
   ],
   colorScheme: "light",
 };

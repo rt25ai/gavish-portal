@@ -1,39 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { Mail, MapPin, Phone, User, Check } from "lucide-react";
-
-const REGISTRAR_EMAIL = "noana@rashi.org.il";
+import { submitJoinRequest, type JoinFormState } from "./actions";
 
 export function JoinForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction] = useActionState<JoinFormState, FormData>(
+    submitJoinRequest,
+    null,
+  );
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "").trim();
-    const city = String(data.get("city") ?? "").trim();
-    const phone = String(data.get("phone") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-
-    const subject = `הרשמה לקהילת גביש - ${name}`;
-    const body = [
-      `שם מלא: ${name}`,
-      `רשות מקומית: ${city}`,
-      `טלפון: ${phone}`,
-      `אימייל: ${email}`,
-      "",
-      'מאשר/ת העברת פרטים לקרן רש"י להמשך הליך ההצטרפות.',
-    ].join("\n");
-
-    window.location.href = `mailto:${REGISTRAR_EMAIL}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
-  }
-
-  if (submitted) {
+  if (state?.success) {
     return (
       <div
         className="lg:col-span-7 bg-cream-mesh rounded-3xl p-8 lg:p-10 border border-navy-900/8 flex items-start gap-4"
@@ -43,14 +22,8 @@ export function JoinForm() {
           <Check className="size-5" />
         </div>
         <div>
-          <p className="font-display font-bold text-xl text-navy-900 mb-2">תודה, נפתח חלון מייל.</p>
-          <p className="font-body text-base text-ink/75 leading-relaxed">
-            פרטיכם מועברים לנועה במייל לאישור ההצטרפות. אם חלון המייל לא נפתח, שלחו את הפרטים ישירות אל{" "}
-            <a href={`mailto:${REGISTRAR_EMAIL}`} className="text-leaf-700 underline hover:text-navy-900">
-              {REGISTRAR_EMAIL}
-            </a>
-            .
-          </p>
+          <p className="font-display font-bold text-xl text-navy-900 mb-2">הפרטים נשלחו.</p>
+          <p className="font-body text-base text-ink/75 leading-relaxed">{state.success}</p>
         </div>
       </div>
     );
@@ -60,7 +33,7 @@ export function JoinForm() {
     <form
       className="lg:col-span-7 bg-cream-mesh rounded-3xl p-8 lg:p-10 border border-navy-900/8 space-y-5"
       aria-label="טופס הרשמה לקהילת גביש"
-      onSubmit={handleSubmit}
+      action={formAction}
     >
       <div>
         <label htmlFor="name" className="block font-body text-sm font-semibold text-navy-900 mb-2">
@@ -132,16 +105,30 @@ export function JoinForm() {
         </p>
       </div>
 
-      <button
-        type="submit"
-        className="w-full bg-navy-900 text-paper font-semibold rounded-full py-4 font-body hover:bg-navy-700 transition"
-      >
-        שליחת פרטים
-      </button>
+      {state?.error && (
+        <div className="bg-topic-coral/10 border border-topic-coral/40 rounded-2xl px-5 py-3 font-body text-sm text-topic-coral">
+          {state.error}
+        </div>
+      )}
+
+      <SubmitButton />
 
       <p className="text-center font-body text-xs text-ink/55 pt-2">
         בכפוף ל<Link href="/privacy" className="underline">מדיניות הפרטיות</Link> ו<Link href="/terms" className="underline">תנאי השימוש</Link>.
       </p>
     </form>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="w-full bg-navy-900 text-paper font-semibold rounded-full py-4 font-body hover:bg-navy-700 transition disabled:cursor-not-allowed disabled:opacity-70"
+    >
+      {pending ? "שולח..." : "שליחת פרטים"}
+    </button>
   );
 }

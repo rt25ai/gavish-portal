@@ -63,7 +63,6 @@ export async function submitJoinRequest(
     const { error } = await resend(apiKey).emails.send({
       from,
       to: REGISTRAR_EMAIL,
-      replyTo: email,
       subject: `הרשמה לקהילת גביש - ${name}`,
       text: lines.join("\n"),
       html,

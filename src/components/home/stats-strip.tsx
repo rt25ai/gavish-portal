@@ -77,7 +77,7 @@ export function StatsStrip() {
           href="/data"
           className="group inline-flex items-center gap-3 px-7 py-4 bg-leaf-500 text-paper hover:bg-leaf-700 rounded-full font-display font-bold text-lg transition"
         >
-          לאטלס נתוני הזהב
+          לנתוני הזהב המלאים
           <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
         </Link>
       </div>

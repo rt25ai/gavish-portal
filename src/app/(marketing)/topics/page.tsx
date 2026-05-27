@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { topics, topicColorClasses } from "@/lib/content";
+import { topics, topicPastelClasses } from "@/lib/content";
+import { TopicIllustration } from "@/components/home/topic-illustrations";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
@@ -35,7 +36,7 @@ export default function TopicsHubPage() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-fr gap-4 lg:gap-6">
             {topics.map((t) => {
-              const c = topicColorClasses[t.color];
+              const c = topicPastelClasses[t.color];
               // longer titles get a smaller display size so the card stays balanced
               const titleLong = t.title.length > 14;
               return (
@@ -43,35 +44,48 @@ export default function TopicsHubPage() {
                   key={t.slug}
                   href={`/topics/${t.slug}`}
                   className={cn(
-                    "group relative overflow-hidden rounded-3xl p-10 lg:p-14 min-h-[24rem] lg:min-h-[28rem] flex flex-col justify-between transition-all duration-500 hover:scale-[1.01]",
-                    c.bg,
-                    t.color === "amber" ? "text-navy-900" : "text-paper",
+                    "group relative overflow-hidden rounded-3xl p-10 lg:p-14 min-h-[24rem] lg:min-h-[26rem] flex flex-col justify-between border transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_-30px_rgba(15,30,71,0.3)]",
+                    c.surface,
+                    c.ring,
                   )}
                 >
+                  {/* large faint illustration watermark */}
+                  <TopicIllustration
+                    slug={t.slug}
+                    className={cn(
+                      "pointer-events-none absolute -bottom-8 -left-8 w-56 h-56 lg:w-64 lg:h-64 opacity-[0.10]",
+                      c.ink,
+                    )}
+                  />
+                  <div aria-hidden className="absolute top-0 right-0 w-32 h-32 bg-stripes-soft opacity-30 [mask-image:linear-gradient(225deg,black,transparent)] pointer-events-none" />
+
                   <div className="relative z-10 flex items-start justify-between">
-                    <span className="font-display font-black text-3xl opacity-50">/{t.number}</span>
-                    <span className="text-xs uppercase tracking-[0.2em] opacity-70 font-semibold">אתגר מרכזי</span>
+                    <span className={cn("font-display font-black text-3xl", c.ink)}>/{t.number}</span>
+                    <span className="text-xs uppercase tracking-[0.2em] text-navy-700/50 font-semibold">אתגר מרכזי</span>
                   </div>
 
-                  <div className="relative z-10">
+                  {/* crisp illustration chip */}
+                  <div className="relative z-10 mt-8">
+                    <span className={cn("inline-grid place-items-center size-16 rounded-2xl bg-paper/70 border", c.ring, c.ink)}>
+                      <TopicIllustration slug={t.slug} className="size-9" />
+                    </span>
+                  </div>
+
+                  <div className="relative z-10 mt-auto pt-8">
                     <h2
                       className={cn(
-                        "font-display font-black leading-[0.9] mb-4 text-balance",
+                        "font-display font-black leading-[0.9] mb-4 text-balance text-navy-900",
                         titleLong ? "text-4xl lg:text-5xl" : "text-5xl lg:text-7xl",
                       )}
                     >
                       {t.title}
                     </h2>
-                    <p className="font-body text-lg lg:text-xl max-w-md opacity-90 mb-8 text-balance">{t.tagline}</p>
-                    <div className="inline-flex items-center gap-3 font-display font-bold text-base group-hover:gap-5 transition-all">
+                    <p className="font-body text-lg lg:text-xl max-w-md text-ink/70 mb-8 text-balance">{t.tagline}</p>
+                    <div className={cn("inline-flex items-center gap-3 font-display font-bold text-base group-hover:gap-5 transition-all", c.ink)}>
                       <span>לאתגר המלא</span>
                       <ArrowLeft className="size-5" />
                     </div>
                   </div>
-
-                  {/* decor */}
-                  <div className="absolute -bottom-32 -left-20 w-96 h-96 bg-paper/10 rounded-full blur-3xl pointer-events-none" />
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-paper/8 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
                 </Link>
               );
             })}

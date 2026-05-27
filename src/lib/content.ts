@@ -249,3 +249,32 @@ export const topicColorClasses = {
   teal:  { bg: "bg-topic-teal",  text: "text-topic-teal",  border: "border-topic-teal",  soft: "bg-topic-teal-soft" },
   moss:  { bg: "bg-topic-moss",  text: "text-topic-moss",  border: "border-topic-moss",  soft: "bg-topic-moss-soft" },
 } as const;
+
+// Pastel, calm card system - soft surface + muted ink accent, navy text.
+// Keyed by the same topic.color value. Full class strings (Tailwind-detectable).
+export const topicPastelClasses = {
+  teal: {
+    surface: "bg-pastel-sky",
+    ink: "text-pastel-sky-ink",
+    ring: "border-pastel-sky-ring",
+    dot: "bg-pastel-sky-ink",
+  },
+  amber: {
+    surface: "bg-pastel-sand",
+    ink: "text-pastel-sand-ink",
+    ring: "border-pastel-sand-ring",
+    dot: "bg-pastel-sand-ink",
+  },
+  coral: {
+    surface: "bg-pastel-blush",
+    ink: "text-pastel-blush-ink",
+    ring: "border-pastel-blush-ring",
+    dot: "bg-pastel-blush-ink",
+  },
+  moss: {
+    surface: "bg-pastel-sage",
+    ink: "text-pastel-sage-ink",
+    ring: "border-pastel-sage-ring",
+    dot: "bg-pastel-sage-ink",
+  },
+} as const;

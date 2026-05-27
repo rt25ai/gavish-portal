@@ -34,6 +34,20 @@
   --color-topic-moss: #5b9a3d;
   --color-topic-moss-soft: #cce4bc;
 
+  /* ----- Pastel topic surfaces (calm, on-brand card system) ----- */
+  --color-pastel-sky: #e8f0fb;
+  --color-pastel-sky-ink: #2b6fd0;
+  --color-pastel-sky-ring: #cfe0f6;
+  --color-pastel-sand: #f4eedd;
+  --color-pastel-sand-ink: #a9802f;
+  --color-pastel-sand-ring: #e7d8ba;
+  --color-pastel-blush: #f5e9e3;
+  --color-pastel-blush-ink: #bc6149;
+  --color-pastel-blush-ring: #ead2c8;
+  --color-pastel-sage: #e9f0e1;
+  --color-pastel-sage-ink: #5f8c48;
+  --color-pastel-sage-ring: #d4e1c4;
+
   /* ----- Surfaces & Ink ----- */
   --color-ink: #0a0e1f;
   --color-ink-soft: #2a2f45;

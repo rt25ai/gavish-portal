@@ -2,15 +2,9 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { topics } from "@/lib/content";
+import { topics, topicPastelClasses } from "@/lib/content";
+import { TopicIllustration } from "@/components/home/topic-illustrations";
 import { cn } from "@/lib/cn";
-
-const colorMap = {
-  amber: "bg-topic-amber text-navy-900",
-  coral: "bg-topic-coral text-paper",
-  teal: "bg-topic-teal text-paper",
-  moss: "bg-topic-moss text-paper",
-} as const;
 
 export function TopicsBento() {
   return (
@@ -37,45 +31,60 @@ export function TopicsBento() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 auto-rows-fr gap-4 lg:gap-6">
           {topics.map((t) => {
-            // longer titles drop a size so every card stays balanced
+            const c = topicPastelClasses[t.color];
             const titleLong = t.title.length > 14;
             return (
               <Link
                 key={t.slug}
                 href={`/topics/${t.slug}`}
                 className={cn(
-                  "group relative overflow-hidden rounded-3xl p-8 lg:p-12 flex flex-col justify-between min-h-[300px] lg:min-h-[340px] transition-all duration-500 hover:scale-[1.01]",
-                  colorMap[t.color],
+                  "group relative overflow-hidden rounded-3xl p-8 lg:p-12 flex flex-col justify-between min-h-[300px] lg:min-h-[340px] border transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_70px_-30px_rgba(15,30,71,0.3)]",
+                  c.surface,
+                  c.ring,
                 )}
               >
+                {/* large faint illustration as a watermark */}
+                <TopicIllustration
+                  slug={t.slug}
+                  className={cn(
+                    "pointer-events-none absolute -bottom-6 -left-6 w-48 h-48 lg:w-56 lg:h-56 opacity-[0.10]",
+                    c.ink,
+                  )}
+                />
+                {/* signature stripes, very soft */}
+                <div aria-hidden className="absolute top-0 right-0 w-28 h-28 bg-stripes-soft opacity-30 [mask-image:linear-gradient(225deg,black,transparent)] pointer-events-none" />
+
                 <div className="relative z-10 flex items-start justify-between">
-                  <span className="font-display font-black text-2xl opacity-50">/{t.number}</span>
-                  <span className="text-xs uppercase tracking-[0.2em] opacity-60 font-semibold">
+                  <span className={cn("font-display font-black text-2xl", c.ink)}>/{t.number}</span>
+                  <span className="text-xs uppercase tracking-[0.2em] text-navy-700/50 font-semibold">
                     אתגר מרכזי
+                  </span>
+                </div>
+
+                {/* crisp small illustration chip */}
+                <div className="relative z-10 mt-6 mb-auto">
+                  <span className={cn("inline-grid place-items-center size-14 rounded-2xl bg-paper/70 border", c.ring, c.ink)}>
+                    <TopicIllustration slug={t.slug} className="size-8" />
                   </span>
                 </div>
 
                 <div className="relative z-10">
                   <h3
                     className={cn(
-                      "font-display font-black leading-[0.95] mb-3 text-balance",
+                      "font-display font-black leading-[0.95] mb-3 text-balance text-navy-900",
                       titleLong ? "text-3xl lg:text-5xl" : "text-4xl lg:text-6xl",
                     )}
                   >
                     {t.title}
                   </h3>
-                  <p className="font-body text-base lg:text-lg max-w-md opacity-85 mb-6 text-balance">
+                  <p className="font-body text-base lg:text-lg max-w-md text-ink/70 mb-6 text-balance">
                     {t.tagline}
                   </p>
-                  <div className="inline-flex items-center gap-2 font-display font-bold text-sm group-hover:gap-4 transition-all">
+                  <div className={cn("inline-flex items-center gap-2 font-display font-bold text-sm group-hover:gap-4 transition-all", c.ink)}>
                     <span>גלו עוד</span>
                     <ArrowLeft className="size-4" />
                   </div>
                 </div>
-
-                {/* facet decor */}
-                <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-paper/15 rounded-full blur-3xl pointer-events-none group-hover:bg-paper/25 transition" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-paper/8 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
               </Link>
             );
           })}

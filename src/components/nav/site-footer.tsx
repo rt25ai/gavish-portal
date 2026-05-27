@@ -25,7 +25,7 @@ export function SiteFooter() {
             <h3 className="font-display font-bold text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">ניווט</h3>
             <ul className="space-y-3 font-body">
               <li><Link href="/about" className="hover:text-leaf-300 transition">אודות גביש</Link></li>
-              <li><Link href="/topics" className="hover:text-leaf-300 transition">אתגרי שורש</Link></li>
+              <li><Link href="/topics" className="hover:text-leaf-300 transition">האתגרים המרכזיים</Link></li>
               <li><Link href="/community" className="hover:text-leaf-300 transition">חברי הקהילה</Link></li>
               <li><Link href="/data" className="hover:text-leaf-300 transition">נתוני זהב</Link></li>
               <li><Link href="/join" className="hover:text-leaf-300 transition">הצטרפות לקהילה</Link></li>

@@ -31,7 +31,7 @@ export default function CommunityPage() {
               מנהלות ומנהלי מחלקות הנוער מ-17 רשויות, מהצפון לדרום, מהמרכז לפריפריה. כל אחד הוא קול. ביחד - קהילה מקצועית לומדת.
             </p>
             <div className="lg:col-span-5">
-              <p className="font-body text-sm uppercase tracking-[0.18em] text-navy-700/60 font-semibold mb-3">אתגרי השורש</p>
+              <p className="font-body text-sm uppercase tracking-[0.18em] text-navy-700/60 font-semibold mb-3">האתגרים המרכזיים</p>
               <div className="flex flex-wrap gap-2">
                 {topics.map((t) => {
                   const c = topicColorClasses[t.color];

@@ -33,7 +33,7 @@ export function AboutHero() {
         <p className="mt-12 font-body text-xl lg:text-2xl text-ink/85 max-w-3xl leading-relaxed">
           גביש היא קהילה מקצועית לומדת למנהלות ומנהלי מחלקות הנוער ברשויות בישראל, יוזמה של{" "}
           <strong className="text-navy-900">קרן רש״י</strong> בשיתוף{" "}
-          <strong className="text-navy-900">איגוד מנהלי מחלקות הנוער</strong>. במחזור הראשון: 17 מנהלות ומנהלים, 9 חודשי לימוד, 4 צוותי מחקר על אתגרי שורש, ומסע אחד משותף.
+          <strong className="text-navy-900">איגוד מנהלי מחלקות הנוער</strong>. במחזור הראשון: 17 מנהלות ומנהלים, 9 חודשי לימוד, 4 צוותי מחקר סביב האתגרים המרכזיים, ומסע אחד משותף.
         </p>
       </div>
     </section>

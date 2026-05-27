@@ -11,7 +11,7 @@ import { UserAvatar } from "@/components/community/user-avatar";
 const baseLinks = [
   { href: "/", label: "בית" },
   { href: "/about", label: "אודות" },
-  { href: "/topics", label: "אתגרי שורש" },
+  { href: "/topics", label: "האתגרים המרכזיים" },
   { href: "/community", label: "חברי הקהילה" },
   { href: "/data", label: "נתוני זהב" },
   { href: "/join", label: "הצטרפות לקהילה", cta: true },

@@ -136,7 +136,7 @@ export function HeroSplit() {
               href="/topics"
               className="group inline-flex items-center justify-between gap-4 px-8 py-5 bg-navy-900 text-paper rounded-full font-display font-bold text-lg hover:bg-navy-700 transition"
             >
-              <span>4 אתגרי השורש</span>
+              <span>4 האתגרים המרכזיים</span>
               <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
             </Link>
             <Link

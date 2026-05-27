@@ -5,8 +5,8 @@ import { topics, topicColorClasses } from "@/lib/content";
 import { cn } from "@/lib/cn";
 
 export const metadata: Metadata = {
-  title: "אתגרי שורש",
-  description: "ארבעה אתגרי שורש שזיהינו במחקר: עבודה מבוססת נתונים, הון אנושי, עיצוב מדיניות בחב\"פ, והשתתפות נוער.",
+  title: "4 האתגרים המרכזיים",
+  description: "ארבעת האתגרים המרכזיים שזיהינו במחקר: עבודה מבוססת נתונים, הון אנושי, עיצוב מדיניות בחב\"פ, והשתתפות נוער.",
 };
 
 export default function TopicsHubPage() {
@@ -22,11 +22,11 @@ export default function TopicsHubPage() {
             ארבעה צוותים · תשעה חודשי מחקר
           </p>
           <h1 className="font-display font-black text-jumbo text-navy-900 leading-[0.88]">
-            ארבעת אתגרי<br />
-            <span className="outline-text">השורש.</span>
+            4 האתגרים<br />
+            <span className="outline-text">המרכזיים.</span>
           </h1>
           <p className="mt-10 font-body text-xl text-ink/80 max-w-3xl leading-relaxed">
-            לא תחומי דעת - אלא אתגרים בשורש המקצוע של מנהלת מחלקת נוער ברשות. כל צוות צלל לעומקו של אתגר אחד, ראיין אנשי שטח, חיבר תובנות, וייצר חומרי עומק.
+            ארבעה אתגרים מרכזיים בלב המקצוע של מנהלת מחלקת נוער ברשות. כל צוות צלל לעומקו של אתגר אחד, ראיין אנשי שטח, חיבר תובנות, וייצר חומרי עומק.
           </p>
         </div>
       </section>
@@ -48,7 +48,7 @@ export default function TopicsHubPage() {
                 >
                   <div className="relative z-10 flex items-start justify-between">
                     <span className="font-display font-black text-3xl opacity-50">/{t.number}</span>
-                    <span className="text-xs uppercase tracking-[0.2em] opacity-70 font-semibold">אתגר שורש</span>
+                    <span className="text-xs uppercase tracking-[0.2em] opacity-70 font-semibold">אתגר מרכזי</span>
                   </div>
 
                   <div className="relative z-10">

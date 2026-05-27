@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RashiLogo } from "@/components/brand/rashi-logo";
-import { CouncilLogo } from "@/components/brand/council-logo";
+import { IgudLogo } from "@/components/brand/igud-logo";
 import { CrystalMark } from "@/components/brand/crystal-mark";
 import { LEGAL_UPDATED_AT_SHORT } from "@/lib/legal-meta";
 
@@ -12,12 +12,12 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <CrystalMark className="size-12" />
+              <CrystalMark className="size-14" />
               <span className="font-display font-black text-4xl">גביש</span>
             </div>
             <p className="text-paper/70 max-w-md text-lg leading-relaxed">
-              קהילת מנהלי הנוער של קרן רש״י.<br />
-              מקצוע, מחקר, השפעה.
+              קהילה מקצועית לומדת למנהלי מחלקות הנוער ברשויות.<br />
+              ביוזמת קרן רש״י ואיגוד מנהלי מחלקות הנוער.
             </p>
           </div>
 
@@ -25,9 +25,10 @@ export function SiteFooter() {
             <h3 className="font-display font-bold text-paper/50 text-xs uppercase tracking-[0.2em] mb-4">ניווט</h3>
             <ul className="space-y-3 font-body">
               <li><Link href="/about" className="hover:text-leaf-300 transition">אודות גביש</Link></li>
-              <li><Link href="/topics" className="hover:text-leaf-300 transition">תחומי המחקר</Link></li>
+              <li><Link href="/topics" className="hover:text-leaf-300 transition">אתגרי שורש</Link></li>
               <li><Link href="/community" className="hover:text-leaf-300 transition">חברי הקהילה</Link></li>
-              <li><Link href="/data" className="hover:text-leaf-300 transition">נתוני נוער בישראל</Link></li>
+              <li><Link href="/data" className="hover:text-leaf-300 transition">נתוני זהב</Link></li>
+              <li><Link href="/join" className="hover:text-leaf-300 transition">הצטרפות לקהילה</Link></li>
               <li><Link href="/community-space" className="hover:text-leaf-300 transition">האזור הקהילתי</Link></li>
             </ul>
           </div>
@@ -46,18 +47,12 @@ export function SiteFooter() {
               <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-paper/0 to-paper/0 group-hover:from-leaf-500/5 transition-all duration-500 pointer-events-none" />
             </div>
 
-            {/* Council card */}
-            <div className="group relative overflow-hidden rounded-2xl border border-paper/15 bg-gradient-to-br from-paper/95 via-cream/90 to-paper/95 backdrop-blur-sm transition hover:border-topic-amber/60">
-              <div aria-hidden className="absolute -top-16 left-1/4 w-40 h-40 bg-topic-amber/20 blur-3xl rounded-full" />
-              <div aria-hidden className="absolute -bottom-16 right-1/4 w-40 h-40 bg-topic-teal/15 blur-3xl rounded-full" />
-              <div aria-hidden className="absolute top-3 left-3 flex gap-1">
-                <span className="size-1.5 rounded-full bg-topic-amber" />
-                <span className="size-1.5 rounded-full bg-topic-coral" />
-                <span className="size-1.5 rounded-full bg-topic-teal" />
-                <span className="size-1.5 rounded-full bg-topic-moss" />
-              </div>
+            {/* Igud Manhalei HaNoar card */}
+            <div className="group relative overflow-hidden rounded-2xl border border-paper/15 bg-gradient-to-br from-paper/95 via-paper/90 to-leaf-50/90 backdrop-blur-sm transition hover:border-leaf-500/60">
+              <div aria-hidden className="absolute -top-12 -right-12 w-32 h-32 bg-leaf-500/20 blur-2xl rounded-full" />
+              <div aria-hidden className="absolute inset-y-0 right-0 w-12 bg-stripes-soft opacity-50" />
               <div className="relative p-6 flex items-center justify-center min-h-[140px]">
-                <CouncilLogo className="h-24 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
+                <IgudLogo className="h-24 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
               </div>
             </div>
           </div>

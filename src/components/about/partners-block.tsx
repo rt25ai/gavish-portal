@@ -1,5 +1,5 @@
 import { RashiLogo } from "@/components/brand/rashi-logo";
-import { CouncilLogo } from "@/components/brand/council-logo";
+import { IgudLogo } from "@/components/brand/igud-logo";
 
 export function PartnersBlock() {
   return (
@@ -51,40 +51,34 @@ export function PartnersBlock() {
             </div>
           </article>
 
-          {/* === Council === */}
-          <article className="group relative overflow-hidden rounded-3xl border border-paper/15 bg-gradient-to-br from-paper via-cream to-paper transition-all duration-700 hover:border-topic-amber/60">
-            {/* Lotus-colored ambient orbs */}
-            <div aria-hidden className="absolute -top-20 left-1/2 w-80 h-80 -translate-x-1/2 bg-topic-amber/15 blur-3xl rounded-full" />
-            <div aria-hidden className="absolute -bottom-20 -right-12 w-60 h-60 bg-topic-coral/12 blur-3xl rounded-full" />
-            <div aria-hidden className="absolute -bottom-12 -left-12 w-60 h-60 bg-topic-teal/12 blur-3xl rounded-full" />
-            <div aria-hidden className="absolute top-0 right-0 w-40 h-40 bg-topic-amber/12 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+          {/* === Igud Manhalei HaNoar === */}
+          <article className="group relative overflow-hidden rounded-3xl border border-paper/15 bg-gradient-to-br from-paper via-paper to-leaf-50 transition-all duration-700 hover:border-leaf-500/60">
+            <div aria-hidden className="absolute -top-20 -right-12 w-60 h-60 bg-leaf-500/18 blur-3xl rounded-full" />
+            <div aria-hidden className="absolute -bottom-16 -left-12 w-60 h-60 bg-leaf-700/15 blur-3xl rounded-full" />
+            <div aria-hidden className="absolute top-0 right-0 w-40 h-40 bg-leaf-500/12 [clip-path:polygon(100%_0,100%_100%,0_0)]" />
+            {/* signature stripes - the brand pattern */}
+            <div aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-stripes-soft opacity-60 [mask-image:linear-gradient(90deg,black,transparent)]" />
 
-            {/* rainbow strip */}
-            <div aria-hidden className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-topic-amber via-topic-coral via-topic-teal to-topic-moss" />
+            <div aria-hidden className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-leaf-700 via-leaf-500 to-leaf-700" />
 
             <div className="relative p-10 lg:p-14">
-              <div className="flex items-center gap-3 mb-10 font-body text-xs uppercase tracking-[0.18em] text-navy-700 font-bold">
-                <span className="flex gap-1">
-                  <span className="size-1.5 rounded-full bg-topic-amber" />
-                  <span className="size-1.5 rounded-full bg-topic-coral" />
-                  <span className="size-1.5 rounded-full bg-topic-teal" />
-                  <span className="size-1.5 rounded-full bg-topic-moss" />
-                </span>
-                <span>שותף אסטרטגי</span>
+              <div className="flex items-center gap-3 mb-10 font-body text-xs uppercase tracking-[0.18em] text-leaf-700 font-bold">
+                <span className="size-2 rounded-full bg-leaf-500 [animation:pulse_2s_ease-in-out_infinite]" />
+                <span>שותף מקצועי</span>
               </div>
 
               <div className="h-28 mb-10 flex items-center transition-transform duration-700 group-hover:scale-[1.03] origin-right">
-                <CouncilLogo className="h-32 w-auto" />
+                <IgudLogo className="h-28 w-auto" />
               </div>
 
-              <h3 className="font-display font-black text-4xl text-navy-900 mb-5">מועצת ארגוני הילדים והנוער</h3>
+              <h3 className="font-display font-black text-4xl text-navy-900 mb-5">איגוד מנהלי מחלקות הנוער</h3>
               <p className="font-body text-lg text-ink/85 leading-relaxed">
-                גוף הגג של תנועות הנוער וארגוני הילדים הציוניים בישראל. מאגד 14 תנועות ופועל לחיזוק החינוך הבלתי פורמלי, פיתוח מנהיגות צעירה, וקידום מדיניות לטובת ילדים ובני נוער.
+                ארגון הגג של מנהלות ומנהלי מחלקות הנוער ברשויות המקומיות בישראל. הקול המקצועי של המנהלים, ומסגרת התומכת בהתפתחות הקהילה המקצועית, פיתוח מדיניות וחילופי ידע בין רשויות.
               </p>
 
               <div className="mt-10 pt-8 border-t border-navy-900/10 flex items-center justify-between font-body text-sm">
-                <span className="text-navy-700/70">תנועות חברות</span>
-                <span className="font-display font-black text-3xl text-topic-coral tabular">14</span>
+                <span className="text-navy-700/70">רשויות מקומיות</span>
+                <span className="font-display font-black text-3xl text-leaf-700 tabular">257</span>
               </div>
             </div>
           </article>

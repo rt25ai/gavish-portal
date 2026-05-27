@@ -7,7 +7,7 @@ import { QuotesBlock } from "@/components/about/quotes-block";
 
 export const metadata: Metadata = {
   title: "אודות",
-  description: "תוכנית גביש - פיתוח מקצועי למנהלי מח׳ נוער ברשויות בישראל. יוזמה של קרן רש״י ומועצת ארגוני הילדים והנוער.",
+  description: "תוכנית גביש - קהילה מקצועית לומדת למנהלות ומנהלי מחלקות הנוער ברשויות בישראל. יוזמה של קרן רש״י ואיגוד מנהלי מחלקות הנוער.",
 };
 
 export default function AboutPage() {

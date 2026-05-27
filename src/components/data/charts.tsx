@@ -5,7 +5,8 @@ import { BarChart, Bar, LineChart, Line, ResponsiveContainer, Tooltip, XAxis, YA
 const navy = "#0F1E47";
 const navy500 = "#1B2C5C";
 const navySoft = "#97A3C4";
-const leaf = "#6FB94A";
+const leaf = "#2b79f5"; // brand bright blue (was green)
+const gavishNavy = "#254590";
 const amber = "#F4B628";
 const coral = "#E94B2A";
 const teal = "#1B95B5";
@@ -129,17 +130,20 @@ export function DistrictBarChart() {
 }
 
 export function ParticipationRadial() {
-  const data = [{ name: "השתתפות", value: 58, fill: leaf }];
+  const data = [{ name: "השתתפות", value: 30, fill: leaf }];
   return (
     <ResponsiveContainer width="100%" height={320}>
       <RadialBarChart innerRadius="70%" outerRadius="100%" data={data} startAngle={90} endAngle={-270}>
         <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
         <RadialBar background={{ fill: "rgba(15,30,71,0.08)" }} dataKey="value" cornerRadius={20} angleAxisId={0} />
-        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="font-display" style={{ fontWeight: 900, fontSize: 56, fill: navy }}>
-          58%
+        <text x="50%" y="46%" textAnchor="middle" dominantBaseline="middle" className="font-display" style={{ fontWeight: 900, fontSize: 56, fill: navy }}>
+          30%
         </text>
-        <text x="50%" y="68%" textAnchor="middle" dominantBaseline="middle" style={{ fontFamily: "var(--font-body)", fontSize: 13, fill: navy, opacity: 0.6 }}>
-          השתתפות במסגרות
+        <text x="50%" y="62%" textAnchor="middle" dominantBaseline="middle" style={{ fontFamily: "var(--font-body)", fontSize: 13, fill: navy, opacity: 0.7 }}>
+          1 מכל 3 בני נוער
+        </text>
+        <text x="50%" y="72%" textAnchor="middle" dominantBaseline="middle" style={{ fontFamily: "var(--font-body)", fontSize: 11, fill: navy, opacity: 0.5 }}>
+          השתתפות בחב״פ
         </text>
       </RadialBarChart>
     </ResponsiveContainer>
@@ -148,12 +152,12 @@ export function ParticipationRadial() {
 
 export function InternationalCompare() {
   const data = [
-    { country: "ישראל", value: 58 },
-    { country: "פינלנד", value: 75 },
-    { country: "גרמניה", value: 68 },
-    { country: "צרפת", value: 52 },
+    { country: "ישראל", value: 30 },
     { country: "ארה״ב", value: 45 },
+    { country: "צרפת", value: 52 },
     { country: "ממוצע OECD", value: 60 },
+    { country: "גרמניה", value: 68 },
+    { country: "פינלנד", value: 75 },
   ];
   return (
     <ResponsiveContainer width="100%" height={320}>

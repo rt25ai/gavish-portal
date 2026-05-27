@@ -7,7 +7,7 @@ import { gsap, registerGsap, prefersReducedMotion } from "@/lib/motion";
 import { participants } from "@/lib/content";
 
 const row1 = participants.slice(0, 9);
-const row2 = participants.slice(9);
+const row2 = participants.slice(9, 17);
 
 function Avatar({ name }: { name: string }) {
   const initials = name.split(" ").slice(0, 2).map((w) => w[0]).join("");
@@ -42,7 +42,7 @@ export function ParticipantsMarquee() {
         <div className="flex items-end justify-between mb-12 gap-8 flex-wrap">
           <div className="max-w-2xl">
             <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-              18 רשויות · 18 מובילים
+              17 רשויות · 17 מובילים
             </p>
             <h2 className="font-display text-display font-black text-navy-900 leading-[0.95]">
               הקהילה<br />

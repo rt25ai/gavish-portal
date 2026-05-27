@@ -11,9 +11,10 @@ import { UserAvatar } from "@/components/community/user-avatar";
 const baseLinks = [
   { href: "/", label: "בית" },
   { href: "/about", label: "אודות" },
-  { href: "/topics", label: "תחומי המחקר" },
+  { href: "/topics", label: "אתגרי שורש" },
   { href: "/community", label: "חברי הקהילה" },
-  { href: "/data", label: "נתוני נוער" },
+  { href: "/data", label: "נתוני זהב" },
+  { href: "/join", label: "הצטרפות לקהילה", cta: true },
 ];
 
 export type SiteNavUser = {
@@ -72,13 +73,18 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
         <ul className="hidden lg:flex items-center gap-1 font-body text-sm">
           {links.map((l) => {
             const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
+            const isCta = "cta" in l && l.cta;
             return (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   className={cn(
-                    "px-3 py-2 rounded-full transition-colors hover:bg-navy-900/5",
-                    active && "text-leaf-700 font-semibold",
+                    "px-3 py-2 rounded-full transition-colors",
+                    isCta
+                      ? "border border-leaf-500 text-leaf-700 hover:bg-leaf-500 hover:text-paper font-semibold mr-1"
+                      : "hover:bg-navy-900/5",
+                    active && !isCta && "text-leaf-700 font-semibold",
+                    active && isCta && "bg-leaf-500 text-paper",
                   )}
                 >
                   {l.label}

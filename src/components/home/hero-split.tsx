@@ -50,12 +50,15 @@ export function HeroSplit() {
 
   return (
     <section className="relative min-h-[100svh] flex items-end overflow-hidden bg-paper-mesh">
-      {/* Crystal facet decor */}
+      {/* Crystal facet decor + brand stripes */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-32 -left-32 w-[60vmin] h-[60vmin] bg-leaf-500/8 blur-3xl rounded-full" />
-        <div className="absolute -bottom-32 -right-32 w-[70vmin] h-[70vmin] bg-navy-900/10 blur-3xl rounded-full" />
-        <CrystalMark className="absolute top-24 left-8 size-32 opacity-30 hidden lg:block" />
-        <CrystalMark className="absolute bottom-24 right-12 size-44 opacity-20 hidden lg:block" />
+        <div className="absolute -top-32 -left-32 w-[60vmin] h-[60vmin] bg-leaf-500/10 blur-3xl rounded-full" />
+        <div className="absolute -bottom-32 -right-32 w-[70vmin] h-[70vmin] bg-leaf-700/12 blur-3xl rounded-full" />
+        <CrystalMark className="absolute -top-12 -left-20 w-[36rem] h-[36rem] opacity-[0.08] hidden lg:block" />
+        <CrystalMark className="absolute bottom-12 right-8 size-72 opacity-25 hidden lg:block" animated />
+        {/* signature diagonal stripes - the brand pattern */}
+        <div aria-hidden className="hidden lg:block absolute top-40 right-24 w-48 h-72 bg-stripes-soft opacity-70 [mask-image:linear-gradient(135deg,black,transparent)]" />
+        <div aria-hidden className="hidden lg:block absolute bottom-24 left-32 w-32 h-48 bg-stripes-navy opacity-50 [mask-image:linear-gradient(45deg,black,transparent)]" />
       </div>
 
       <div className="relative w-full mx-auto max-w-[1400px] px-6 lg:px-10 pb-16 lg:pb-24 pt-10 lg:pt-16">
@@ -114,6 +117,10 @@ export function HeroSplit() {
           </span>
         </h1>
 
+        <p className="mt-2 font-body text-base lg:text-lg text-navy-700/80 max-w-2xl">
+          קהילה מקצועית לומדת למנהלות ומנהלי מחלקות הנוער
+        </p>
+
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <p
             ref={subRef}
@@ -129,7 +136,14 @@ export function HeroSplit() {
               href="/topics"
               className="group inline-flex items-center justify-between gap-4 px-8 py-5 bg-navy-900 text-paper rounded-full font-display font-bold text-lg hover:bg-navy-700 transition"
             >
-              <span>גלו את 4 תחומי המחקר</span>
+              <span>4 אתגרי השורש</span>
+              <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
+            </Link>
+            <Link
+              href="/join"
+              className="group inline-flex items-center justify-between gap-4 px-8 py-5 bg-leaf-500 text-paper rounded-full font-display font-bold text-lg hover:bg-leaf-700 transition"
+            >
+              <span>הצטרפות לקהילה</span>
               <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
             </Link>
             <Link

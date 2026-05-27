@@ -12,12 +12,17 @@
   --color-navy-900: #0f1e47;
   --color-navy-950: #07112d;
 
-  --color-leaf-50: #eaf6e1;
-  --color-leaf-100: #cce8b8;
-  --color-leaf-300: #93cf6f;
-  --color-leaf-500: #6fb94a;
-  --color-leaf-700: #4d8e30;
-  --color-leaf-900: #2e5a1c;
+  /* Brand accent - bright blue from Gavish logo (was green leaf) */
+  --color-leaf-50: #e5edff;
+  --color-leaf-100: #c1d3ff;
+  --color-leaf-300: #6ea3ff;
+  --color-leaf-500: #2b79f5;
+  --color-leaf-700: #254590;
+  --color-leaf-900: #142048;
+
+  /* Gavish brand exact tokens */
+  --color-gavish-blue: #2b79f5;
+  --color-gavish-navy: #254590;
 
   /* ----- 4 Research Topic Colors (from Council lotus logo) ----- */
   --color-topic-amber: #f4b628;
@@ -62,12 +67,50 @@ body {
   letter-spacing: -0.01em;
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(ellipse 60% 40% at 85% 8%, rgba(111, 185, 74, 0.10), transparent 60%),
-    radial-gradient(ellipse 50% 35% at 12% 22%, rgba(244, 182, 40, 0.06), transparent 55%),
-    radial-gradient(ellipse 55% 40% at 90% 65%, rgba(111, 185, 74, 0.07), transparent 60%),
-    radial-gradient(ellipse 45% 30% at 8% 88%, rgba(147, 207, 111, 0.08), transparent 55%);
+    radial-gradient(ellipse 60% 40% at 85% 8%, rgba(43, 121, 245, 0.09), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 12% 22%, rgba(37, 69, 144, 0.05), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 90% 65%, rgba(43, 121, 245, 0.06), transparent 60%),
+    radial-gradient(ellipse 45% 30% at 8% 88%, rgba(37, 69, 144, 0.05), transparent 55%);
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+
+/* ============== Gavish stripes pattern (brand signature) ============== */
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-gavish-blue) 0,
+    var(--color-gavish-blue) 1.5px,
+    transparent 1.5px,
+    transparent 12px
+  );
+}
+.bg-stripes-soft {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(43, 121, 245, 0.18) 0,
+    rgba(43, 121, 245, 0.18) 1.5px,
+    transparent 1.5px,
+    transparent 14px
+  );
+}
+.bg-stripes-navy {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(37, 69, 144, 0.14) 0,
+    rgba(37, 69, 144, 0.14) 1.5px,
+    transparent 1.5px,
+    transparent 14px
+  );
+}
+.bg-stripes-vertical {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(43, 121, 245, 0.18) 0,
+    rgba(43, 121, 245, 0.18) 1.5px,
+    transparent 1.5px,
+    transparent 11px
+  );
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -105,7 +148,7 @@ p {
 .bg-crystal {
   background:
     radial-gradient(ellipse 80% 60% at 30% 20%, rgba(255, 255, 255, 0.18), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(111, 185, 74, 0.12), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(43, 121, 245, 0.12), transparent 50%),
     linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-700) 50%, var(--color-navy-900) 100%);
 }
 
@@ -113,23 +156,23 @@ p {
 .bg-paper-mesh {
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(ellipse 55% 45% at 88% 12%, rgba(111, 185, 74, 0.16), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 88% 12%, rgba(43, 121, 245, 0.16), transparent 60%),
     radial-gradient(ellipse 45% 35% at 8% 28%, rgba(244, 182, 40, 0.10), transparent 55%),
-    radial-gradient(ellipse 60% 45% at 92% 78%, rgba(147, 207, 111, 0.14), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 5% 92%, rgba(111, 185, 74, 0.12), transparent 55%);
+    radial-gradient(ellipse 60% 45% at 92% 78%, rgba(110, 163, 255, 0.14), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 5% 92%, rgba(43, 121, 245, 0.12), transparent 55%);
 }
 
 .bg-paper-mesh-soft {
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(111, 185, 74, 0.10), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(43, 121, 245, 0.10), transparent 60%),
     radial-gradient(ellipse 50% 40% at 100% 100%, rgba(244, 182, 40, 0.06), transparent 55%);
 }
 
 .bg-cream-mesh {
   background-color: var(--color-cream);
   background-image:
-    radial-gradient(ellipse 60% 45% at 12% 18%, rgba(111, 185, 74, 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 12% 18%, rgba(43, 121, 245, 0.14), transparent 60%),
     radial-gradient(ellipse 50% 40% at 92% 82%, rgba(244, 182, 40, 0.10), transparent 55%);
 }
 

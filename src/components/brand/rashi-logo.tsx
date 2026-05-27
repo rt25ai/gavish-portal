@@ -6,8 +6,8 @@ export function RashiLogo({ className = "", invert = false }: { className?: stri
     <Image
       src="/logos/rashi.png"
       alt="קרן רש״י - Rashi Foundation"
-      width={528}
-      height={264}
+      width={7876}
+      height={4030}
       className={cn("h-auto w-auto object-contain", invert && "brightness-0 invert", className)}
       priority
     />

@@ -49,10 +49,12 @@ export function StatsStrip() {
   return (
     <section className="bg-navy-900 text-paper py-24 lg:py-36 relative overflow-hidden">
       <div className="absolute inset-0 bg-crystal opacity-60" />
+      {/* signature stripes - brand pattern */}
+      <div aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-stripes-soft opacity-30 pointer-events-none [mask-image:linear-gradient(90deg,black,transparent)]" />
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="mb-16 max-w-3xl">
           <p className="font-body text-sm tracking-[0.18em] uppercase text-leaf-300/80 font-semibold mb-4">
-            המגרש שלנו
+            נתוני זהב · 2026
           </p>
           <h2 className="font-display text-display font-black leading-[0.95]">
             נוער בישראל,<br />במספרים.
@@ -73,9 +75,9 @@ export function StatsStrip() {
 
         <Link
           href="/data"
-          className="group inline-flex items-center gap-3 px-7 py-4 bg-leaf-500 text-navy-900 hover:bg-leaf-300 rounded-full font-display font-bold text-lg transition"
+          className="group inline-flex items-center gap-3 px-7 py-4 bg-leaf-500 text-paper hover:bg-leaf-700 rounded-full font-display font-bold text-lg transition"
         >
-          לאטלס נתוני הנוער
+          לאטלס נתוני הזהב
           <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-1" />
         </Link>
       </div>

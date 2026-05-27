@@ -25,7 +25,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <div className="relative font-body text-sm text-paper/55">
-          © {new Date().getFullYear()} קרן רש״י · מועצת ארגוני הילדים והנוער
+          © {new Date().getFullYear()} קרן רש״י · איגוד מנהלי מחלקות הנוער
         </div>
       </aside>
       <main className="bg-paper-mesh p-10 lg:p-16 flex items-center justify-center relative overflow-hidden">

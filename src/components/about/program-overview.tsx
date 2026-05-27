@@ -52,7 +52,7 @@ export function ProgramOverview() {
 
         <p className="font-body text-lg lg:text-xl text-ink/80 leading-relaxed max-w-3xl mb-20">
           גביש מפתחת את ההון האנושי של מובילי החינוך הבלתי פורמלי ברשויות המקומיות.
-          התכנית מקבצת כ-20 מנהלות ומנהלי מחלקות נוער לקהילה מקצועית של למידה, חקר ויישום משותף -
+          התכנית מקבצת 17 מנהלות ומנהלי מחלקות נוער לקהילה מקצועית של למידה, חקר ויישום משותף -
           מתוך הבנה שכשהמנהיגות החינוכית ברשות מתחזקת, נפתחות לבני הנוער הזדמנויות חדשות.
         </p>
 
@@ -91,7 +91,7 @@ export function ProgramOverview() {
               קהל היעד
             </p>
             <p className="relative font-display font-black text-6xl lg:text-7xl text-leaf-300 leading-none mb-4 tabular">
-              ~20
+              17
             </p>
             <p className="relative font-display font-bold text-2xl mb-6 leading-tight">
               מנהלות ומנהלי מחלקות נוער ברשויות בישראל.

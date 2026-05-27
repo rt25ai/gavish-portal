@@ -1,28 +1,87 @@
 /**
- * Crystal/Gavish geometric mark - used as portal logotype.
- * Faceted shape that represents the program name "גביש" (crystal).
+ * Official Gavish mark - four leaves star with internal stripes.
+ * Two leaves in navy (#254590), two in bright blue (#2b79f5).
+ * No green - this is the real brand mark.
  */
 export function CrystalMark({ className = "", animated = false }: { className?: string; animated?: boolean }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} role="img" aria-label="גביש">
-      <defs>
-        <linearGradient id="cm-grad-1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="var(--color-navy-700)" />
-          <stop offset="100%" stopColor="var(--color-navy-900)" />
-        </linearGradient>
-        <linearGradient id="cm-grad-2" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="var(--color-leaf-500)" />
-          <stop offset="100%" stopColor="var(--color-navy-700)" />
-        </linearGradient>
-      </defs>
-      <g className={animated ? "origin-center [animation:spin_30s_linear_infinite]" : ""}>
-        <polygon points="32,4 56,22 48,52 16,52 8,22" fill="url(#cm-grad-1)" />
-        <polygon points="32,4 56,22 32,32" fill="url(#cm-grad-2)" opacity="0.55" />
-        <polygon points="32,32 56,22 48,52" fill="var(--color-leaf-500)" opacity="0.18" />
-        <polygon points="32,32 16,52 8,22" fill="var(--color-leaf-500)" opacity="0.32" />
-        <polygon points="32,4 8,22 32,32" fill="var(--color-paper)" opacity="0.08" />
-        <polyline points="32,4 32,32 16,52" fill="none" stroke="var(--color-paper)" strokeOpacity="0.35" strokeWidth="0.5" />
-        <polyline points="32,32 48,52" fill="none" stroke="var(--color-paper)" strokeOpacity="0.35" strokeWidth="0.5" />
+    <svg viewBox="640 20 580 740" className={className} role="img" aria-label="גביש">
+      <g
+        className={animated ? "origin-center [animation:spin_30s_linear_infinite]" : ""}
+        style={{ transformOrigin: "918px 459px" }}
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {/* Top-left leaf - bright blue */}
+        <g stroke="#2b79f5">
+          <polygon points="891.43 576.75 915.85 459.46 741.47 508.3 662.4 743.62 797.71 690.4 891.43 576.75" strokeWidth="6" />
+          <polyline points="662.4 743.62 854.74 525.68 918.36 455.82" strokeWidth="6" />
+          <line x1="741.47" y1="508.3" x2="854.74" y2="525.68" strokeWidth="6" />
+          <g strokeWidth="3">
+            <line x1="777.44" y1="613.03" x2="744.21" y2="711.44" />
+            <line x1="792.7" y1="595.84" x2="755" y2="707.47" />
+            <line x1="807.94" y1="578.71" x2="765.72" y2="703.72" />
+            <line x1="823.26" y1="561.35" x2="776.92" y2="698.57" />
+            <line x1="838.49" y1="544.24" x2="787.82" y2="694.29" />
+            <line x1="854.74" y1="525.68" x2="799.2" y2="688.59" />
+            <line x1="869.06" y1="509.7" x2="815.04" y2="669.66" />
+            <line x1="883.96" y1="493.6" x2="831.22" y2="649.76" />
+            <line x1="898.98" y1="477.1" x2="847.18" y2="630.5" />
+            <line x1="913.66" y1="461.64" x2="863.16" y2="611.18" />
+            <line x1="902.99" y1="521.23" x2="879.06" y2="591.74" />
+          </g>
+        </g>
+        {/* Top-right leaf - bright blue */}
+        <g stroke="#2b79f5">
+          <polygon points="1191.34 195.34 1201.74 88.37 953.37 224.68 918.36 459.16 1055.82 415.95 1191.34 195.34" strokeWidth="6" />
+          <line x1="1201.74" y1="88.37" x2="1055.82" y2="415.95" strokeWidth="6" />
+          <line x1="953.37" y1="224.68" x2="1055.82" y2="415.95" strokeWidth="6" />
+          <g strokeWidth="3">
+            <line x1="1171.23" y1="156.87" x2="1174.86" y2="222.17" />
+            <line x1="1188.04" y1="119.14" x2="1191.94" y2="189.23" />
+            <line x1="1196.44" y1="100.27" x2="1197.96" y2="127.6" />
+            <line x1="1087.18" y1="345.55" x2="1088.17" y2="363.29" />
+            <line x1="1095.59" y1="326.68" x2="1096.84" y2="349.18" />
+            <line x1="1103.99" y1="307.81" x2="1105.51" y2="335.07" />
+            <line x1="1112.4" y1="288.95" x2="1114.18" y2="320.91" />
+            <line x1="1120.8" y1="270.08" x2="1122.85" y2="306.85" />
+            <line x1="1129.18" y1="250.83" x2="1131.52" y2="292.73" />
+            <line x1="1137.61" y1="232.34" x2="1140.19" y2="278.62" />
+            <line x1="1146.01" y1="213.48" x2="1148.85" y2="264.51" />
+            <line x1="1154.42" y1="194.61" x2="1157.55" y2="250.83" />
+            <line x1="1162.87" y1="175.74" x2="1166.21" y2="236.25" />
+          </g>
+        </g>
+        {/* Bottom-right leaf - navy */}
+        <g stroke="#254590">
+          <line x1="951.27" y1="538.36" x2="1064.28" y2="477.51" strokeWidth="6" />
+          <polygon points="1042.55 601.39 1185.98 540.53 1064.28 477.51 917.02 461.17 951.27 538.36 1042.55 601.39" strokeWidth="6" />
+          <g strokeWidth="3">
+            <line x1="1185.99" y1="540.53" x2="951.95" y2="538.36" />
+            <line x1="1035.58" y1="596.57" x2="1053.48" y2="596.57" />
+            <line x1="1021.55" y1="587.12" x2="1076.49" y2="587.12" />
+            <line x1="1008.82" y1="577.67" x2="1098.14" y2="577.67" />
+            <line x1="994.48" y1="568.21" x2="1120.75" y2="568.21" />
+            <line x1="980.81" y1="558.76" x2="1142.37" y2="558.76" />
+            <line x1="967.12" y1="549.3" x2="1165.32" y2="549.3" />
+          </g>
+        </g>
+        {/* Bottom-left leaf - navy */}
+        <g stroke="#254590">
+          <polygon points="861.26 143.79 680.88 33.43 679.53 332.26 774.07 436.58 918.07 457.48 901.21 335.52 861.26 143.79" strokeWidth="6" />
+          <line x1="861.26" y1="143.79" x2="774.07" y2="436.58" strokeWidth="6" />
+          <g strokeWidth="3">
+            <line x1="679.53" y1="311.5" x2="685.93" y2="339.31" />
+            <line x1="680.87" y1="33.43" x2="774.07" y2="436.58" />
+            <line x1="679.81" y1="271.55" x2="698.6" y2="353.29" />
+            <line x1="679.99" y1="231.2" x2="711.26" y2="367.27" />
+            <line x1="680.1" y1="190.55" x2="723.89" y2="381.08" />
+            <line x1="680.29" y1="150.26" x2="736.6" y2="395.22" />
+            <line x1="680.53" y1="110.16" x2="749.26" y2="409.2" />
+            <line x1="680.71" y1="69.82" x2="761.88" y2="422.94" />
+          </g>
+        </g>
       </g>
     </svg>
   );

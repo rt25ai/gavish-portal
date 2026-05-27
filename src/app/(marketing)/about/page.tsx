@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AboutHero } from "@/components/about/about-hero";
 import { ProgramOverview } from "@/components/about/program-overview";
 import { TimelineHorizontal } from "@/components/about/timeline-horizontal";
+import { SeminarGallery } from "@/components/about/seminar-gallery";
 import { PartnersBlock } from "@/components/about/partners-block";
 import { QuotesBlock } from "@/components/about/quotes-block";
 
@@ -16,6 +17,7 @@ export default function AboutPage() {
       <AboutHero />
       <ProgramOverview />
       <TimelineHorizontal />
+      <SeminarGallery />
       <PartnersBlock />
       <QuotesBlock />
     </>

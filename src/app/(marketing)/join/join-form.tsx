@@ -35,6 +35,12 @@ export function JoinForm() {
       aria-label="טופס הרשמה לקהילת גביש"
       action={formAction}
     >
+      {/* Honeypot — hidden from humans, bots fill it; submissions with it set are dropped server-side. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", height: 0, width: 0, overflow: "hidden" }}>
+        <label htmlFor="company">אל תמלאו שדה זה</label>
+        <input id="company" type="text" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div>
         <label htmlFor="name" className="block font-body text-sm font-semibold text-navy-900 mb-2">
           <span className="inline-flex items-center gap-1.5"><User className="size-4" /> שם מלא</span>

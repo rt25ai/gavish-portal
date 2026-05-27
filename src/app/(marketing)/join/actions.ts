@@ -10,10 +10,18 @@ export type JoinFormState = {
 /** Registrar who receives every join request. */
 const REGISTRAR_EMAIL = "noana@rashi.org.il";
 
+const SUCCESS_MESSAGE = "תודה! הפרטים נשלחו לצוות גביש. ניצור איתכם קשר בקרוב.";
+
 export async function submitJoinRequest(
   _prev: JoinFormState,
   formData: FormData,
 ): Promise<JoinFormState> {
+  // Honeypot — a hidden field humans never see. Bots fill every field, so a
+  // non-empty value means automated spam: pretend success, send nothing.
+  if (String(formData.get("company") ?? "").trim()) {
+    return { success: SUCCESS_MESSAGE };
+  }
+
   const name = String(formData.get("name") ?? "").trim();
   const city = String(formData.get("city") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
@@ -25,6 +33,14 @@ export async function submitJoinRequest(
   }
   if (!consent) {
     return { error: 'יש לאשר העברת פרטים לקרן רש"י כדי להמשיך.' };
+  }
+  // Length caps — reject oversized payloads.
+  if (name.length > 200 || city.length > 200 || phone.length > 40 || email.length > 254) {
+    return { error: "אחד מהשדות ארוך מדי. אנא קצרו ונסו שוב." };
+  }
+  // Server-side email format check (the HTML5 type=email is client-only).
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { error: "כתובת האימייל אינה תקינה." };
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -63,7 +79,8 @@ export async function submitJoinRequest(
     const { error } = await resend(apiKey).emails.send({
       from,
       to: REGISTRAR_EMAIL,
-      subject: `הרשמה לקהילת גביש - ${name}`,
+      // Strip CR/LF from the subject so the name can't inject header lines.
+      subject: `הרשמה לקהילת גביש - ${name.replace(/[\r\n]+/g, " ")}`,
       text: lines.join("\n"),
       html,
     });
@@ -81,9 +98,7 @@ export async function submitJoinRequest(
     };
   }
 
-  return {
-    success: "תודה! הפרטים נשלחו לצוות גביש. ניצור איתכם קשר בקרוב.",
-  };
+  return { success: SUCCESS_MESSAGE };
 }
 
 function resend(apiKey: string) {

@@ -21,7 +21,7 @@ export default function JoinPage() {
         </div>
 
         <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
-          <Link href="/" className="inline-flex items-center gap-2 mb-10 opacity-70 hover:opacity-100 font-body text-sm text-navy-900">
+          <Link href="/" className="flex w-fit items-center gap-2 mb-12 opacity-70 hover:opacity-100 font-body text-sm text-navy-900">
             <ArrowLeft className="size-4 rotate-180" />
             חזרה לדף הבית
           </Link>

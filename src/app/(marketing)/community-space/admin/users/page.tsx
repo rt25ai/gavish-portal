@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowRight, Shield, Users as UsersIcon } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { getCurrentUser, getProfileRole } from "@/server/profiles/queries";
+import { listAdminUsers } from "@/server/admin/users";
 import { AdminTabs } from "../admin-tabs";
 import { UserRow, type UserRowData } from "./user-row";
 
@@ -13,49 +13,16 @@ export const metadata: Metadata = {
 };
 
 export default async function UsersAdminPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
   if (!user) redirect("/auth/sign-in?redirect=/community-space/admin/users");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single();
-  if (profile?.role !== "admin") redirect("/community-space");
+  const role = await getProfileRole(user.id);
+  if (role !== "admin") redirect("/community-space");
 
-  // Use service-role to read profiles + auth.users together (email + last_sign_in_at).
-  const admin = createAdminClient();
-  const { data: profiles } = await admin
-    .from("profiles")
-    .select("id, full_name, organization, role, created_at, avatar_url")
-    .order("created_at", { ascending: false });
-
-  const { data: authData } = await admin.auth.admin.listUsers({
-    page: 1,
-    perPage: 200,
-  });
-
-  const emailById = new Map(
-    (authData?.users ?? []).map((u) => [
-      u.id,
-      { email: u.email ?? "", lastSignIn: u.last_sign_in_at ?? null, confirmed: Boolean(u.email_confirmed_at) },
-    ]),
-  );
-
-  const rows: UserRowData[] = (profiles ?? []).map((p) => ({
-    id: p.id,
-    fullName: p.full_name,
-    organization: p.organization,
-    avatarUrl: p.avatar_url ?? null,
-    role: p.role as "user" | "admin",
-    createdAt: p.created_at,
-    email: emailById.get(p.id)?.email ?? "",
-    lastSignIn: emailById.get(p.id)?.lastSignIn ?? null,
-    confirmed: emailById.get(p.id)?.confirmed ?? false,
-    isCurrentUser: p.id === user.id,
+  const adminUsers = await listAdminUsers();
+  const rows: UserRowData[] = adminUsers.map((row) => ({
+    ...row,
+    isCurrentUser: row.id === user.id,
   }));
 
   const adminCount = rows.filter((r) => r.role === "admin").length;

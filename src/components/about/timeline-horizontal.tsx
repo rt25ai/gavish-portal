@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { timeline } from "@/lib/content";
+import { timeline } from "@/data/about";
 
 export function TimelineHorizontal() {
   const trackRef = useRef<HTMLDivElement>(null);

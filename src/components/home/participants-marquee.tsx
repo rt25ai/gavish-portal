@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { gsap, registerGsap, prefersReducedMotion } from "@/lib/motion";
-import { participants } from "@/lib/content";
+import { participants } from "@/data/participants";
 
 const row1 = participants.slice(0, 9);
 const row2 = participants.slice(9, 17);

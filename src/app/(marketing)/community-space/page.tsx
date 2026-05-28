@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { Plus, MessageCircle, Calendar, FolderOpen, Users, Lock } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
-import { UserAvatar } from "@/components/community/user-avatar";
+import { getCurrentUser, getProfileSummary } from "@/server/profiles/queries";
+import { listFeed } from "@/server/posts/queries";
+import { PostCard } from "@/components/community/post-card";
+import { EmptyFeed } from "@/components/community/empty-feed";
 
 export const metadata: Metadata = {
   title: "האזור הקהילתי",
@@ -17,42 +18,14 @@ const upcomingFeatures = [
   { icon: Users, title: "פרופילים מקצועיים", body: "קישוריות בין חברי הקהילה" },
 ];
 
-type PostRow = {
-  id: string;
-  body: string;
-  image_url: string | null;
-  created_at: string;
-  profiles: {
-    full_name: string | null;
-    organization: string | null;
-    avatar_url: string | null;
-  } | null;
-};
-
 export default async function CommunitySpacePage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const user = await getCurrentUser();
   if (!user) redirect("/auth/sign-in?redirect=/community-space");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role, full_name")
-    .eq("id", user.id)
-    .single();
+  const summary = await getProfileSummary(user.id);
+  const isAdmin = summary?.role === "admin";
 
-  const isAdmin = profile?.role === "admin";
-
-  const { data: posts } = await supabase
-    .from("posts")
-    .select("id, body, image_url, created_at, profiles(full_name, organization, avatar_url)")
-    .order("created_at", { ascending: false })
-    .limit(50)
-    .returns<PostRow[]>();
-
-  const feed = posts ?? [];
+  const feed = await listFeed({ limit: 50 });
 
   return (
     <>
@@ -64,7 +37,7 @@ export default async function CommunitySpacePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div>
               <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-                שלום, {profile?.full_name?.split(" ")[0] ?? "חבר/ת קהילה"}
+                שלום, {summary?.fullName?.split(" ")[0] ?? "חבר/ת קהילה"}
               </p>
               <h1 className="font-display font-black text-display text-navy-900 leading-[0.92]">
                 האזור<br />
@@ -141,88 +114,4 @@ export default async function CommunitySpacePage() {
       </section>
     </>
   );
-}
-
-function PostCard({ post }: { post: PostRow }) {
-  const author = post.profiles?.full_name ?? "חבר/ת קהילה";
-  const org = post.profiles?.organization;
-  const when = formatHebrewDate(post.created_at);
-
-  return (
-    <li className="bg-paper rounded-3xl border border-navy-900/8 overflow-hidden">
-      <div className="p-6 lg:p-7">
-        <div className="flex items-center gap-3 mb-4">
-          <UserAvatar
-            name={author}
-            avatarUrl={post.profiles?.avatar_url ?? null}
-            size="lg"
-          />
-          <div>
-            <p className="font-display font-bold text-navy-900 text-base leading-tight">
-              {author}
-            </p>
-            <p className="font-body text-xs text-ink/55">
-              {org ? `${org} · ` : ""}
-              {when}
-            </p>
-          </div>
-        </div>
-        <p className="font-body text-base text-ink/85 whitespace-pre-wrap leading-relaxed">
-          {post.body}
-        </p>
-      </div>
-      {post.image_url && (
-        <div className="relative w-full aspect-[16/9] bg-cream">
-          <Image
-            src={post.image_url}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="(max-width: 820px) 100vw, 820px"
-          />
-        </div>
-      )}
-    </li>
-  );
-}
-
-function EmptyFeed({ isAdmin }: { isAdmin: boolean }) {
-  return (
-    <div className="bg-paper rounded-3xl border border-dashed border-navy-900/20 p-10 text-center">
-      <div className="size-14 rounded-full bg-leaf-500/15 text-leaf-700 grid place-items-center mx-auto mb-4">
-        <MessageCircle className="size-7" />
-      </div>
-      <h3 className="font-display font-black text-xl text-navy-900 mb-2">
-        אין עדיין עדכונים
-      </h3>
-      <p className="font-body text-base text-ink/70 mb-6">
-        {isAdmin
-          ? "אתם הראשונים — פרסמו את הפוסט הראשון של הקהילה."
-          : "הפיד יתמלא ככל שמנהלי הקהילה יפרסמו עדכונים."}
-      </p>
-      {isAdmin && (
-        <Link
-          href="/community-space/admin"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-900 text-paper rounded-full font-display font-bold text-sm hover:bg-navy-700 transition"
-        >
-          <Plus className="size-4" />
-          פוסט חדש
-        </Link>
-      )}
-    </div>
-  );
-}
-
-function formatHebrewDate(iso: string): string {
-  const d = new Date(iso);
-  const now = new Date();
-  const diffMs = now.getTime() - d.getTime();
-  const diffMin = Math.floor(diffMs / 60000);
-  if (diffMin < 1) return "עכשיו";
-  if (diffMin < 60) return `לפני ${diffMin} ד׳`;
-  const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return `לפני ${diffHr} שע׳`;
-  const diffDay = Math.floor(diffHr / 24);
-  if (diffDay < 7) return `לפני ${diffDay} ימים`;
-  return d.toLocaleDateString("he-IL", { day: "numeric", month: "long" });
 }

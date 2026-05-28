@@ -1,4 +1,6 @@
-import { topics, topicColorClasses, type Participant } from "@/lib/content";
+import { topics } from "@/data/topics";
+import type { Participant } from "@/data/types";
+import { topicColorClasses } from "@/styles/topic-colors";
 import { cn } from "@/lib/cn";
 
 function initials(name: string) {

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { gsap, ScrollTrigger, registerGsap, prefersReducedMotion } from "@/lib/motion";
-import { stats } from "@/lib/content";
+import { stats } from "@/data/stats";
 
 function formatValue(v: number) {
   if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, "") + "M";

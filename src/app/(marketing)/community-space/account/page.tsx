@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowRight } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser, getProfileBasics } from "@/server/profiles/queries";
 import { AccountForm, type AccountFormProfile } from "./account-form";
 
 export const metadata: Metadata = {
@@ -11,24 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default async function AccountPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+  const user = await getCurrentUser();
   if (!user) redirect("/auth/sign-in?redirect=/community-space/account");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, organization, title, avatar_url")
-    .eq("id", user.id)
-    .single();
-
+  const profile = await getProfileBasics(user.id);
   const formProfile: AccountFormProfile = {
-    fullName: profile?.full_name ?? "",
+    fullName: profile?.fullName ?? "",
     organization: profile?.organization ?? null,
     title: profile?.title ?? null,
-    avatarUrl: profile?.avatar_url ?? null,
+    avatarUrl: profile?.avatarUrl ?? null,
     email: user.email ?? "",
   };
 

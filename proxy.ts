@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { updateSession } from "@/lib/supabase/proxy";
+import { updateSession } from "@/server/supabase/proxy";
 
 const PROTECTED_PREFIX = "/community-space";
 const AUTH_ROUTES = ["/auth/sign-in", "/auth/sign-up"];

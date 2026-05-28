@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { topics, topicPastelClasses } from "@/lib/content";
+import { topics } from "@/data/topics";
+import { topicPastelClasses } from "@/styles/topic-colors";
 import { TopicIllustration } from "@/components/home/topic-illustrations";
 import { cn } from "@/lib/cn";
 

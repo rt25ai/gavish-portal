@@ -2,72 +2,39 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { assertCallerIsAdmin } from "@/server/admin/guards";
+import { insertPost, uploadPostImage } from "@/server/posts/mutations";
+import { validatePostBody, validatePostImage } from "@/server/posts/validation";
 
 export type CreatePostState = { error?: string } | null;
-
-const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5MB
-const ALLOWED_MIME = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 
 export async function createPost(
   _prev: CreatePostState,
   formData: FormData,
 ): Promise<CreatePostState> {
   const body = String(formData.get("body") ?? "").trim();
-  const image = formData.get("image");
+  const bodyError = validatePostBody(body);
+  if (bodyError) return { error: bodyError };
 
-  if (!body) return { error: "תוכן הפוסט לא יכול להיות ריק." };
-  if (body.length > 5000) return { error: "הפוסט ארוך מדי (עד 5000 תווים)." };
+  const auth = await assertCallerIsAdmin();
+  if (!auth.ok) return { error: auth.error };
 
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { error: "נדרשת התחברות." };
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single();
-  if (profile?.role !== "admin") return { error: "אין הרשאה לפרסם." };
+  const imageCheck = validatePostImage(formData.get("image"));
+  if (!imageCheck.ok) return { error: imageCheck.error };
 
   let imageUrl: string | null = null;
-
-  if (image instanceof File && image.size > 0) {
-    if (image.size > MAX_IMAGE_BYTES) {
-      return { error: "התמונה גדולה מ-5MB." };
-    }
-    if (!ALLOWED_MIME.includes(image.type)) {
-      return { error: "סוג קובץ לא נתמך. השתמשו ב-JPEG / PNG / WebP / GIF." };
-    }
-
-    const ext = image.name.split(".").pop()?.toLowerCase() ?? "jpg";
-    const path = `${user.id}/${Date.now()}-${crypto.randomUUID()}.${ext}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from("post-images")
-      .upload(path, image, {
-        cacheControl: "31536000",
-        upsert: false,
-        contentType: image.type,
-      });
-
-    if (uploadError) return { error: `העלאת התמונה נכשלה: ${uploadError.message}` };
-
-    const { data: publicData } = supabase.storage
-      .from("post-images")
-      .getPublicUrl(path);
-    imageUrl = publicData.publicUrl;
+  if (imageCheck.file) {
+    const upload = await uploadPostImage(auth.adminId, imageCheck.file);
+    if (upload.error) return { error: `העלאת התמונה נכשלה: ${upload.error}` };
+    imageUrl = upload.publicUrl;
   }
 
-  const { error: insertError } = await supabase.from("posts").insert({
-    author_id: user.id,
+  const insert = await insertPost({
+    authorId: auth.adminId,
     body,
-    image_url: imageUrl,
+    imageUrl,
   });
-
-  if (insertError) return { error: `יצירת הפוסט נכשלה: ${insertError.message}` };
+  if (insert.error) return { error: `יצירת הפוסט נכשלה: ${insert.error}` };
 
   revalidatePath("/community-space");
   redirect("/community-space");

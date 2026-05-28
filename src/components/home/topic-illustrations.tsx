@@ -3,7 +3,7 @@
  * Thin stroke (1.6), currentColor so each card tints it with its accent.
  * Kept airy and minimal to match the brand's pastel, calm atmosphere.
  */
-import type { TopicSlug } from "@/lib/content";
+import type { TopicSlug } from "@/data/types";
 
 type Props = { className?: string };
 

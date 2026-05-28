@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, FileText, Headphones, Newspaper, BookOpen, Play } from "lucide-react";
-import { topics, getTopic, getParticipantsByTopic, topicColorClasses, type TopicSlug } from "@/lib/content";
+import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
+import type { TopicSlug } from "@/data/types";
+import { topicColorClasses } from "@/styles/topic-colors";
 import { cn } from "@/lib/cn";
 
 export function generateStaticParams() {

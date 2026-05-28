@@ -1,4 +1,4 @@
-import { quotes } from "@/lib/content";
+import { quotes } from "@/data/about";
 
 export function QuotesBlock() {
   return (

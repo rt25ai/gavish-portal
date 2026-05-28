@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/server/profiles/queries";
 import { ResetPasswordForm } from "@/components/auth/reset-password-form";
 
 export const metadata: Metadata = { title: "סיסמה חדשה" };
 
 export default async function ResetPasswordPage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return <ExpiredLink />;
-  }
-
+  const user = await getCurrentUser();
+  if (!user) return <ExpiredLink />;
   return <ResetPasswordForm email={user.email ?? ""} />;
 }
 

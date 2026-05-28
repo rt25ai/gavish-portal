@@ -1,39 +1,20 @@
 import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/server/profiles/queries";
+import { listFeed } from "@/server/posts/queries";
 import { CommunityPulse, type PulseItem } from "./community-pulse";
 
-type Row = {
-  id: string;
-  body: string;
-  created_at: string;
-  profiles: {
-    full_name: string | null;
-    organization: string | null;
-    avatar_url: string | null;
-  } | null;
-};
-
 export async function CommunityUpdates() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getCurrentUser();
+  const feed = await listFeed({ limit: 4, includeImage: false });
 
-  const { data: posts } = await supabase
-    .from("posts")
-    .select("id, body, created_at, profiles(full_name, organization, avatar_url)")
-    .order("created_at", { ascending: false })
-    .limit(4)
-    .returns<Row[]>();
-
-  const items: PulseItem[] = (posts ?? []).map((p) => ({
+  const items: PulseItem[] = feed.map((p) => ({
     id: p.id,
     body: p.body,
-    created_at: p.created_at,
-    authorName: p.profiles?.full_name ?? "חבר/ת קהילה",
-    organization: p.profiles?.organization ?? null,
-    avatarUrl: p.profiles?.avatar_url ?? null,
+    created_at: p.createdAt,
+    authorName: p.author.fullName ?? "חבר/ת קהילה",
+    organization: p.author.organization ?? null,
+    avatarUrl: p.author.avatarUrl ?? null,
   }));
 
   const href = user ? "/community-space" : "/auth/sign-up";

@@ -1,28 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createClient } from "@/lib/supabase/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { assertCallerIsAdmin } from "@/server/admin/guards";
+import { deleteUserCascade, setUserRoleById } from "@/server/admin/users";
+import type { ProfileRole } from "@/server/profiles/types";
 
 export type AdminActionState = { error?: string; success?: string } | null;
-
-async function assertCallerIsAdmin() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { error: "נדרשת התחברות.", admin: null as never };
-
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single();
-  if (profile?.role !== "admin") {
-    return { error: "אין הרשאה.", admin: null as never };
-  }
-  return { error: null, admin: { id: user.id } };
-}
 
 export async function setUserRole(
   _prev: AdminActionState,
@@ -37,19 +20,14 @@ export async function setUserRole(
   }
 
   const auth = await assertCallerIsAdmin();
-  if (auth.error) return { error: auth.error };
+  if (!auth.ok) return { error: auth.error };
 
-  if (auth.admin.id === targetId) {
+  if (auth.adminId === targetId) {
     return { error: "אי אפשר לשנות את התפקיד של עצמך מהממשק. בקשו מאדמין אחר." };
   }
 
-  const admin = createAdminClient();
-  const { error } = await admin
-    .from("profiles")
-    .update({ role: newRole })
-    .eq("id", targetId);
-
-  if (error) return { error: `עדכון התפקיד נכשל: ${error.message}` };
+  const { error } = await setUserRoleById(targetId, newRole as ProfileRole);
+  if (error) return { error: `עדכון התפקיד נכשל: ${error}` };
 
   revalidatePath("/community-space/admin/users");
   return {
@@ -68,23 +46,14 @@ export async function deleteUser(
   if (!targetId) return { error: "חסר מזהה משתמש." };
 
   const auth = await assertCallerIsAdmin();
-  if (auth.error) return { error: auth.error };
+  if (!auth.ok) return { error: auth.error };
 
-  if (auth.admin.id === targetId) {
+  if (auth.adminId === targetId) {
     return { error: "אי אפשר למחוק את עצמך." };
   }
 
-  const admin = createAdminClient();
-
-  // ניקוי קבצי avatar של המשתמש לפני המחיקה (lifecycle לא מנוהל ב-cascade).
-  const { data: avatarFiles } = await admin.storage.from("avatars").list(targetId);
-  if (avatarFiles && avatarFiles.length > 0) {
-    const paths = avatarFiles.map((f) => `${targetId}/${f.name}`);
-    await admin.storage.from("avatars").remove(paths);
-  }
-
-  const { error } = await admin.auth.admin.deleteUser(targetId);
-  if (error) return { error: `מחיקת המשתמש נכשלה: ${error.message}` };
+  const { error } = await deleteUserCascade(targetId);
+  if (error) return { error: `מחיקת המשתמש נכשלה: ${error}` };
 
   revalidatePath("/community-space/admin/users");
   revalidatePath("/community-space");

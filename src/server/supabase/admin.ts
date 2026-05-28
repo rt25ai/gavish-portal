@@ -3,7 +3,7 @@ import { createClient as createServiceClient } from "@supabase/supabase-js";
 
 /**
  * Service-role Supabase client. Bypasses RLS.
- * Server-only — never imported into client components.
+ * Server-only - never imported into client components.
  * Use exclusively inside Server Actions that have first verified the
  * caller's identity + role via the regular server client.
  */

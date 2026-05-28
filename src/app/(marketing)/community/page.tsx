@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ParticipantCard } from "@/components/community/participant-card";
-import { participants, topics, topicColorClasses } from "@/lib/content";
+import { participants } from "@/data/participants";
+import { topics } from "@/data/topics";
+import { topicColorClasses } from "@/styles/topic-colors";
 
 export const metadata: Metadata = {
   title: "חברי הקהילה",

@@ -11,7 +11,7 @@ export function DataHero() {
           נתוני זהב · חינוך בלתי-פורמלי בישראל
         </p>
         <h1 className="font-display font-black text-jumbo text-navy-900 leading-[0.88]">
-          המגרש,<br />
+          נתונים,<br />
           <span className="outline-text">במספרים.</span>
         </h1>
         <p className="mt-10 font-body text-xl text-ink/80 max-w-3xl leading-relaxed">

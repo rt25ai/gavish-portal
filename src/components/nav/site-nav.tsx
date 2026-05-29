@@ -169,7 +169,7 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                 href="/auth/sign-up"
                 className="px-4 py-2 text-sm font-semibold bg-navy-900 text-paper rounded-full hover:bg-navy-700 transition"
               >
-                הצטרפו לקהילה
+                כניסה לאזור האישי
               </Link>
             </>
           )}
@@ -239,7 +239,7 @@ export function SiteNav({ user }: { user: SiteNavUser }) {
                   כניסה
                 </Link>
                 <Link href="/auth/sign-up" className="text-center px-4 py-3 rounded-full bg-navy-900 text-paper font-semibold">
-                  הצטרפו לקהילה
+                  כניסה לאזור האישי
                 </Link>
               </>
             )}

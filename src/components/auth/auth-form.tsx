@@ -22,7 +22,7 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
     return (
       <div>
         <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-          הצטרפות לקהילה
+          הרשמה לפורטל
         </p>
         <h1 className="font-display font-black text-display text-navy-900 leading-[0.95] mb-4">
           בדקו את המייל.
@@ -45,14 +45,14 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
   return (
     <div>
       <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-        {isSignUp ? "הצטרפות לקהילה" : "כניסה לחשבון"}
+        {isSignUp ? "הרשמה לפורטל" : "כניסה לחשבון"}
       </p>
       <h1 className="font-display font-black text-display text-navy-900 leading-[0.95] mb-4">
         {isSignUp ? "ברוכים הבאים." : "נעים לראות שוב."}
       </h1>
       <p className="font-body text-lg text-ink/70 mb-10">
         {isSignUp
-          ? "האזור הקהילתי הוא המרחב המקצועי של בוגרי גביש. צרו חשבון כדי להצטרף."
+          ? "צרו חשבון כדי לגשת לאזור האישי שלכם בפורטל - הפיד הקהילתי, עדכונים ותכנים שמתפרסמים לחברי הקהילה."
           : "היכנסו עם האימייל והסיסמה שלכם."}
       </p>
 
@@ -91,16 +91,16 @@ export function AuthForm({ mode }: { mode: "sign-in" | "sign-up" }) {
       <div className="mt-10 pt-8 border-t border-navy-900/10">
         {isSignUp ? (
           <p className="font-body text-base text-ink/70">
-            כבר חברים בקהילה?{" "}
+            כבר רשומים?{" "}
             <Link href="/auth/sign-in" className="font-bold text-navy-900 hover:text-leaf-700 underline underline-offset-4">
               כניסה לחשבון
             </Link>
           </p>
         ) : (
           <p className="font-body text-base text-ink/70">
-            עוד לא הצטרפתם?{" "}
+            עוד לא נרשמתם?{" "}
             <Link href="/auth/sign-up" className="font-bold text-navy-900 hover:text-leaf-700 underline underline-offset-4">
-              הצטרפו לקהילה
+              כניסה לאזור האישי
             </Link>
           </p>
         )}

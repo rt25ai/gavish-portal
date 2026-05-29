@@ -51,7 +51,7 @@ function EmptyTeaser({ authenticated }: { authenticated: boolean }) {
         </span>
         <div className="flex-1 min-w-0">
           <p className="font-display font-bold text-navy-900 text-[17px] leading-tight mb-1">
-            {authenticated ? "אין עדיין עדכונים" : "הצטרפו לקהילה"}
+            {authenticated ? "אין עדיין עדכונים" : "כניסה לאזור האישי"}
           </p>
           <p className="font-body text-[14px] text-ink/70 leading-snug">
             {authenticated

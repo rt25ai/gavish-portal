@@ -29,9 +29,10 @@ export const topics: Topic[] = [
       { title: "מצגת ההמלצות לקרן רש״י", size: "8.1MB" },
     ],
     podcast: {
-      title: "מה הנתונים אומרים על מחלקת הנוער שלך",
-      duration: "27:43",
-      description: "פודקאסט שיצרנו עם AI על בסיס המחקר. שלושה פרקים, קולות אמיתיים מהשטח.",
+      title: "נתונים במקום תחושות בטן",
+      duration: "11:42",
+      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ומקורות הכנסת. שיחה בין שני מנחים על המעבר מאינטואיציה לתשתית נתונים.",
+      audioSrc: "/podcasts/data-driven.m4a",
     },
   },
   {
@@ -58,9 +59,10 @@ export const topics: Topic[] = [
       { title: "מצגת ההמלצות לקרן רש״י", size: "8.1MB" },
     ],
     podcast: {
-      title: "מה שלא מספרים על מנהלי מחלקות הנוער",
-      duration: "27:43",
-      description: "פודקאסט שיצרנו עם AI על בסיס המחקר. שלושה פרקים, קולות אמיתיים מהשטח.",
+      title: "המשבר השקוף של עובדי החינוך הבלתי-פורמלי",
+      duration: "13:24",
+      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ונתוני מכון ברוקדייל. שיחה על תחלופה, שימור וטיפוח ההון האנושי.",
+      audioSrc: "/podcasts/human-capital.m4a",
     },
   },
   {
@@ -87,9 +89,10 @@ export const topics: Topic[] = [
       { title: "מפת מסגרות חינוך בלתי פורמלי לפי רשות", size: "12.4MB" },
     ],
     podcast: {
-      title: "מי מתווה את החינוך הבלתי-פורמלי בישראל",
-      duration: "31:12",
-      description: "שיחה מקצועית על המדיניות הציבורית בעידן שאחרי. מבט מהזווית של הצוות שחקר.",
+      title: "המדינה כסטנדרט, לא רק כפיקוח",
+      duration: "15:50",
+      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ומקורות הכנסת. שיחה על מדיניות חינוך בלתי-פורמלי ברמת רשות, מחוז ומדינה.",
+      audioSrc: "/podcasts/informal-policy.m4a",
     },
   },
   {
@@ -117,8 +120,9 @@ export const topics: Topic[] = [
     ],
     podcast: {
       title: "למה בני נוער לא מגיעים",
-      duration: "29:55",
-      description: "ארבעה ראיונות, ארבע רשויות - והשיעורים שהן מלמדות.",
+      duration: "14:52",
+      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר. שיחה על שיעור ההשתתפות, הפער המגדרי, והדרך להגיע אל מי שלא נמצא.",
+      audioSrc: "/podcasts/youth-participation.m4a",
     },
   },
 ];

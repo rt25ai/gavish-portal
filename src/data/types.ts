@@ -27,7 +27,7 @@ export type Topic = {
     href: string;
   }[];
   documents: { title: string; size: string }[];
-  podcast: { title: string; duration: string; description: string };
+  podcast: { title: string; duration: string; description: string; audioSrc?: string };
 };
 
 export type ParticipantStatus = "community" | "alumni";

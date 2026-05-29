@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, FileText, Headphones, Newspaper, BookOpen, Play } from "lucide-react";
+import { ArrowLeft, FileText, Headphones, Newspaper, BookOpen } from "lucide-react";
 import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
 import type { TopicSlug } from "@/data/types";
 import { topicColorClasses } from "@/styles/topic-colors";
+import { PodcastPlayer } from "@/components/topics/podcast-player";
 import { cn } from "@/lib/cn";
 
 export function generateStaticParams() {
@@ -79,21 +80,13 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
             תוכן AI · פודקאסט
           </p>
           <h2 className="font-display text-display font-black leading-[0.95] mb-12">{topic.podcast.title}</h2>
-          <div className="bg-paper/10 backdrop-blur rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row gap-8 items-start lg:items-center">
-            <button
-              type="button"
-              className={cn("size-24 rounded-full grid place-items-center transition shrink-0", c.bg, onLight ? "text-navy-900" : "text-paper", "hover:scale-105")}
-              aria-label="נגן פודקאסט"
-            >
-              <Play className="size-10 pr-1" />
-            </button>
-            <div className="flex-1">
-              <p className="font-body text-lg text-paper/85 leading-relaxed mb-4">{topic.podcast.description}</p>
-              <p className="font-body text-sm text-paper/50 uppercase tracking-wider">
-                משך: {topic.podcast.duration} · נוצר עם AI על בסיס המחקר
-              </p>
-            </div>
-          </div>
+          <PodcastPlayer
+            src={topic.podcast.audioSrc ?? ""}
+            description={topic.podcast.description}
+            fallbackDuration={topic.podcast.duration}
+            accentBg={c.bg}
+            accentOnLight={onLight}
+          />
         </div>
       </section>
 

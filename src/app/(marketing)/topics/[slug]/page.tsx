@@ -93,14 +93,23 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
           <p className="font-body text-sm tracking-[0.18em] uppercase text-leaf-300/80 font-semibold mb-4">
             תוכן AI · פודקאסט
           </p>
-          <h2 className="font-display text-display font-black leading-[0.95] mb-12">{topic.podcast.title}</h2>
-          <PodcastPlayer
-            src={topic.podcast.audioSrc ?? ""}
-            description={topic.podcast.description}
-            fallbackDuration={topic.podcast.duration}
-            accentBg={c.bg}
-            accentOnLight={onLight}
-          />
+          <h2 className="font-display text-display font-black leading-[0.95] mb-12">
+            שני פודקאסטים,<br />שתי דרכים להאזין.
+          </h2>
+          <div className="space-y-6">
+            {topic.podcasts.map((pod) => (
+              <PodcastPlayer
+                key={pod.audioSrc ?? pod.title}
+                src={pod.audioSrc ?? ""}
+                title={pod.title}
+                badge={pod.format === "brief" ? "תקציר" : "ירידה לפרטים"}
+                description={pod.description}
+                fallbackDuration={pod.duration}
+                accentBg={c.bg}
+                accentOnLight={onLight}
+              />
+            ))}
+          </div>
         </div>
       </section>
 

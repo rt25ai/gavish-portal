@@ -28,12 +28,22 @@ export const topics: Topic[] = [
       { title: "מסמך תובנות עבודה מבוססת נתונים - גביש 2026", size: "2.4MB" },
       { title: "מצגת ההמלצות לקרן רש״י", size: "8.1MB" },
     ],
-    podcast: {
-      title: "נתונים במקום תחושות בטן",
-      duration: "11:42",
-      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ומקורות הכנסת. שיחה בין שני מנחים על המעבר מאינטואיציה לתשתית נתונים.",
-      audioSrc: "/podcasts/data-driven.m4a",
-    },
+    podcasts: [
+      {
+        format: "deep-dive",
+        title: "נתונים במקום תחושות בטן",
+        duration: "11:42",
+        description: "שיחה מעמיקה בין שני מנחים על בסיס המחקר ומקורות הכנסת - המעבר מאינטואיציה לתשתית נתונים, הפערים בין רשויות וההחזר על ההשקעה.",
+        audioSrc: "/podcasts/data-driven.m4a",
+      },
+      {
+        format: "brief",
+        title: "נתונים במקום תחושות בטן - תקציר",
+        duration: "1:50",
+        description: "תקציר קצר וישר לעניין: שלוש הנקודות המרכזיות של האתגר בכמה דקות.",
+        audioSrc: "/podcasts/data-driven-brief.m4a",
+      },
+    ],
   },
   {
     slug: "human-capital",
@@ -58,12 +68,22 @@ export const topics: Topic[] = [
       { title: "מסמך תובנות הון אנושי - גביש 2026", size: "2.4MB" },
       { title: "מצגת ההמלצות לקרן רש״י", size: "8.1MB" },
     ],
-    podcast: {
-      title: "המשבר השקוף של עובדי החינוך הבלתי-פורמלי",
-      duration: "13:24",
-      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ונתוני מכון ברוקדייל. שיחה על תחלופה, שימור וטיפוח ההון האנושי.",
-      audioSrc: "/podcasts/human-capital.m4a",
-    },
+    podcasts: [
+      {
+        format: "deep-dive",
+        title: "המשבר השקוף של עובדי החינוך הבלתי-פורמלי",
+        duration: "13:24",
+        description: "שיחה מעמיקה בין שני מנחים על בסיס המחקר ונתוני מכון ברוקדייל - תחלופה, שימור וטיפוח ההון האנושי.",
+        audioSrc: "/podcasts/human-capital.m4a",
+      },
+      {
+        format: "brief",
+        title: "המשבר השקוף - תקציר",
+        duration: "1:30",
+        description: "תקציר קצר וישר לעניין: שלוש הנקודות המרכזיות של האתגר בכמה דקות.",
+        audioSrc: "/podcasts/human-capital-brief.m4a",
+      },
+    ],
   },
   {
     slug: "informal-policy",
@@ -88,12 +108,22 @@ export const topics: Topic[] = [
       { title: "מסמך תובנות עיצוב מדיניות בחב״פ", size: "3.1MB" },
       { title: "מפת מסגרות חינוך בלתי פורמלי לפי רשות", size: "12.4MB" },
     ],
-    podcast: {
-      title: "המדינה כסטנדרט, לא רק כפיקוח",
-      duration: "15:50",
-      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר ומקורות הכנסת. שיחה על מדיניות חינוך בלתי-פורמלי ברמת רשות, מחוז ומדינה.",
-      audioSrc: "/podcasts/informal-policy.m4a",
-    },
+    podcasts: [
+      {
+        format: "deep-dive",
+        title: "המדינה כסטנדרט, לא רק כפיקוח",
+        duration: "15:50",
+        description: "שיחה מעמיקה בין שני מנחים על בסיס המחקר ומקורות הכנסת - מדיניות חינוך בלתי-פורמלי ברמת רשות, מחוז ומדינה.",
+        audioSrc: "/podcasts/informal-policy.m4a",
+      },
+      {
+        format: "brief",
+        title: "המדינה כסטנדרט - תקציר",
+        duration: "1:54",
+        description: "תקציר קצר וישר לעניין: שלוש הנקודות המרכזיות של האתגר בכמה דקות.",
+        audioSrc: "/podcasts/informal-policy-brief.m4a",
+      },
+    ],
   },
   {
     slug: "youth-participation",
@@ -118,12 +148,22 @@ export const topics: Topic[] = [
       { title: "מסמך תובנות השתתפות נוער", size: "3.7MB" },
       { title: "Playbook לבניית מסלולי השתתפות", size: "11.2MB" },
     ],
-    podcast: {
-      title: "למה בני נוער לא מגיעים",
-      duration: "14:52",
-      description: "פודקאסט שיצרנו עם NotebookLM על בסיס המחקר. שיחה על שיעור ההשתתפות, הפער המגדרי, והדרך להגיע אל מי שלא נמצא.",
-      audioSrc: "/podcasts/youth-participation.m4a",
-    },
+    podcasts: [
+      {
+        format: "deep-dive",
+        title: "למה בני נוער לא מגיעים",
+        duration: "14:52",
+        description: "שיחה מעמיקה בין שני מנחים על בסיס המחקר - שיעור ההשתתפות, הפער המגדרי, והדרך להגיע אל מי שלא נמצא.",
+        audioSrc: "/podcasts/youth-participation.m4a",
+      },
+      {
+        format: "brief",
+        title: "למה בני נוער לא מגיעים - תקציר",
+        duration: "1:40",
+        description: "תקציר קצר וישר לעניין: שלוש הנקודות המרכזיות של האתגר בכמה דקות.",
+        audioSrc: "/podcasts/youth-participation-brief.m4a",
+      },
+    ],
   },
 ];
 

@@ -27,7 +27,16 @@ export type Topic = {
     href: string;
   }[];
   documents: { title: string; size: string }[];
-  podcast: { title: string; duration: string; description: string; audioSrc?: string };
+  podcasts: Podcast[];
+};
+
+export type Podcast = {
+  /** "deep-dive" = full two-host conversation, "brief" = short summary */
+  format: "deep-dive" | "brief";
+  title: string;
+  duration: string;
+  description: string;
+  audioSrc?: string;
 };
 
 export type ParticipantStatus = "community" | "alumni";

@@ -6,6 +6,7 @@ import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
 import type { TopicSlug } from "@/data/types";
 import { topicColorClasses, topicPastelClasses } from "@/styles/topic-colors";
 import { PodcastPlayer } from "@/components/topics/podcast-player";
+import { TopicIllustration } from "@/components/home/topic-illustrations";
 import { cn } from "@/lib/cn";
 
 export function generateStaticParams() {
@@ -36,11 +37,23 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
       {/* Hero */}
       <section className={cn("relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden text-navy-900", p.surface)}>
         <div aria-hidden className={cn("absolute -bottom-32 -left-32 w-[60vmin] h-[60vmin] blur-3xl rounded-full pointer-events-none opacity-20", c.bg)} />
+        {/* large faint illustration watermark, like the cards */}
+        <TopicIllustration
+          slug={topic.slug}
+          className={cn(
+            "pointer-events-none absolute -bottom-16 -left-10 w-72 h-72 lg:w-96 lg:h-96 opacity-[0.08]",
+            p.ink,
+          )}
+        />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
           <Link href="/topics" className="inline-flex items-center gap-2 mb-10 text-navy-900/60 hover:text-navy-900 transition font-body text-sm">
             <ArrowLeft className="size-4 rotate-180" />
             כל התחומים
           </Link>
+          {/* crisp small illustration chip, like the cards */}
+          <span className={cn("inline-grid place-items-center size-16 rounded-2xl bg-paper/70 border mb-8", p.ring, p.ink)}>
+            <TopicIllustration slug={topic.slug} className="size-9" />
+          </span>
           <p className={cn("font-body text-sm tracking-[0.18em] uppercase font-semibold mb-6", p.ink)}>
             תחום /{topic.number}
           </p>

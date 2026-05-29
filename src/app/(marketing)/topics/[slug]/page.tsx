@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, FileText, Headphones, Newspaper, BookOpen } from "lucide-react";
 import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
 import type { TopicSlug } from "@/data/types";
-import { topicColorClasses } from "@/styles/topic-colors";
+import { topicColorClasses, topicPastelClasses } from "@/styles/topic-colors";
 import { PodcastPlayer } from "@/components/topics/podcast-player";
 import { cn } from "@/lib/cn";
 
@@ -28,24 +28,25 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
   const topic = getTopic(slug as TopicSlug);
   const team = getParticipantsByTopic(topic.slug);
   const c = topicColorClasses[topic.color];
+  const p = topicPastelClasses[topic.color];
   const onLight = topic.color === "amber";
 
   return (
     <>
       {/* Hero */}
-      <section className={cn("relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden", c.bg, onLight ? "text-navy-900" : "text-paper")}>
-        <div className="absolute -bottom-32 -left-32 w-[60vmin] h-[60vmin] bg-paper/15 blur-3xl rounded-full pointer-events-none" />
+      <section className={cn("relative pt-32 pb-24 lg:pt-44 lg:pb-32 overflow-hidden text-navy-900", p.surface)}>
+        <div aria-hidden className={cn("absolute -bottom-32 -left-32 w-[60vmin] h-[60vmin] blur-3xl rounded-full pointer-events-none opacity-20", c.bg)} />
         <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
-          <Link href="/topics" className="inline-flex items-center gap-2 mb-10 opacity-70 hover:opacity-100 font-body text-sm">
+          <Link href="/topics" className="inline-flex items-center gap-2 mb-10 text-navy-900/60 hover:text-navy-900 transition font-body text-sm">
             <ArrowLeft className="size-4 rotate-180" />
             כל התחומים
           </Link>
-          <p className="font-body text-sm tracking-[0.18em] uppercase font-semibold opacity-70 mb-6">
+          <p className={cn("font-body text-sm tracking-[0.18em] uppercase font-semibold mb-6", p.ink)}>
             תחום /{topic.number}
           </p>
           <h1 className="font-display font-black text-jumbo leading-[0.85]">{topic.title}</h1>
-          <p className="mt-10 font-body text-2xl lg:text-3xl max-w-3xl opacity-90 leading-tight">{topic.tagline}</p>
-          <p className="mt-6 font-body text-lg max-w-3xl opacity-80 leading-relaxed">{topic.description}</p>
+          <p className="mt-10 font-body text-2xl lg:text-3xl max-w-3xl text-navy-900/85 leading-tight">{topic.tagline}</p>
+          <p className="mt-6 font-body text-lg max-w-3xl text-navy-900/70 leading-relaxed">{topic.description}</p>
         </div>
       </section>
 

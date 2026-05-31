@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerGsap, ScrollTrigger, prefersReducedMotion } from "@/lib/motion";
+import { ChinuchLachaimBadge } from "./chinuch-lachaim-badge";
 import {
   programIntro,
   audienceCard,
@@ -132,19 +133,24 @@ export function ProgramOverview() {
         <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
           {programIntro.eyebrow}
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 lg:mb-20">
-          <h2 className="lg:col-span-7 font-display text-display font-black text-navy-900 leading-[0.98]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-stretch mb-16 lg:mb-20">
+          <h2 className="lg:col-span-7 lg:self-end font-display text-display font-black text-navy-900 leading-[0.98]">
             {programIntro.title}
           </h2>
-          <div className="lg:col-span-5 relative rounded-3xl bg-crystal text-paper p-8 lg:p-9 overflow-hidden">
-            <div aria-hidden className="absolute inset-0 bg-stripes-soft opacity-30 [mask-image:linear-gradient(225deg,black,transparent_70%)]" />
-            <div aria-hidden className="absolute -top-12 -left-12 w-44 h-44 bg-leaf-500/20 blur-3xl rounded-full" />
-            <p className="relative font-body text-xs uppercase tracking-[0.18em] text-leaf-300/85 font-bold mb-3">
-              {programIntro.goalLabel}
-            </p>
-            <p className="relative font-display font-bold text-lg lg:text-xl leading-snug">
-              {programIntro.goal}
-            </p>
+          <div className="lg:col-span-5 flex flex-col justify-between gap-8 lg:gap-10">
+            {/* חינוך לחיים medallion */}
+            <ChinuchLachaimBadge className="self-center" />
+
+            <div className="relative rounded-3xl bg-crystal text-paper p-8 lg:p-9 overflow-hidden">
+              <div aria-hidden className="absolute inset-0 bg-stripes-soft opacity-30 [mask-image:linear-gradient(225deg,black,transparent_70%)]" />
+              <div aria-hidden className="absolute -top-12 -left-12 w-44 h-44 bg-leaf-500/20 blur-3xl rounded-full" />
+              <p className="relative font-body text-xs uppercase tracking-[0.18em] text-leaf-300/85 font-bold mb-3">
+                {programIntro.goalLabel}
+              </p>
+              <p className="relative font-display font-bold text-lg lg:text-xl leading-snug">
+                {programIntro.goal}
+              </p>
+            </div>
           </div>
         </div>
 

@@ -5,12 +5,22 @@ import {
   Sparkles,
   ArrowLeft,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 /* ---- Header flow badge: נתונים ← תובנות ← השפעה ---- */
 const flowBadge = ["נתונים", "תובנות", "השפעה"] as const;
 
+type Stage = {
+  number: string;
+  title: string;
+  Icon: LucideIcon;
+  note: string;
+  points: readonly string[];
+  highlight?: boolean;
+};
+
 /* ---- The 4 stages of how data drives planning, insight & impact ---- */
-const stages = [
+const stages: Stage[] = [
   {
     number: "01",
     title: "נתוני זהב",
@@ -40,7 +50,7 @@ const stages = [
     points: ["פרסונליזציה", "תכנון וייעוד", "שפה משותפת", "שקיפות ופיקוח", "הרחבת ההשפעה"],
     highlight: true,
   },
-] as const;
+];
 
 export function DataFlowSection() {
   return (

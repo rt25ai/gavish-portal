@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { gsap, registerGsap, prefersReducedMotion } from "@/lib/motion";
 import { CrystalMark } from "@/components/brand/crystal-mark";
-import { ProgramDetailsModal } from "@/components/about/program-details-modal";
 
 /** Canonical program copy, from the official Gavish one-pager (קרן רש״י, 10/24). */
 const hero = {
@@ -19,7 +18,6 @@ const hero = {
 
 export function AboutHero() {
   const rootRef = useRef<HTMLElement>(null);
-  const [detailsOpen, setDetailsOpen] = useState(false);
 
   useEffect(() => {
     if (!rootRef.current || prefersReducedMotion()) return;
@@ -99,14 +97,13 @@ export function AboutHero() {
             {hero.registerLabel}
             <span className="transition-transform group-hover:-translate-x-1" aria-hidden>←</span>
           </a>
-          <button
-            type="button"
-            onClick={() => setDetailsOpen(true)}
-            className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-navy-900/15 text-navy-900 font-display font-bold text-base lg:text-lg hover:bg-navy-900/5 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy-900"
+          <a
+            href="#program"
+            className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-navy-900/15 text-navy-900 font-display font-bold text-base lg:text-lg hover:bg-navy-900/5 transition-colors"
           >
             לפרטי התוכנית
             <span aria-hidden>↓</span>
-          </button>
+          </a>
         </div>
 
         {/* partners line */}
@@ -114,8 +111,6 @@ export function AboutHero() {
           {hero.partners}
         </p>
       </div>
-
-      <ProgramDetailsModal open={detailsOpen} onClose={() => setDetailsOpen(false)} />
     </section>
   );
 }

@@ -33,36 +33,50 @@ export const challengesIntro = {
     "מנהלי מחלקות הנוער קמים עם תחושת שליחות, אך פועלים בתוך מציאות מורכבת ומשתנה. לפני שמדברים על השפעה - כדאי לזהות את האתגרים. וברוב המקרים, אלה לא כשלים ניהוליים אישיים אלא מאפיינים של הזירה.",
 } as const;
 
-export const courseChallenges: { title: string; body: string }[] = [
+/** icon = a Lucide icon name resolved in the challenges component. */
+export type CourseChallenge = { icon: string; title: string; body: string };
+
+export const courseChallenges: CourseChallenge[] = [
   {
+    icon: "HelpCircle",
     title: "עמימות תפקידית",
     body: "חוסר בהירות ארגונית גורם לפעולה בתגובה למציאות במקום מתוך תפיסה אסטרטגית.",
   },
   {
+    icon: "Landmark",
     title: "תלות בפוליטיקה רשותית",
     body: "סדרי עדיפויות, הנהגה ומשאבים משתנים - ומשפיעים ישירות על יכולת הפעולה.",
   },
   {
+    icon: "ArrowLeftRight",
     title: "קושי לתרגם צורך למדיניות",
     body: "גם כשמזהים בעיה, חסרה היכולת לבנות קואליציה שתתרגם אותה למדיניות ולמשאבים.",
   },
   {
+    icon: "Gauge",
     title: "מחסור במדידה",
     body: "קושי להוכיח אפקטיביות ולבסס הצלחה באמצעות נתונים.",
   },
   {
+    icon: "HeartPulse",
     title: "שינוי בצרכי הנוער",
     body: "שינוי דרמטי בצרכים - שחיקה, בדידות, קשיי שייכות וזהות, אלימות - ללא שינוי מבני.",
   },
   {
+    icon: "Network",
     title: "מניהול תוכניות להובלת אקו-סיסטם",
     body: "המעבר מהפעלת תוכניות לניהול רשתות, שותפויות, דאטה וחוסן קהילתי.",
   },
   {
+    icon: "Flame",
     title: "שחיקה ועומס מתמשך",
     body: "תשישות והצפה, וקושי לייצר הישגים במצבי קצה שהפכו תמידיים.",
   },
 ];
+
+/** Pull-quote that reframes the challenges as systemic, not personal. */
+export const challengesTakeaway =
+  "אלה לא כשלים ניהוליים אישיים - אלה מאפיינים של הזירה. ההשפעה מתחילה בזיהוי שלהם.";
 
 /* ---------- policy vs politics ---------- */
 

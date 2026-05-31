@@ -1,4 +1,5 @@
 import { HeroSplit } from "@/components/home/hero-split";
+import { CommunityCircle } from "@/components/home/community-circle";
 import { CommunityUpdates } from "@/components/home/community-updates";
 import { Manifesto } from "@/components/home/manifesto";
 import { TopicsBento } from "@/components/home/topics-bento";
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSplit />
+      <CommunityCircle />
       <CommunityUpdates />
       <Manifesto />
       <TopicsBento />

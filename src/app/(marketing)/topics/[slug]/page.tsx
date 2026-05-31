@@ -7,6 +7,7 @@ import type { TopicSlug } from "@/data/types";
 import { topicColorClasses, topicPastelClasses } from "@/styles/topic-colors";
 import { PodcastPlayer } from "@/components/topics/podcast-player";
 import { PolicyFramework } from "@/components/topics/policy/policy-framework";
+import { PolicyCourse } from "@/components/topics/policy/policy-course";
 import { TopicIllustration } from "@/components/home/topic-illustrations";
 import { cn } from "@/lib/cn";
 
@@ -87,8 +88,13 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
-      {/* National policy framework (מנערים 710) - only on the informal-policy topic */}
-      {topic.slug === "informal-policy" && <PolicyFramework />}
+      {/* National policy framework (מנערים 710) + course module - only on the informal-policy topic */}
+      {topic.slug === "informal-policy" && (
+        <>
+          <PolicyFramework />
+          <PolicyCourse />
+        </>
+      )}
 
       {/* Podcast */}
       <section className="bg-navy-900 text-paper py-24 lg:py-32 relative overflow-hidden">

@@ -85,5 +85,89 @@ export const meetingPhotos: GalleryPhoto[] = [
     "full": "/gallery/meetings-2026/full/12.webp",
     "width": 1530,
     "height": 2040
+  },
+  {
+    "id": "13",
+    "thumb": "/gallery/meetings-2026/thumb/13.webp",
+    "full": "/gallery/meetings-2026/full/13.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "14",
+    "thumb": "/gallery/meetings-2026/thumb/14.webp",
+    "full": "/gallery/meetings-2026/full/14.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "15",
+    "thumb": "/gallery/meetings-2026/thumb/15.webp",
+    "full": "/gallery/meetings-2026/full/15.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "16",
+    "thumb": "/gallery/meetings-2026/thumb/16.webp",
+    "full": "/gallery/meetings-2026/full/16.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "17",
+    "thumb": "/gallery/meetings-2026/thumb/17.webp",
+    "full": "/gallery/meetings-2026/full/17.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "18",
+    "thumb": "/gallery/meetings-2026/thumb/18.webp",
+    "full": "/gallery/meetings-2026/full/18.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "19",
+    "thumb": "/gallery/meetings-2026/thumb/19.webp",
+    "full": "/gallery/meetings-2026/full/19.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "20",
+    "thumb": "/gallery/meetings-2026/thumb/20.webp",
+    "full": "/gallery/meetings-2026/full/20.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "21",
+    "thumb": "/gallery/meetings-2026/thumb/21.webp",
+    "full": "/gallery/meetings-2026/full/21.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "22",
+    "thumb": "/gallery/meetings-2026/thumb/22.webp",
+    "full": "/gallery/meetings-2026/full/22.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "23",
+    "thumb": "/gallery/meetings-2026/thumb/23.webp",
+    "full": "/gallery/meetings-2026/full/23.webp",
+    "width": 2000,
+    "height": 1336
+  },
+  {
+    "id": "24",
+    "thumb": "/gallery/meetings-2026/thumb/24.webp",
+    "full": "/gallery/meetings-2026/full/24.webp",
+    "width": 2000,
+    "height": 1500
   }
 ];

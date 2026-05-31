@@ -6,36 +6,36 @@ export const meetingPhotos: GalleryPhoto[] = [
     "id": "01",
     "thumb": "/gallery/meetings-2026/thumb/01.webp",
     "full": "/gallery/meetings-2026/full/01.webp",
-    "width": 1530,
-    "height": 2040
+    "width": 2000,
+    "height": 1500
   },
   {
     "id": "02",
     "thumb": "/gallery/meetings-2026/thumb/02.webp",
     "full": "/gallery/meetings-2026/full/02.webp",
-    "width": 1530,
-    "height": 2040
+    "width": 2000,
+    "height": 1500
   },
   {
     "id": "03",
     "thumb": "/gallery/meetings-2026/thumb/03.webp",
     "full": "/gallery/meetings-2026/full/03.webp",
-    "width": 2000,
-    "height": 1500
+    "width": 1600,
+    "height": 900
   },
   {
     "id": "04",
     "thumb": "/gallery/meetings-2026/thumb/04.webp",
     "full": "/gallery/meetings-2026/full/04.webp",
     "width": 2000,
-    "height": 1500
+    "height": 1126
   },
   {
     "id": "05",
     "thumb": "/gallery/meetings-2026/thumb/05.webp",
     "full": "/gallery/meetings-2026/full/05.webp",
-    "width": 2000,
-    "height": 1500
+    "width": 1600,
+    "height": 900
   },
   {
     "id": "06",
@@ -48,15 +48,15 @@ export const meetingPhotos: GalleryPhoto[] = [
     "id": "07",
     "thumb": "/gallery/meetings-2026/thumb/07.webp",
     "full": "/gallery/meetings-2026/full/07.webp",
-    "width": 1600,
-    "height": 900
+    "width": 1153,
+    "height": 2048
   },
   {
     "id": "08",
     "thumb": "/gallery/meetings-2026/thumb/08.webp",
     "full": "/gallery/meetings-2026/full/08.webp",
-    "width": 2000,
-    "height": 1126
+    "width": 1200,
+    "height": 1600
   },
   {
     "id": "09",
@@ -70,54 +70,19 @@ export const meetingPhotos: GalleryPhoto[] = [
     "thumb": "/gallery/meetings-2026/thumb/10.webp",
     "full": "/gallery/meetings-2026/full/10.webp",
     "width": 1600,
-    "height": 900
+    "height": 1200
   },
   {
     "id": "11",
     "thumb": "/gallery/meetings-2026/thumb/11.webp",
     "full": "/gallery/meetings-2026/full/11.webp",
-    "width": 2000,
-    "height": 1500
+    "width": 1600,
+    "height": 1200
   },
   {
     "id": "12",
     "thumb": "/gallery/meetings-2026/thumb/12.webp",
     "full": "/gallery/meetings-2026/full/12.webp",
-    "width": 1153,
-    "height": 2048
-  },
-  {
-    "id": "13",
-    "thumb": "/gallery/meetings-2026/thumb/13.webp",
-    "full": "/gallery/meetings-2026/full/13.webp",
-    "width": 1200,
-    "height": 1600
-  },
-  {
-    "id": "14",
-    "thumb": "/gallery/meetings-2026/thumb/14.webp",
-    "full": "/gallery/meetings-2026/full/14.webp",
-    "width": 1153,
-    "height": 2048
-  },
-  {
-    "id": "15",
-    "thumb": "/gallery/meetings-2026/thumb/15.webp",
-    "full": "/gallery/meetings-2026/full/15.webp",
-    "width": 1600,
-    "height": 1200
-  },
-  {
-    "id": "16",
-    "thumb": "/gallery/meetings-2026/thumb/16.webp",
-    "full": "/gallery/meetings-2026/full/16.webp",
-    "width": 1600,
-    "height": 1200
-  },
-  {
-    "id": "17",
-    "thumb": "/gallery/meetings-2026/thumb/17.webp",
-    "full": "/gallery/meetings-2026/full/17.webp",
     "width": 1530,
     "height": 2040
   }

@@ -14,42 +14,73 @@ import {
   sourceNote,
 } from "@/data/about-program";
 
-/* ---------- inline icon set (stroke, currentColor) ---------- */
-function Icon({ name, className = "size-6" }: { name: string; className?: string }) {
-  const common = {
-    width: 24,
-    height: 24,
-    viewBox: "0 0 24 24",
+/* ----------------------------------------------------------------------------
+ * CrystalIcon — every icon sits inside a cut-gem hexagon with internal facet
+ * lines, echoing the Gavish (גביש = crystal) brand mark. The angular glyphs are
+ * drawn in the gem's "light" colour (currentColor) so the parent can brighten
+ * them on hover. Not stock line icons — bespoke to the brand language.
+ * -------------------------------------------------------------------------- */
+const HEX = "24,3 41.2,13 41.2,35 24,45 6.8,35 6.8,13";
+
+function Glyph({ name }: { name: string }) {
+  const s = {
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.8,
+    strokeWidth: 2.1,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
-    "aria-hidden": true,
-    className,
   };
   switch (name) {
-    case "resources":
-      return (<svg {...common}><path d="M12 2v20M2 7l10 5 10-5M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>);
-    case "magnet":
-      return (<svg {...common}><path d="M6 3v8a6 6 0 0 0 12 0V3M6 7h4M14 7h4" /></svg>);
-    case "course":
-      return (<svg {...common}><path d="M4 5h11a3 3 0 0 1 3 3v11a3 3 0 0 0-3-3H4zM20 5h0a3 3 0 0 0-3 3v8" /></svg>);
-    case "mentor":
-      return (<svg {...common}><circle cx="9" cy="8" r="3" /><path d="M3 20a6 6 0 0 1 12 0M16 5.5a3 3 0 0 1 0 5M21 20a6 6 0 0 0-4-5.6" /></svg>);
-    case "guidance":
-      return (<svg {...common}><path d="M12 2 4 6v6c0 5 3.5 7.5 8 10 4.5-2.5 8-5 8-10V6z" /><path d="m9 12 2 2 4-4" /></svg>);
-    case "seminar":
-      return (<svg {...common}><rect x="3" y="4" width="18" height="13" rx="2" /><path d="M8 21h8M12 17v4" /></svg>);
-    case "virtual":
-      return (<svg {...common}><rect x="2" y="6" width="14" height="12" rx="2" /><path d="m16 10 6-3v10l-6-3z" /></svg>);
-    case "oneonone":
-      return (<svg {...common}><circle cx="8" cy="9" r="3" /><circle cx="17" cy="9" r="2.5" /><path d="M3 19a5 5 0 0 1 10 0M14 19a4.5 4.5 0 0 1 7 0" /></svg>);
-    case "between":
-      return (<svg {...common}><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z" /></svg>);
+    case "resources": // faceted gem = value / budget
+      return (<g {...s}><path d="M24 15l7 5-7 13-7-13z" /><path d="M17 20h14M24 15v18M20.4 20 24 33M27.6 20 24 33" /></g>);
+    case "magnet": // funnel = distilling / extracting resources
+      return (<g {...s}><path d="M16 17h16l-6 7v7l-4 2v-9z" /></g>);
+    case "course": // angular open book
+      return (<g {...s}><path d="M24 18 15 20.5v12l9-2.5 9 2.5v-12z" /><path d="M24 18v14" /></g>);
+    case "mentor": // two faceted figures
+      return (<g {...s}><path d="M20 17.5l2.6 2.6L20 22.7l-2.6-2.6z" /><path d="M28 17.5l2.6 2.6L28 22.7l-2.6-2.6z" /><path d="M14.5 32.5c0-3.2 2.5-5.3 5.5-5.3M28 27.2c3 0 5.5 2.1 5.5 5.3" /></g>);
+    case "guidance": // faceted compass = professional guidance
+      return (<g {...s}><path d="M24 14 31 24 24 34 17 24z" /><path d="M21.4 26.6 24 19l2.6 7.6L24 24.6z" /></g>);
+    case "seminar": // podium / on-site monitor
+      return (<g {...s}><path d="M16 16h16v11H16z" /><path d="M24 27v4M20.5 35h7M16 16l16 11" /></g>);
+    case "virtual": // screen + play
+      return (<g {...s}><path d="M15 18h12v10H15z" /><path d="M19.5 20.5 24.5 23l-5 2.5z" /><path d="M29 20.5 33 18.5v11L29 27.5z" /></g>);
+    case "oneonone": // two linked facets
+      return (<g {...s}><path d="M18 19l2.8 2.8L18 24.6l-2.8-2.8z" /><path d="M30 21.5l2.5 2.5L30 26.5l-2.5-2.5z" /><path d="M21.4 22.5h5.2" /><path d="M13.5 32c0-2.8 2-4.7 4.5-4.7M27.5 27.3c2.5 0 4.5 1.9 4.5 4.7" /></g>);
+    case "between": // angular speech bubble = continuous contact
+      return (<g {...s}><path d="M16 17h16v9H23.5l-4 4v-4H16z" /><path d="M21 21.5h6M21 24h4" strokeWidth={1.6} /></g>);
     default:
       return null;
   }
+}
+
+function CrystalIcon({ name, className = "w-14 h-14" }: { name: string; className?: string }) {
+  const gid = `gem-${name}`;
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      className={`${className} text-leaf-100 drop-shadow-[0_10px_22px_-10px_rgba(15,30,71,0.55)] transition-[color,transform] duration-300 group-hover:text-white group-hover:scale-[1.06]`}
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="0.4" y2="1">
+          <stop offset="0" stopColor="var(--color-navy-700)" />
+          <stop offset="1" stopColor="var(--color-navy-950)" />
+        </linearGradient>
+      </defs>
+      {/* gem body */}
+      <polygon points={HEX} fill={`url(#${gid})`} stroke="var(--color-leaf-500)" strokeOpacity="0.35" strokeWidth="1.2" />
+      {/* internal facets — the crystal signature */}
+      <g stroke="var(--color-leaf-300)" strokeOpacity="0.22" strokeWidth="0.9">
+        <line x1="24" y1="3" x2="24" y2="45" />
+        <line x1="6.8" y1="13" x2="41.2" y2="35" />
+        <line x1="41.2" y1="13" x2="6.8" y2="35" />
+      </g>
+      {/* crown highlight */}
+      <polygon points="24,3 41.2,13 24,24 6.8,13" fill="white" fillOpacity="0.06" />
+      <Glyph name={name} />
+    </svg>
+  );
 }
 
 const clusterTone = {
@@ -105,7 +136,8 @@ export function ProgramOverview() {
           <h2 className="lg:col-span-7 font-display text-display font-black text-navy-900 leading-[0.98]">
             {programIntro.title}
           </h2>
-          <div className="lg:col-span-5 relative rounded-3xl bg-navy-900 text-paper p-8 lg:p-9 overflow-hidden">
+          <div className="lg:col-span-5 relative rounded-3xl bg-crystal text-paper p-8 lg:p-9 overflow-hidden">
+            <div aria-hidden className="absolute inset-0 bg-stripes-soft opacity-30 [mask-image:linear-gradient(225deg,black,transparent_70%)]" />
             <div aria-hidden className="absolute -top-12 -left-12 w-44 h-44 bg-leaf-500/20 blur-3xl rounded-full" />
             <p className="relative font-body text-xs uppercase tracking-[0.18em] text-leaf-300/85 font-bold mb-3">
               {programIntro.goalLabel}
@@ -120,11 +152,9 @@ export function ProgramOverview() {
         <div data-stagger className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-24 lg:mb-32">
           <article
             data-rise
-            className="lg:col-span-4 rounded-3xl border border-navy-900/8 bg-cream p-8 lg:p-9 flex flex-col"
+            className="group lg:col-span-4 rounded-3xl border border-navy-900/8 bg-cream p-8 lg:p-9 flex flex-col"
           >
-            <span className="inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-leaf-500/12 text-leaf-700 mb-6">
-              <Icon name="mentor" className="size-5" />
-            </span>
+            <CrystalIcon name="mentor" className="w-14 h-14 mb-6" />
             <h3 className="font-display font-black text-xl text-navy-900 mb-3">{audienceCard.label}</h3>
             <p className="font-body text-base text-ink/75 leading-relaxed">{audienceCard.body}</p>
           </article>
@@ -150,6 +180,7 @@ export function ProgramOverview() {
             data-rise
             className="lg:col-span-4 rounded-3xl bg-crystal text-paper p-8 lg:p-9 relative overflow-hidden flex flex-col"
           >
+            <div aria-hidden className="absolute inset-0 bg-stripes-soft opacity-25 [mask-image:linear-gradient(135deg,black,transparent_70%)]" />
             <div aria-hidden className="absolute -bottom-14 -right-10 w-48 h-48 bg-topic-teal/15 blur-3xl rounded-full" />
             <p className="relative font-body text-xs uppercase tracking-[0.18em] text-leaf-300/80 font-bold mb-4">
               {background.label}
@@ -175,9 +206,7 @@ export function ProgramOverview() {
                 className="group relative overflow-hidden rounded-3xl border border-navy-900/8 bg-cream p-7 lg:p-8 transition-colors hover:border-leaf-500/40"
               >
                 <div className="flex items-start justify-between mb-6">
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-navy-900 text-leaf-300 transition-colors group-hover:bg-leaf-500 group-hover:text-paper">
-                    <Icon name={p.icon} className="size-6" />
-                  </span>
+                  <CrystalIcon name={p.icon} className="w-14 h-14" />
                   <span className="font-display font-black text-2xl text-navy-900/12 tabular leading-none">
                     /{(i + 1).toString().padStart(2, "0")}
                   </span>
@@ -197,7 +226,7 @@ export function ProgramOverview() {
             אשכולות ההכשרה
           </p>
           <h3 className="font-display font-black text-3xl lg:text-5xl text-navy-900 leading-[0.98] mb-10">
-            באילו תכנים <span className="outline-text">נתמקד?</span>
+            באילו תכנים <span className="text-leaf-500">נתמקד?</span>
           </h3>
           <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
             {trainingClusters.map((c, i) => {
@@ -210,7 +239,7 @@ export function ProgramOverview() {
                 >
                   <div aria-hidden className={`absolute -top-10 -left-10 w-32 h-32 ${tone.glow} blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
                   <div className="relative flex items-center gap-4 mb-4">
-                    <span className={`w-3.5 h-3.5 rounded-full ${tone.dot}`} />
+                    <span className={`w-3.5 h-3.5 rounded-[3px] rotate-45 ${tone.dot}`} />
                     <span className="font-display font-black text-xl text-navy-900/15 tabular">
                       {(i + 1).toString().padStart(2, "0")}
                     </span>
@@ -237,6 +266,7 @@ export function ProgramOverview() {
                 data-rise
                 className="relative overflow-hidden rounded-3xl bg-crystal text-paper p-8 lg:p-10"
               >
+                <div aria-hidden className="absolute inset-0 bg-stripes-soft opacity-25 [mask-image:linear-gradient(225deg,black,transparent_70%)]" />
                 <div aria-hidden className="absolute -top-16 -right-12 w-52 h-52 bg-leaf-500/15 blur-3xl rounded-full" />
                 <div className="relative flex items-center justify-between mb-6">
                   <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-paper/8 border border-paper/15 font-display font-bold text-sm tracking-[0.12em] text-leaf-300">
@@ -260,7 +290,7 @@ export function ProgramOverview() {
             מבנה המפגשים
           </p>
           <h3 className="font-display font-black text-3xl lg:text-5xl text-navy-900 leading-[0.98] mb-10 max-w-2xl">
-            הקבוצה תיפגש ב<span className="outline-text">ארבעה</span> סוגי מרחבים
+            הקבוצה תיפגש ב<span className="whitespace-nowrap text-leaf-500">ארבעה</span> סוגי מרחבים
           </h3>
           <div data-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {meetingSpaces.map((s) => (
@@ -269,9 +299,7 @@ export function ProgramOverview() {
                 data-rise
                 className="group rounded-3xl border border-navy-900/8 bg-cream p-7 flex flex-col h-full transition-colors hover:border-leaf-500/40"
               >
-                <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-leaf-500/12 text-leaf-700 mb-6 transition-colors group-hover:bg-leaf-500 group-hover:text-paper">
-                  <Icon name={s.icon} className="size-6" />
-                </span>
+                <CrystalIcon name={s.icon} className="w-14 h-14 mb-6" />
                 <h4 className="font-display font-black text-lg text-navy-900 mb-2">{s.kind}</h4>
                 <p className="font-body text-[15px] text-ink/72 leading-relaxed flex-1">{s.detail}</p>
                 <span className="mt-5 inline-flex w-fit items-center px-3 py-1 rounded-full bg-navy-900/5 font-body text-xs font-semibold text-navy-700 tabular">

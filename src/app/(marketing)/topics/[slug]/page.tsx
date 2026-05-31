@@ -6,6 +6,8 @@ import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
 import type { TopicSlug } from "@/data/types";
 import { topicColorClasses, topicPastelClasses } from "@/styles/topic-colors";
 import { PodcastPlayer } from "@/components/topics/podcast-player";
+import { DataFlowSection } from "@/components/topics/data-flow";
+import { DataPrinciplesSection } from "@/components/topics/data-principles";
 import { PolicyFramework } from "@/components/topics/policy/policy-framework";
 import { PolicyCourse } from "@/components/topics/policy/policy-course";
 import { TopicIllustration } from "@/components/home/topic-illustrations";
@@ -87,6 +89,14 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
           </div>
         </div>
       </section>
+
+      {/* Data infographics (flow + 9 principles) - only on the data-driven topic */}
+      {topic.slug === "data-driven" && (
+        <>
+          <DataFlowSection />
+          <DataPrinciplesSection />
+        </>
+      )}
 
       {/* National policy framework (מנערים 710) + course module - only on the informal-policy topic */}
       {topic.slug === "informal-policy" && (

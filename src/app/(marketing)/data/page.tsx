@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { BudgetSection } from "@/components/data/sections/budget-section";
 import { ChartsGrid } from "@/components/data/sections/charts-grid";
-import { DataFlowSection } from "@/components/data/sections/data-flow";
 import { DataHero } from "@/components/data/sections/data-hero";
-import { DataPrinciplesSection } from "@/components/data/sections/data-principles";
 import { GoldenStatsGrid } from "@/components/data/sections/golden-stats-grid";
 import { HouseholdSection } from "@/components/data/sections/household-section";
 import { LongTermImpactSection } from "@/components/data/sections/long-term-impact";
@@ -29,8 +27,6 @@ export default function DataPage() {
       <WorkforceSection />
       <LongTermImpactSection />
       <NoCoordinatorSection />
-      <DataFlowSection />
-      <DataPrinciplesSection />
       <WhyItMattersSection />
     </>
   );

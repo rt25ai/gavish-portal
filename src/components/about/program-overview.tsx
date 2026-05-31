@@ -35,7 +35,7 @@ const colorMap = {
 
 export function ProgramOverview() {
   return (
-    <section className="bg-paper py-24 lg:py-36 relative overflow-hidden">
+    <section id="program" className="bg-paper py-24 lg:py-36 relative overflow-hidden scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-0 w-[36vmin] h-[36vmin] bg-leaf-500/8 blur-3xl rounded-full" />
         <div className="absolute bottom-0 right-0 w-[40vmin] h-[40vmin] bg-topic-coral/8 blur-3xl rounded-full" />

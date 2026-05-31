@@ -54,27 +54,20 @@ export function ChinuchLachaimBadge({ className = "" }: { className?: string }) 
       </div>
 
       <div data-medallion className="group relative will-change-transform">
-        {/* rotating colour halo */}
+        {/* rotating colour halo behind the badge — glows through its transparent edges */}
         <div
           aria-hidden
-          className="absolute -inset-3 rounded-[2.6rem] opacity-55 blur-md [animation:spin_18s_linear_infinite] [background:conic-gradient(from_0deg,var(--color-leaf-500),transparent_110deg,var(--color-topic-teal),transparent_220deg,var(--color-gavish-navy),transparent_330deg,var(--color-leaf-500))]"
+          className="absolute inset-2 rounded-full opacity-45 blur-xl [animation:spin_18s_linear_infinite] [background:conic-gradient(from_0deg,var(--color-leaf-500),transparent_110deg,var(--color-topic-teal),transparent_220deg,var(--color-gavish-navy),transparent_330deg,var(--color-leaf-500))]"
         />
-        {/* signature stripe whisper */}
-        <div
-          aria-hidden
-          className="absolute -inset-1 rounded-[2.2rem] bg-stripes-soft opacity-40 [mask-image:radial-gradient(circle,transparent_58%,black)]"
+        {/* transparent logo, floating free */}
+        <Image
+          src="/logos/chinuch-lachaim.png"
+          alt="חינוך לחיים - קרן רש״י"
+          width={269}
+          height={258}
+          priority
+          className="relative w-44 lg:w-52 h-auto object-contain select-none drop-shadow-[0_22px_36px_rgba(15,30,71,0.28)] transition-transform duration-500 group-hover:scale-[1.05]"
         />
-        {/* white medallion */}
-        <div className="relative bg-white rounded-[2rem] p-5 lg:p-6 shadow-[0_38px_72px_-24px_rgba(15,30,71,0.5)] ring-1 ring-navy-900/5 transition-transform duration-500 group-hover:scale-[1.04]">
-          <Image
-            src="/logos/chinuch-lachaim.png"
-            alt="חינוך לחיים - קרן רש״י"
-            width={269}
-            height={258}
-            priority
-            className="w-40 lg:w-48 h-auto object-contain select-none"
-          />
-        </div>
       </div>
     </div>
   );

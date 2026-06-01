@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, FileText, Headphones, Newspaper, BookOpen } from "lucide-react";
+import { ArrowLeft, Headphones, Newspaper, BookOpen } from "lucide-react";
 import { topics, getTopic, getParticipantsByTopic } from "@/data/topics";
 import type { TopicSlug } from "@/data/types";
 import { topicColorClasses, topicPastelClasses } from "@/styles/topic-colors";
@@ -128,34 +128,6 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
                 accentBg={c.bg}
                 accentOnLight={onLight}
               />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Documents */}
-      <section className="bg-cream-mesh py-24 lg:py-32 relative overflow-hidden">
-        <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
-          <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
-            הפלט שלנו
-          </p>
-          <h2 className="font-display text-display font-black text-navy-900 leading-[0.95] mb-12">
-            המסמכים<br />שיצרנו.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {topic.documents.map((d, i) => (
-              <div key={i} className="bg-paper rounded-2xl p-6 lg:p-8 flex items-center justify-between gap-4 border border-navy-900/8 hover:border-navy-900/30 transition group cursor-pointer">
-                <div className="flex items-center gap-4">
-                  <div className={cn("size-14 rounded-xl grid place-items-center", c.soft, c.text)}>
-                    <FileText className="size-7" />
-                  </div>
-                  <div>
-                    <p className="font-display font-bold text-lg text-navy-900">{d.title}</p>
-                    <p className="font-body text-sm text-ink/55">PDF · {d.size}</p>
-                  </div>
-                </div>
-                <ArrowLeft className="size-5 text-navy-900 opacity-50 group-hover:opacity-100 group-hover:-translate-x-1 transition" />
-              </div>
             ))}
           </div>
         </div>

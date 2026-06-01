@@ -49,7 +49,6 @@ export function ParticipantCard({ p, size = "md" }: { p: Participant; size?: "sm
       <div className="relative h-full flex flex-col justify-end p-6 lg:p-7">
         <p className="font-body text-xs uppercase tracking-[0.18em] text-paper/60 mb-2">{p.role}</p>
         <h3 className="font-display font-black text-2xl lg:text-3xl leading-tight mb-1">{p.name}</h3>
-        {hasCity && <p className="font-body text-sm text-paper/70 mb-4">{p.city}</p>}
         {hasQuote && (
           <p className={cn("font-body text-sm text-paper/80 leading-snug border-r-2 pr-3 mt-3", color?.border ?? "border-leaf-500")}>
             {p.quote}

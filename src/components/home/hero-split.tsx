@@ -84,16 +84,7 @@ export function HeroSplit() {
             <span aria-hidden className="relative hidden sm:block w-1.5 bg-gradient-to-b from-leaf-500 via-leaf-700 to-navy-900" />
 
             {/* Content */}
-            <div className="relative flex items-center gap-4 lg:gap-6 px-5 sm:px-7 py-4 lg:py-5">
-              <div className="flex flex-col items-end gap-0.5 leading-none">
-                <span className="font-body text-[10px] lg:text-[11px] tracking-[0.32em] uppercase text-navy-700/60 font-semibold">
-                  תוכנית של
-                </span>
-                <span className="font-display font-black text-base lg:text-lg text-navy-900 tracking-tight">
-                  קרן רש״י
-                </span>
-              </div>
-              <span aria-hidden className="h-12 lg:h-14 w-px bg-navy-900/10" />
+            <div className="relative flex items-center justify-center gap-4 lg:gap-6 px-6 sm:px-8 py-4 lg:py-5">
               <RashiLogo className="h-12 lg:h-14 w-auto relative z-10 transition-transform duration-700 group-hover:scale-105" />
               <ArrowLeft className="size-4 text-navy-900/40 group-hover:text-leaf-700 transition-all group-hover:-translate-x-1 hidden sm:block" />
             </div>

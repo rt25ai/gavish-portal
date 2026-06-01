@@ -130,7 +130,7 @@ export function ProgramOverview() {
 
       <div className="relative mx-auto max-w-[1200px] px-6 lg:px-10">
         {/* ---------- Heading + goal ---------- */}
-        <p className="font-body text-sm tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
+        <p className="font-body text-base tracking-[0.18em] uppercase text-navy-700/70 font-semibold mb-4">
           {programIntro.eyebrow}
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-stretch mb-16 lg:mb-20">

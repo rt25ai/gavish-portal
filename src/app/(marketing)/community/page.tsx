@@ -65,14 +65,9 @@ export default function CommunityPage() {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 lg:gap-6">
-            {community.map((p, i) => {
-              const big = i % 7 === 0;
-              return (
-                <div key={p.id} className={big ? "col-span-2 row-span-2" : ""}>
-                  <ParticipantCard p={p} size={big ? "lg" : "md"} />
-                </div>
-              );
-            })}
+            {community.map((p) => (
+              <ParticipantCard key={p.id} p={p} size="md" />
+            ))}
           </div>
         </div>
       </section>

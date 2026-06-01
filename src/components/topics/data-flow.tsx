@@ -142,8 +142,8 @@ export function DataFlowSection() {
           <div aria-hidden className="absolute inset-0 bg-crystal opacity-50" />
           <div aria-hidden className="absolute inset-y-0 left-0 w-1/3 bg-stripes-soft opacity-25 [mask-image:linear-gradient(90deg,black,transparent)]" />
           <p className="relative font-display font-black text-2xl lg:text-4xl leading-[1.1] text-balance max-w-4xl">
-            הנתונים אינם רק מדידה - הם כלי לחיבור{" "}
-            <span className="text-leaf-300">הזדמנויות חיים</span> לילדים ולנוער, לקבלת החלטות וליצירת השפעה חינוכית-חברתית.
+            נתונים אינם רק לצורך מדידה. השימוש בנתונים ועבודה מבוססת נתונים משפיעה על מיצוב התפקיד, על בסיס הנתונים נוכל לחבר{" "}
+            <span className="text-leaf-300">הזדמנויות חיים</span> לילדים ונוער ולקבל החלטות מקצועיות, מדויקות ורלוונטיות.
           </p>
         </div>
       </div>

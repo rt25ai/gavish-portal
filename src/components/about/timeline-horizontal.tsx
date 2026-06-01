@@ -66,7 +66,7 @@ export function TimelineHorizontal() {
     if (!el) return;
     const amount = Math.min(el.clientWidth * 0.85, 600);
     // In RTL, "right" means going back to start (positive direction visually), "left" means forward.
-    el.scrollBy({ left: dir === "left" ? amount : -amount, behavior: "smooth" });
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   };
 
   return (

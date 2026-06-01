@@ -149,7 +149,7 @@ export function PhotoGallery({
     const el = trackRef.current;
     if (!el) return;
     const amount = Math.min(el.clientWidth * 0.85, 640);
-    el.scrollBy({ left: dir === "left" ? amount : -amount, behavior: "smooth" });
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   };
 
   return (

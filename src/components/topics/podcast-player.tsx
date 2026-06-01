@@ -98,7 +98,7 @@ export function PodcastPlayer({
             className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-paper/20 accent-paper mb-3"
           />
           <p className="font-body text-sm text-paper/50 uppercase tracking-wider tabular-nums">
-            {fmt(current)} / {duration ? fmt(duration) : fallbackDuration || "—"} · נוצר עם NotebookLM
+            {fmt(current)} / {duration ? fmt(duration) : fallbackDuration || "—"} · נוצר באמצעות בינה מלאכותית
           </p>
         </div>
       </div>

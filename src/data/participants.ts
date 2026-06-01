@@ -15,7 +15,7 @@ export const participants: Participant[] = [
   { id: "p12", name: "מאור בניטה", role: "מנהל מחלקת הנוער בדימונה", city: "דימונה", topic: "youth-participation", quote: "כל ילד.ה ונער.ה זכאים להזדמנויות שוות על מנת לממש את הפוטנציאל הגלום בתוכם.ן", bio: "", status: "community" },
   { id: "p13", name: "אביב זמיר", role: "מנהל מחלקה - נהריה", city: "נהריה", topic: "human-capital", quote: "מעט מן האור דוחה הרבה מן החושך", bio: "", status: "community" },
   { id: "p14", name: "סופיה בן הרוש טוביאנה", role: "מנהלת מחלקת נוער יהוד-מונוסון", city: "יבנה", topic: "informal-policy", quote: "הדרך הנכונה לחנך בני אדם היא להיות להם לדוגמא", bio: "", status: "community" },
-  { id: "p15", name: "מיטל שבת", role: "מנהלת מחלקת נוער", city: "—", topic: "data-driven", quote: "", bio: "", status: "community" },
+  { id: "p15", name: "מיטל שבת", role: "מנהלת מחלקת נוער חדרה", city: "—", topic: "data-driven", quote: "", bio: "", status: "community" },
   { id: "p16", name: "אביעד כהן", role: "מנהל מחלקת נוער - חבל יבנה", city: "גני טל", topic: "youth-participation", quote: "לא באנו לדבר 'על', באנו לעשות 'את'", bio: "", status: "community" },
   { id: "p17", name: "תהילה דומב", role: "מנהלת יחידת נוער - מועצה מקומית אלקנה", city: "אורנית", topic: "human-capital", quote: "כל מה שילד צריך זה מבוגר אחד שיאמין בו", bio: "", status: "community" },
   { id: "p18", name: "שירין סעיד", role: "מנהלת מחלקת נוער וחינוך בלתי פורמלי - ענה", city: "עכו", topic: "informal-policy", quote: "אם אתה חולם במשהו אז אתה עושה את זה", bio: "", status: "community" },

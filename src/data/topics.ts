@@ -20,9 +20,9 @@ export const topics: Topic[] = [
     ],
     team: ["p03", "p07", "p11", "p15"],
     externalResources: [
-      { type: "research", title: "דו״ח החינוך הבלתי פורמלי בישראל", source: "מרכז המחקר והמידע של הכנסת", href: "https://main.knesset.gov.il/About/MMM/Pages/all-publications.aspx" },
-      { type: "research", title: "סקר מצב מנהיגות מחלקות הנוער", source: "מכון ברוקדייל - JDC", href: "https://brookdale.jdc.org.il/" },
-      { type: "article", title: "המספרים שמאחורי החינוך הבלתי-פורמלי", source: "כלכליסט", href: "https://www.calcalist.co.il/" },
+      { type: "research", title: "פילוח תקציב משרד החינוך על חינוך בלתי-פורמלי לילדים ולנוער", source: "מרכז המחקר והמידע של הכנסת", href: "https://fs.knesset.gov.il/globaldocs/MMM/ed1e1e53-8821-e611-80d5-00155d0acbc2/2_ed1e1e53-8821-e611-80d5-00155d0acbc2_11_10100.pdf" },
+      { type: "research", title: "דיפרנציאליות בתקצוב משרד החינוך של חינוך בלתי-פורמלי", source: "מרכז המחקר והמידע של הכנסת", href: "https://fs.knesset.gov.il/globaldocs/MMM/6219ea96-c4a3-e911-80f1-00155d0a9536/2_6219ea96-c4a3-e911-80f1-00155d0a9536_11_17651.pdf" },
+      { type: "research", title: "ילדים בישראל - לקט נתונים לרגל יום הילד הבין-לאומי 2024", source: "הלשכה המרכזית לסטטיסטיקה", href: "https://www.cbs.gov.il/he/mediarelease/DocLib/2024/363/11_24_363b.pdf" },
     ],
     documents: [
       { title: "מסמך תובנות עבודה מבוססת נתונים - גביש 2026", size: "2.4MB" },
@@ -60,9 +60,9 @@ export const topics: Topic[] = [
     ],
     team: ["p01", "p04", "p09", "p13", "p17"],
     externalResources: [
-      { type: "research", title: "מעסיקים בחב\"פ - תמונת מצב 2024", source: "מכון ברוקדייל - JDC", href: "https://brookdale.jdc.org.il/" },
-      { type: "article", title: "המורה שמאחורי הקלעים: על אנשי הנוער ברשויות", source: "הארץ", href: "https://www.haaretz.co.il/" },
-      { type: "podcast", title: "מנהלים את החברה הישראלית", source: "כאן 11", href: "https://www.kan.org.il/" },
+      { type: "research", title: "חינוך בלתי פורמלי בישראל: עדויות מהשדה וסיכום תהליך למידה", source: "האקדמיה הלאומית הישראלית למדעים", href: "https://education.academy.ac.il/SystemFiles/23007.pdf" },
+      { type: "research", title: "תעסוקה ופיתוח הון אנושי - מחקרים ונתונים", source: "מכון מאיירס-ג'וינט-ברוקדייל", href: "https://brookdale.jdc.org.il/category/employment/" },
+      { type: "research", title: "חינוך בלתי פורמלי - סקירת ספרות", source: "בית הספר לחינוך, אוניברסיטת בר-אילן", href: "https://meyda.education.gov.il/files/noar/informal_education1.pdf" },
     ],
     documents: [
       { title: "מסמך תובנות הון אנושי - גביש 2026", size: "2.4MB" },
@@ -100,9 +100,9 @@ export const topics: Topic[] = [
     ],
     team: ["p02", "p06", "p10", "p14"],
     externalResources: [
-      { type: "research", title: "דו״ח מצב החינוך הבלתי פורמלי 2025", source: "מינהל חברה ונוער, משרד החינוך", href: "https://meyda.education.gov.il/" },
-      { type: "article", title: "כשתנועת הנוער הופכת למקלט", source: "מקור ראשון", href: "https://www.makorrishon.co.il/" },
-      { type: "podcast", title: "אנשי השטח", source: "גלי צה\"ל", href: "https://glz.co.il/" },
+      { type: "research", title: "חינוך בלתי פורמלי העונה על צרכיה וייחודה של החברה הערבית בישראל", source: "מרכז המחקר והמידע של הכנסת", href: "https://fs.knesset.gov.il/23/Committees/23_ci_bg_581721.pdf" },
+      { type: "research", title: "פעילות החינוך הבלתי-פורמלי בצל נגיף הקורונה", source: "מרכז המחקר והמידע של הכנסת", href: "https://fs.knesset.gov.il/23/Committees/23_cs_bg_576095.pdf" },
+      { type: "podcast", title: "מחקר בשלוש קריאות - הפודקאסט של מרכז המחקר והמידע", source: "מרכז המחקר והמידע של הכנסת", href: "https://podcasts.apple.com/il/podcast/id1579289638" },
     ],
     documents: [
       { title: "מסמך תובנות עיצוב מדיניות בחב״פ", size: "3.1MB" },
@@ -140,9 +140,9 @@ export const topics: Topic[] = [
     ],
     team: ["p05", "p08", "p12", "p16"],
     externalResources: [
-      { type: "research", title: "סקר השתתפות בני נוער במסגרות", source: "מינהל חברה ונוער 2025", href: "https://meyda.education.gov.il/" },
-      { type: "article", title: "מי הם 70% בני הנוער שלא משתתפים", source: "TheMarker", href: "https://www.themarker.com/" },
-      { type: "podcast", title: "הקול של הנוער", source: "Civic Hub", href: "https://civichub.org.il/" },
+      { type: "research", title: "תנועות וארגוני הנוער: קידום חינוך ערכי", source: "מועצת ארגוני הילדים והנוער", href: "https://coyo.org.il/%D7%AA%D7%A0%D7%95%D7%A2%D7%95%D7%AA-%D7%95%D7%90%D7%A8%D7%92%D7%95%D7%A0%D7%99-%D7%94%D7%A0%D7%95%D7%A2%D7%A8/" },
+      { type: "article", title: "הקיצוץ לתנועות הנוער מסוכן משנדמה לנו", source: "מוסף כלכליסט", href: "https://newmedia.calcalist.co.il/magazine-29-02-24/m03.html" },
+      { type: "research", title: "ילדים ובני נוער - מחקרים ונתונים", source: "מכון מאיירס-ג'וינט-ברוקדייל", href: "https://brookdale.jdc.org.il/category/children-and-youth/" },
     ],
     documents: [
       { title: "מסמך תובנות השתתפות נוער", size: "3.7MB" },

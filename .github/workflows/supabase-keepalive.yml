@@ -1,0 +1,35 @@
+name: Supabase Keep-Alive
+
+# Supabase pauses free-tier projects after 7 days with no activity.
+# This pings the database every 3 days so the project never gets paused.
+# Runs in GitHub's cloud - no dependency on any local machine being on.
+
+on:
+  schedule:
+    # Every 3 days at 06:17 UTC (odd minute to avoid GitHub's on-the-hour load).
+    - cron: "17 6 */3 * *"
+  workflow_dispatch: {} # allow manual "Run workflow" from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase to register activity
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          set -euo pipefail
+          echo "Pinging $SUPABASE_URL ..."
+          code=$(curl -s -o /tmp/out.txt -w "%{http_code}" \
+            "$SUPABASE_URL/rest/v1/profiles?select=id&limit=1" \
+            -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY")
+          echo "HTTP $code"
+          cat /tmp/out.txt
+          # 2xx means a real DB query succeeded and activity was registered.
+          if [ "$code" -lt 200 ] || [ "$code" -ge 300 ]; then
+            echo "::error::Keep-alive query failed with HTTP $code"
+            exit 1
+          fi
+          echo "Keep-alive OK."

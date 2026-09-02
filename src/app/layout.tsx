@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { AccessibilityWidget } from "@/components/a11y/accessibility-widget";
 import { ServiceWorkerRegistrar } from "@/components/pwa/service-worker-registrar";
+import { Analytics } from "@vercel/analytics/next";
 
 const A11Y_INIT_SCRIPT = `
 try {
@@ -108,6 +109,7 @@ export default function RootLayout({
         </SmoothScrollProvider>
         <AccessibilityWidget />
         <ServiceWorkerRegistrar />
+        <Analytics />
       </body>
     </html>
   );
